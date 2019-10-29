@@ -18,6 +18,6 @@ class Competency < ApplicationRecord
   default_scope { order(:position) }
 
   def to_s
-    "#{name}"
+    "#{short_name}"
   end
 end

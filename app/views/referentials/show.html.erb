@@ -7,14 +7,17 @@
   </div>
   <div class="col-md-8">
     <h3>Compétences</h3>
-    <ul class="list-unstyled">
+    <div class="row">
       <% @referential.competencies.each do |competency| %>
-      <li>
-        <h4><%= link_to competency, competency %></h4>
-        <%= simple_format competency.description %>
-      </li>
+        <div class="col-md-4 mb-4">
+          <%= link_to competency do %>
+            <p class="badge badge-primary"><%= competency %></p>
+            <h4><%= competency.name %></h4>
+            <%= simple_format competency.description %>
+          <% end %>
+        </div>
       <% end %>
-    </ul>
+    </div>
     <%= link_to 'Créer une compétence', new_competency_path(referential_id: @referential.id), class: 'btn btn-primary' %>
   </div>
 </div>

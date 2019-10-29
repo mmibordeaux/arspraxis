@@ -3,11 +3,11 @@
     <div class="col-md-4">
       <%= f.input :name %>
       <%= f.input :short_name %>
-      <%= f.input :description %>
-    </div>
-    <div class="col-md-8">
       <%= f.input :position %>
       <%= f.association :referential, as: :hidden %>
+    </div>
+    <div class="col-md-8">
+      <%= f.input :description %>
     </div>
   </div>
   <%= f.submit 'Enregistrer', class: 'btn btn-primary' %>

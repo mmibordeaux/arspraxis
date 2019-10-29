@@ -1,11 +1,20 @@
 <%= content_for :title, "#{@referential}" %>
-<h2><%= @referential.origin %></h2>
-<%= link_to 'Modifier', edit_referential_path(@referential), class: 'btn btn-primary' %>
-
 <div class="row">
-  <% @referential.competencies.each do |competency| %>
-    <div class="col-md-4">
-      <%= link_to competency, competency %>
-    </div>
-  <% end %>
+  <div class="col-md-4">
+    <h2><%= @referential.origin %></h2>
+    <%= simple_format @referential.description %>
+    <%= link_to 'Modifier', edit_referential_path(@referential), class: 'btn btn-primary' %>
+  </div>
+  <div class="col-md-8">
+    <h3>Compétences</h3>
+    <ul class="list-unstyled">
+      <% @referential.competencies.each do |competency| %>
+      <li>
+        <h4><%= link_to competency, competency %></h4>
+        <%= simple_format competency.description %>
+      </li>
+      <% end %>
+    </ul>
+    <%= link_to 'Créer une compétence', new_competency_path(referential_id: @referential.id), class: 'btn btn-primary' %>
+  </div>
 </div>

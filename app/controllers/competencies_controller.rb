@@ -19,7 +19,10 @@ class CompetenciesController < ApplicationController
 
   # GET /competencies/new
   def new
+    @referential = Referential.find params[:referential_id]
     @competency = Competency.new
+    @competency.referential = @referential
+    @competency.position =@referential.competencies.length + 1
   end
 
   # GET /competencies/1/edit

@@ -69,6 +69,6 @@ class ReferentialsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def referential_params
-      params.require(:referential).permit(:name)
+      params.require(:referential).permit(:name, :origin)
     end
 end

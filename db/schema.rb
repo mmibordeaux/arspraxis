@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_29_080624) do
+ActiveRecord::Schema.define(version: 2019_10_29_191747) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 2019_10_29_080624) do
     t.bigint "referential_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "details"
     t.index ["referential_id"], name: "index_competencies_on_referential_id"
   end
 

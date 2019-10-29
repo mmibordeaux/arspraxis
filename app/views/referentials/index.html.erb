@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Referentials</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @referentials.each do |referential| %>
+      <tr>
+        <td><%= referential.name %></td>
+        <td><%= link_to 'Show', referential %></td>
+        <td><%= link_to 'Edit', edit_referential_path(referential) %></td>
+        <td><%= link_to 'Destroy', referential, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Referential', new_referential_path %>

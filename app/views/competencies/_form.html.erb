@@ -7,10 +7,10 @@
       <%= f.association :referential, as: :hidden %>
     </div>
     <div class="col-md-4">
-      <%= f.input :description %>
+      <%= f.input :description, input_html: { rows: 8 } %>
     </div>
     <div class="col-md-4">
-      <%= f.input :details %>
+      <%= f.input :details, input_html: { rows: 8 } %>
     </div>
   </div>
   <%= f.submit 'Enregistrer', class: 'btn btn-primary' %>

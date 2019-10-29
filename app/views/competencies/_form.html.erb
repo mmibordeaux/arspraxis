@@ -1,9 +1,14 @@
-
-<%= simple_form_for(@competency) do |f| %>
-  <%= f.input :name %>
-  <%= f.input :short_name %>
-  <%= f.input :description %>
-  <%= f.input :position %>
-  <%= f.association :referential, as: :hidden %>
+<%= simple_form_for @competency do |f| %>
+  <div class="row">
+    <div class="col-md-4">
+      <%= f.input :name %>
+      <%= f.input :short_name %>
+      <%= f.input :description %>
+    </div>
+    <div class="col-md-8">
+      <%= f.input :position %>
+      <%= f.association :referential, as: :hidden %>
+    </div>
+  </div>
   <%= f.submit 'Enregistrer', class: 'btn btn-primary' %>
 <% end %>

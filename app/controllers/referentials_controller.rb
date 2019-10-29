@@ -1,6 +1,8 @@
 class ReferentialsController < ApplicationController
   before_action :set_referential, only: [:show, :edit, :update, :destroy]
 
+  add_breadcrumb 'Référentiels', :referentials_path
+
   # GET /referentials
   # GET /referentials.json
   def index
@@ -10,15 +12,19 @@ class ReferentialsController < ApplicationController
   # GET /referentials/1
   # GET /referentials/1.json
   def show
+    add_breadcrumb @referential
   end
 
   # GET /referentials/new
   def new
     @referential = Referential.new
+    add_breadcrumb 'Nouveau référentiel'
   end
 
   # GET /referentials/1/edit
   def edit
+    add_breadcrumb @referential, @referential
+    add_breadcrumb 'Modifier'
   end
 
   # POST /referentials

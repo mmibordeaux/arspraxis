@@ -14,7 +14,7 @@ class CompetenciesController < ApplicationController
   def show
     add_breadcrumb 'Référentiels', :referentials_path
     add_breadcrumb @competency.referential, @competency.referential
-    add_breadcrumb @competency
+    add_breadcrumb @competency.short_name
   end
 
   # GET /competencies/new
@@ -22,14 +22,14 @@ class CompetenciesController < ApplicationController
     @referential = Referential.find params[:referential_id]
     @competency = Competency.new
     @competency.referential = @referential
-    @competency.position =@referential.competencies.length + 1
+    @competency.position = @referential.competencies.length + 1
   end
 
   # GET /competencies/1/edit
   def edit
     add_breadcrumb 'Référentiels', :referentials_path
     add_breadcrumb @competency.referential, @competency.referential
-    add_breadcrumb @competency, @competency
+    add_breadcrumb @competency.short_name, @competency
     add_breadcrumb 'Modifier'
   end
 

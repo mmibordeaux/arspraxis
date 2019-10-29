@@ -1,0 +1,33 @@
+<%= content_for :title, 'Compétences' %>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Short name</th>
+      <th>Description</th>
+      <th>Position</th>
+      <th>Referential</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @competencies.each do |competency| %>
+      <tr>
+        <td><%= competency.name %></td>
+        <td><%= competency.short_name %></td>
+        <td><%= competency.description %></td>
+        <td><%= competency.position %></td>
+        <td><%= competency.referential %></td>
+        <td><%= link_to 'Show', competency %></td>
+        <td><%= link_to 'Edit', edit_competency_path(competency) %></td>
+        <td><%= link_to 'Destroy', competency, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Créer une compétence', new_competency_path, class: 'btn btn-primary' %>

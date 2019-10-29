@@ -1,0 +1,29 @@
+# == Schema Information
+#
+# Table name: competencies
+#
+#  id             :integer          not null, primary key
+#  name           :string
+#  short_name     :string
+#  description    :text
+#  position       :integer
+#  referential_id :integer
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  short_name: MyString
+  description: MyText
+  position: 1
+  referential: one
+
+two:
+  name: MyString
+  short_name: MyString
+  description: MyText
+  position: 1
+  referential: two

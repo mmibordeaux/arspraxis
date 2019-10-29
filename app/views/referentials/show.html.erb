@@ -1,3 +1,11 @@
 <%= content_for :title, "#{@referential}" %>
 <h2><%= @referential.origin %></h2>
 <%= link_to 'Modifier', edit_referential_path(@referential), class: 'btn btn-primary' %>
+
+<div class="row">
+  <% @referential.competencies.each do |competency| %>
+    <div class="col-md-4">
+      <%= link_to competency, competency %>
+    </div>
+  <% end %>
+</div>

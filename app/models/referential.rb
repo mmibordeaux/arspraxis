@@ -10,6 +10,7 @@
 #
 
 class Referential < ApplicationRecord
+  has_many :competencies
 
   def to_s
     "#{name}"

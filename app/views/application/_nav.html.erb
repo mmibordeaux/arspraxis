@@ -22,7 +22,7 @@
       </li>
       <% if user_signed_in? %>
         <li class="nav-item">
-          <%= link_to t('devise.registrations.edit.title', resource: current_user.model_name.human), edit_user_registration_path, class: 'nav-link' %>
+          <%= link_to 'Mon compte', edit_user_registration_path, class: 'nav-link' %>
         </li>
       <% else %>
         <li class="nav-item">

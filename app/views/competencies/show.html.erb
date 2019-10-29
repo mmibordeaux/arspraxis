@@ -1,12 +1,15 @@
 <%= content_for :title, "#{@competency}" %>
 
-<%= link_to 'Modifier', edit_competency_path(@competency), class: 'btn btn-primary' %>
 
 <div class="row">
   <div class="col-md-4">
     <h2><%= @competency.short_name %></h2>
+    <%= link_to 'Modifier', edit_competency_path(@competency), class: 'btn btn-primary' %>
   </div>
   <div class="col-md-4">
     <%= simple_format @competency.description %>
+  </div>
+  <div class="col-md-4">
+    <%= simple_format @competency.details %>
   </div>
 </div>

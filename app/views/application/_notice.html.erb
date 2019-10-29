@@ -1,0 +1,12 @@
+<% unless notice.nil? %>
+  <p class="alert alert-success">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <%= notice %>
+  </p>
+<% end %>
+<% unless alert.nil? %>
+  <p class="alert alert-warning">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <%= alert %>
+  </p>
+<% end %>

@@ -1,0 +1,18 @@
+<footer>
+  <div class="inner">
+    <div class="logo logo-black">
+      <%= image_tag 'logo.svg' %>
+    </div>
+    <p class="version">
+      <strong>Version 0.1</strong><br/>
+      Meteora, Greece<br/>
+      <span class="small">Photo by Vangelis Batsikostas on Unsplash</span>
+    </p>
+    <% if current_user %>
+      <%= link_to 'Déconnexion',
+                  destroy_user_session_path,
+                  method: :delete,
+                  class: 'btn btn-light btn-sm' %>
+    <% end %>
+  </div>
+</footer>

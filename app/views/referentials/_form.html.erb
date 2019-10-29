@@ -1,6 +1,12 @@
 <%= simple_form_for(referential) do |f| %>
-  <%= f.input :name %>
-  <%= f.input :origin %>
-  <%= f.input :description %>
+  <div class="row">
+    <div class="col-md-4">
+      <%= f.input :name %>
+      <%= f.input :origin %>
+    </div>
+    <div class="col-md-8">
+      <%= f.input :description %>
+    </div>
+  </div>
   <%= f.submit 'Enregistrer', class: 'btn btn-primary' %>
 <% end %>

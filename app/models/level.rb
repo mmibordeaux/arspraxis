@@ -1,24 +1,19 @@
 # == Schema Information
 #
-# Table name: competencies
+# Table name: levels
 #
 #  id             :integer          not null, primary key
+#  number         :integer
 #  name           :string
-#  short_name     :string
-#  description    :text
-#  position       :integer
 #  referential_id :integer
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
-#  details        :text
 #
 
-class Competency < ApplicationRecord
+class Level < ApplicationRecord
   belongs_to :referential
 
-  default_scope { order(:position) }
-
   def to_s
-    "#{short_name}"
+    "#{name}"
   end
 end

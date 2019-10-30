@@ -23,6 +23,9 @@ class CompetenciesController < ApplicationController
     @competency = Competency.new
     @competency.referential = @referential
     @competency.position = @referential.competencies.length + 1
+    add_breadcrumb 'Référentiels', :referentials_path
+    add_breadcrumb @competency.referential, @competency.referential
+    add_breadcrumb 'Nouvelle compétence'
   end
 
   # GET /competencies/1/edit

@@ -1,0 +1,29 @@
+<%= content_for :title, 'Niveaux' %>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Number</th>
+      <th>Name</th>
+      <th>Referential</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @levels.each do |level| %>
+      <tr>
+        <td><%= level.number %></td>
+        <td><%= level.name %></td>
+        <td><%= level.referential %></td>
+        <td><%= link_to 'Show', level %></td>
+        <td><%= link_to 'Edit', edit_level_path(level) %></td>
+        <td><%= link_to 'Destroy', level, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Créer un niveau', new_level_path, class: 'btn btn-primary' %>

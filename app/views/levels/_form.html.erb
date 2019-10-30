@@ -1,0 +1,12 @@
+<%= simple_form_for(@level) do |f| %>
+  <div class="row">
+    <div class="col-md-2">
+      <%= f.input :number %>
+    </div>
+    <div class="col-md-10">
+      <%= f.input :name %>
+    </div>
+  </div>
+  <%= f.association :referential, as: :hidden %>
+  <%= f.submit 'Enregistrer', class: 'btn btn-primary' %>
+<% end %>

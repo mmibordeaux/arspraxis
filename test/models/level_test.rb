@@ -1,21 +1,18 @@
 # == Schema Information
 #
-# Table name: competencies
+# Table name: levels
 #
 #  id             :integer          not null, primary key
+#  number         :integer
 #  name           :string
-#  short_name     :string
-#  description    :text
-#  position       :integer
 #  referential_id :integer
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
-#  details        :text
 #
 
 require 'test_helper'
 
-class CompetencyTest < ActiveSupport::TestCase
+class LevelTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

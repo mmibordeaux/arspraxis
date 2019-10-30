@@ -1,9 +1,18 @@
 <%= content_for :title, "#{@referential}" %>
+
 <div class="row">
   <div class="col-md-4">
     <h2><%= @referential.origin %></h2>
     <%= simple_format @referential.description %>
     <%= link_to 'Modifier', edit_referential_path(@referential), class: 'btn btn-primary' %>
+    <hr>
+    <h3>Niveaux</h3>
+    <ul class="list-unstyled">
+      <% @referential.levels.each do |level| %>
+        <li><%= link_to level, level %></li>
+      <% end %>
+    </ul>
+    <%= link_to 'Créer un niveau', new_level_path(referential_id: @referential.id), class: 'btn btn-primary' %>
   </div>
   <div class="col-md-8">
     <h3>Compétences</h3>

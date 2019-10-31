@@ -1,0 +1,2 @@
+module CriticalLearningsHelper
+end

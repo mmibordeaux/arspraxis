@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Critical Learnings</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Competency</th>
+      <th>Level</th>
+      <th>Description</th>
+      <th>Number</th>
+      <th>Not reached</th>
+      <th>Partially reached</th>
+      <th>Reached</th>
+      <th>Over reached</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @critical_learnings.each do |critical_learning| %>
+      <tr>
+        <td><%= critical_learning.competency %></td>
+        <td><%= critical_learning.level %></td>
+        <td><%= critical_learning.description %></td>
+        <td><%= critical_learning.number %></td>
+        <td><%= critical_learning.not_reached %></td>
+        <td><%= critical_learning.partially_reached %></td>
+        <td><%= critical_learning.reached %></td>
+        <td><%= critical_learning.over_reached %></td>
+        <td><%= link_to 'Show', critical_learning %></td>
+        <td><%= link_to 'Edit', edit_critical_learning_path(critical_learning) %></td>
+        <td><%= link_to 'Destroy', critical_learning, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Critical Learning', new_critical_learning_path %>

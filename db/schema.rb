@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_30_065217) do
+ActiveRecord::Schema.define(version: 2019_10_31_070507) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,12 +19,27 @@ ActiveRecord::Schema.define(version: 2019_10_30_065217) do
     t.string "name"
     t.string "short_name"
     t.text "description"
-    t.integer "position"
+    t.integer "number"
     t.bigint "referential_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.text "details"
+    t.text "essential_components"
     t.index ["referential_id"], name: "index_competencies_on_referential_id"
+  end
+
+  create_table "critical_learnings", force: :cascade do |t|
+    t.bigint "competency_id"
+    t.bigint "level_id"
+    t.text "description"
+    t.integer "number"
+    t.text "not_reached"
+    t.text "partially_reached"
+    t.text "reached"
+    t.text "over_reached"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["competency_id"], name: "index_critical_learnings_on_competency_id"
+    t.index ["level_id"], name: "index_critical_learnings_on_level_id"
   end
 
   create_table "levels", force: :cascade do |t|
@@ -44,6 +59,22 @@ ActiveRecord::Schema.define(version: 2019_10_30_065217) do
     t.text "description"
   end
 
+  create_table "resources", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "situations", force: :cascade do |t|
+    t.text "description"
+    t.integer "number"
+    t.bigint "competency_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["competency_id"], name: "index_situations_on_competency_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -59,5 +90,8 @@ ActiveRecord::Schema.define(version: 2019_10_30_065217) do
   end
 
   add_foreign_key "competencies", "referentials"
+  add_foreign_key "critical_learnings", "competencies"
+  add_foreign_key "critical_learnings", "levels"
   add_foreign_key "levels", "referentials"
+  add_foreign_key "situations", "competencies"
 end

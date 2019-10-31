@@ -1,16 +1,27 @@
 <%= simple_form_for @competency do |f| %>
   <div class="row">
     <div class="col-md-4">
-      <%= f.input :name %>
-      <%= f.input :short_name %>
-      <%= f.input :position %>
+      <%= f.input :name,
+                  label: 'Nom',
+                  hint: 'Verbes d\'action' %>
+      <%= f.input :short_name,
+                  label: 'Nom court',
+                  hint: 'Un ou deux mots' %>
+      <%= f.input :number,
+                  label: 'Numéro'%>
       <%= f.association :referential, as: :hidden %>
     </div>
     <div class="col-md-4">
-      <%= f.input :description, input_html: { rows: 8 } %>
+      <%= f.input :description,
+                  label: 'Description plus détaillée',
+                  hint: 'Avec verbe d\'action, sans point puisque la phrase est achevée par les composantes essentielles: Maintenir des relations humaines de qualité avec le patient et son entourage',
+                  input_html: { rows: 5 } %>
     </div>
     <div class="col-md-4">
-      <%= f.input :details, input_html: { rows: 8 } %>
+      <%= f.input :essential_components,
+                  label: 'Composantes essentielles',
+                  hint: 'Gérondif: tout en maintenant et respectant au mieux son autonomie.',
+                  input_html: { rows: 5 } %>
     </div>
   </div>
   <%= f.submit 'Enregistrer', class: 'btn btn-primary' %>

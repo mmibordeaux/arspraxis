@@ -1,0 +1,38 @@
+# == Schema Information
+#
+# Table name: critical_learnings
+#
+#  id                :integer          not null, primary key
+#  competency_id     :integer
+#  level_id          :integer
+#  description       :text
+#  number            :integer
+#  not_reached       :text
+#  partially_reached :text
+#  reached           :text
+#  over_reached      :text
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  competency: one
+  level: one
+  description: MyText
+  number: 1
+  not_reached: MyText
+  partially_reached: MyText
+  reached: MyText
+  over_reached: MyText
+
+two:
+  competency: two
+  level: two
+  description: MyText
+  number: 1
+  not_reached: MyText
+  partially_reached: MyText
+  reached: MyText
+  over_reached: MyText

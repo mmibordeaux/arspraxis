@@ -1,0 +1,12 @@
+<%= simple_form_for(@situation) do |f| %>
+  <div class="row">
+    <div class="col-md-2">
+      <%= f.input :number %>
+    </div>
+    <div class="col-md-10">
+      <%= f.input :description %>
+    </div>
+  </div>
+  <%= f.association :competency, as: :hidden %>
+  <%= f.submit 'Enregistrer', class: 'btn btn-primary' %>
+<% end %>

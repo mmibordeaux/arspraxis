@@ -22,7 +22,7 @@ class CompetenciesController < ApplicationController
     @referential = Referential.find params[:referential_id]
     @competency = Competency.new
     @competency.referential = @referential
-    @competency.position = @referential.competencies.length + 1
+    @competency.number = @referential.competencies.length + 1
     add_breadcrumb 'Référentiels', :referentials_path
     add_breadcrumb @competency.referential, @competency.referential
     add_breadcrumb 'Nouvelle compétence'
@@ -84,6 +84,6 @@ class CompetenciesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def competency_params
-      params.require(:competency).permit(:name, :short_name, :description, :details, :position, :referential_id)
+      params.require(:competency).permit(:name, :short_name, :description, :essential_components, :position, :referential_id)
     end
 end

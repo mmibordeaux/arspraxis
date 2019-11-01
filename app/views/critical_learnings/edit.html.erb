@@ -1,6 +1,3 @@
-<h1>Editing Critical Learning</h1>
+<%= content_for :title, "#{@critical_learning}" %>
 
 <%= render 'form', critical_learning: @critical_learning %>
-
-<%= link_to 'Show', @critical_learning %> |
-<%= link_to 'Back', critical_learnings_path %>

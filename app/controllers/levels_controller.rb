@@ -10,9 +10,10 @@ class LevelsController < ApplicationController
   # GET /levels/1
   # GET /levels/1.json
   def show
-  add_breadcrumb 'Référentiels', :referentials_path
-  add_breadcrumb @level.referential, @level.referential
-  add_breadcrumb @level
+    @competencies = @level.referential.competencies
+    add_breadcrumb 'Référentiels', :referentials_path
+    add_breadcrumb @level.referential, @level.referential
+    add_breadcrumb @level
   end
 
   # GET /levels/new

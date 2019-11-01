@@ -14,7 +14,7 @@ class CompetenciesController < ApplicationController
   def show
     add_breadcrumb 'Référentiels', :referentials_path
     add_breadcrumb @competency.referential, @competency.referential
-    add_breadcrumb @competency.short_name
+    add_breadcrumb @competency
   end
 
   # GET /competencies/new

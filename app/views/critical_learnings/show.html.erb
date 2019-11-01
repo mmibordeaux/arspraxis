@@ -1,44 +1,22 @@
-<p id="notice"><%= notice %></p>
+<%= content_for :title, "#{@critical_learning}" %>
 
-<p>
-  <strong>Competency:</strong>
-  <%= @critical_learning.competency %>
-</p>
+<div class="row">
+  <div class="col-md-3">
+    <h3>Non atteint</h3>
+    <%= simple_format @critical_learning.not_reached %>
+  </div>
+  <div class="col-md-3">
+    <h3>Partiellement atteint</h3>
+    <%= simple_format @critical_learning.partially_reached %>
+  </div>
+  <div class="col-md-3">
+    <h3>Atteint</h3>
+    <%= simple_format @critical_learning.reached %>
+  </div>
+  <div class="col-md-3">
+    <h3>Dépassé</h3>
+    <%= simple_format @critical_learning.over_reached %>
+  </div>
+</div>
 
-<p>
-  <strong>Level:</strong>
-  <%= @critical_learning.level %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @critical_learning.description %>
-</p>
-
-<p>
-  <strong>Number:</strong>
-  <%= @critical_learning.number %>
-</p>
-
-<p>
-  <strong>Not reached:</strong>
-  <%= @critical_learning.not_reached %>
-</p>
-
-<p>
-  <strong>Partially reached:</strong>
-  <%= @critical_learning.partially_reached %>
-</p>
-
-<p>
-  <strong>Reached:</strong>
-  <%= @critical_learning.reached %>
-</p>
-
-<p>
-  <strong>Over reached:</strong>
-  <%= @critical_learning.over_reached %>
-</p>
-
-<%= link_to 'Edit', edit_critical_learning_path(@critical_learning) %> |
-<%= link_to 'Back', critical_learnings_path %>
+<%= link_to 'Modifier', edit_critical_learning_path(@critical_learning), class: 'btn btn-primary btn-sm' %>

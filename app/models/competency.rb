@@ -27,6 +27,6 @@ class Competency < ApplicationRecord
   end
 
   def to_s
-    "#{short_name}"
+    "#{number}. #{short_name}"
   end
 end

@@ -10,15 +10,43 @@ class CriticalLearningsController < ApplicationController
   # GET /critical_learnings/1
   # GET /critical_learnings/1.json
   def show
+    @competency = @critical_learning.competency
+    @level = @critical_learning.level
+    @referential = @competency.referential
+    add_breadcrumb 'Référentiels', :referentials_path
+    add_breadcrumb @referential, @referential
+    add_breadcrumb @competency, @competency
+    add_breadcrumb @level, @level
+    add_breadcrumb @critical_learning
   end
 
   # GET /critical_learnings/new
   def new
+    @competency = Competency.find params[:competency_id]
+    @level = Level.find params[:level_id]
+    @referential = @competency.referential
     @critical_learning = CriticalLearning.new
+    @critical_learning.competency = @competency
+    @critical_learning.level = @level
+    @critical_learning.number = @competency.critical_learnings.with_level(@level).count + 1
+    add_breadcrumb 'Référentiels', :referentials_path
+    add_breadcrumb @referential, @referential
+    add_breadcrumb @competency, @competency
+    add_breadcrumb @level, @level
+    add_breadcrumb 'Nouvel apprentissage critique'
   end
 
   # GET /critical_learnings/1/edit
   def edit
+    @competency = @critical_learning.competency
+    @level = @critical_learning.level
+    @referential = @competency.referential
+    add_breadcrumb 'Référentiels', :referentials_path
+    add_breadcrumb @referential, @referential
+    add_breadcrumb @competency, @competency
+    add_breadcrumb @level, @level
+    add_breadcrumb @critical_learning, @critical_learning
+    add_breadcrumb 'Modifier'
   end
 
   # POST /critical_learnings

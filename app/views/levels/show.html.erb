@@ -1,3 +1,18 @@
 <%= content_for :title, "#{@level}" %>
 
-<%= link_to 'Edit', edit_level_path(@level), class: 'btn btn-primary' %>
+<%= link_to 'Modifier', edit_level_path(@level), class: 'btn btn-primary btn-sm' %>
+
+<div class="row mt-5">
+  <% @competencies.each do |competency| %>
+    <div class="col-md-4 mb-5">
+      <hr>
+      <p class="badge badge-primary"><%= competency %></p>
+      <p><b><%= link_to competency.name, competency %></b></p>
+      <ul class="list-unstyled">
+        <% competency.critical_learnings.with_level(@level).each do |critical_learning| %>
+          <li><%= link_to critical_learning, critical_learning %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+</div>

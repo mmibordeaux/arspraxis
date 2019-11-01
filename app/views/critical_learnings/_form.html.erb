@@ -1,20 +1,29 @@
 
 <%= simple_form_for(@critical_learning) do |f| %>
-  <%= f.error_notification %>
-  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-
-  <div class="form-inputs">
-    <%= f.association :competency %>
-    <%= f.association :level %>
-    <%= f.input :description %>
-    <%= f.input :number %>
-    <%= f.input :not_reached %>
-    <%= f.input :partially_reached %>
-    <%= f.input :reached %>
-    <%= f.input :over_reached %>
+  <div class="row">
+    <div class="col-md-2">
+      <%= f.input :number,
+                  label: 'Numéro'%>
+    </div>
+    <div class="col-md-10">
+      <%= f.input :description %>
+    </div>
   </div>
-
-  <div class="form-actions">
-    <%= f.button :submit %>
+  <div class="row">
+    <div class="col-md-3">
+      <%= f.input :not_reached, label: 'Non atteint' %>
+    </div>
+    <div class="col-md-3">
+      <%= f.input :partially_reached, label: 'Partiellement atteint' %>
+    </div>
+    <div class="col-md-3">
+      <%= f.input :reached, label: 'Atteint' %>
+    </div>
+    <div class="col-md-3">
+      <%= f.input :over_reached, label: 'Dépassé' %>
+    </div>
   </div>
+  <%= f.association :competency, as: :hidden %>
+  <%= f.association :level, as: :hidden %>
+  <%= f.submit 'Enregistrer', class: 'btn btn-primary btn-sm' %>
 <% end %>

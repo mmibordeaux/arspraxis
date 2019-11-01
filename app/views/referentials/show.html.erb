@@ -22,7 +22,7 @@
           <%= link_to competency do %>
             <p class="badge badge-primary"><%= competency %></p>
             <h4><%= competency.name %></h4>
-            <%= simple_format competency.description %>
+            <%= competency.full_description %>
           <% end %>
         </div>
       <% end %>

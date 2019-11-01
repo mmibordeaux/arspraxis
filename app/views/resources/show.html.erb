@@ -1,14 +1,5 @@
-<p id="notice"><%= notice %></p>
+<%= content_for :title, "#{@resource}" %>
 
-<p>
-  <strong>Name:</strong>
-  <%= @resource.name %>
-</p>
+<%= simple_format @resource.description %>
 
-<p>
-  <strong>Description:</strong>
-  <%= @resource.description %>
-</p>
-
-<%= link_to 'Edit', edit_resource_path(@resource) %> |
-<%= link_to 'Back', resources_path %>
+<%= link_to 'Modifier', edit_resource_path(@resource), class: 'btn btn-primary' %>

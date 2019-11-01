@@ -2,11 +2,12 @@
 #
 # Table name: resources
 #
-#  id          :integer          not null, primary key
-#  name        :string
-#  description :text
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
+#  id            :integer          not null, primary key
+#  name          :string
+#  description   :text
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  competency_id :integer
 #
 
 require 'test_helper'

@@ -1,6 +1,5 @@
 <%= content_for :title, "#{@competency}" %>
 
-
 <div class="row">
   <div class="col-md-4">
     <h2><%= @competency.name %></h2>
@@ -21,5 +20,14 @@
                 class: 'btn btn-primary' %>
   </div>
   <div class="col-md-4">
+    <h3>Ressources</h3>
+    <ul class="list-unstyled">
+      <% @competency.resources.each do |resource| %>
+        <li><%= link_to resource, resource %></li>
+      <% end %>
+    </ul>
+    <%= link_to 'Créer une ressource',
+                new_resource_path(competency_id: @competency.id),
+                class: 'btn btn-primary' %>
   </div>
 </div>

@@ -10,11 +10,24 @@ class ResourcesController < ApplicationController
   # GET /resources/1
   # GET /resources/1.json
   def show
+    @competency = @resource.competency
+    @referential = @competency.referential
+    add_breadcrumb 'Référentiels', :referentials_path
+    add_breadcrumb @referential, @referential
+    add_breadcrumb @competency, @competency
+    add_breadcrumb @resource
   end
 
   # GET /resources/new
   def new
+    @competency = Competency.find params[:competency_id]
+    @referential = @competency.referential
     @resource = Resource.new
+    @resource.competency = @competency
+    add_breadcrumb 'Référentiels', :referentials_path
+    add_breadcrumb @referential, @referential
+    add_breadcrumb @competency, @competency
+    add_breadcrumb 'Nouvelle ressource'
   end
 
   # GET /resources/1/edit
@@ -69,6 +82,6 @@ class ResourcesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def resource_params
-      params.require(:resource).permit(:name, :description)
+      params.require(:resource).permit(:name, :description, :competency_id)
     end
 end

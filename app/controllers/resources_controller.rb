@@ -32,6 +32,13 @@ class ResourcesController < ApplicationController
 
   # GET /resources/1/edit
   def edit
+    @competency = @resource.competency
+    @referential = @competency.referential
+    add_breadcrumb 'Référentiels', :referentials_path
+    add_breadcrumb @referential, @referential
+    add_breadcrumb @competency, @competency
+    add_breadcrumb @resource, @resource
+    add_breadcrumb 'Modifier'
   end
 
   # POST /resources

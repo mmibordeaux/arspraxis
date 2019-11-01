@@ -1,8 +1,6 @@
-<p id="notice"><%= notice %></p>
+<%= content_for :title, 'Apprentissages critiques' %>
 
-<h1>Critical Learnings</h1>
-
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Competency</th>
@@ -36,6 +34,4 @@
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Critical Learning', new_critical_learning_path %>
+<%= create_button CriticalLearning %>

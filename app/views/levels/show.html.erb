@@ -1,6 +1,6 @@
 <%= content_for :title, "#{@level}" %>
 
-<%= link_to 'Modifier', edit_level_path(@level), class: 'btn btn-primary btn-sm' %>
+<%= edit_button @level %>
 
 <div class="row mt-5">
   <% @competencies.each do |competency| %>

@@ -1,5 +1,5 @@
 class ReferentialsController < ApplicationController
-  before_action :set_referential, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   add_breadcrumb 'Référentiels', :referentials_path
 
@@ -68,13 +68,8 @@ class ReferentialsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_referential
-      @referential = Referential.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def referential_params
-      params.require(:referential).permit(:name, :origin, :description)
-    end
+  def referential_params
+    params.require(:referential).permit(:name, :origin, :description)
+  end
 end

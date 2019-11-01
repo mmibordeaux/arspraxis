@@ -4,9 +4,7 @@
   <div class="col-md-4">
     <h2><%= @competency.name %></h2>
     <p><%= @competency.full_description %></p>
-    <%= link_to 'Modifier',
-                edit_competency_path(@competency),
-                class: 'btn btn-primary btn-sm' %>
+    <%= edit_button @competency %>
   </div>
   <div class="col-md-4">
     <h3>Situations professionnelles</h3>
@@ -15,9 +13,7 @@
         <li><%= link_to situation, situation %></li>
       <% end %>
     </ul>
-    <%= link_to 'Créer une situation professionnelle',
-                new_situation_path(competency_id: @competency.id),
-                class: 'btn btn-primary btn-sm' %>
+    <%= create_button Situation, competency_id: @competency.id %>
   </div>
   <div class="col-md-4">
     <h3>Ressources</h3>
@@ -26,9 +22,7 @@
         <li><%= link_to resource, resource %></li>
       <% end %>
     </ul>
-    <%= link_to 'Créer une ressource',
-                new_resource_path(competency_id: @competency.id),
-                class: 'btn btn-primary btn-sm' %>
+    <%= create_button Resource, competency_id: @competency.id %>
   </div>
 </div>
 
@@ -51,9 +45,7 @@
               <li><%= link_to critical_learning, critical_learning %></li>
             <% end %>
           </ul>
-          <%= link_to 'Créer un apprentissage critique',
-                      new_critical_learning_path(competency_id: @competency.id, level_id: level.id),
-                      class: 'btn btn-primary btn-sm' %>
+          <%= create_button CriticalLearning, competency_id: @competency.id, level_id: level.id %>
         </td>
       <% end %>
     </tr>

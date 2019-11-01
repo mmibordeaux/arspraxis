@@ -1,5 +1,5 @@
 class CriticalLearningsController < ApplicationController
-  before_action :set_critical_learning, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /critical_learnings
   # GET /critical_learnings.json
@@ -90,13 +90,8 @@ class CriticalLearningsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_critical_learning
-      @critical_learning = CriticalLearning.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def critical_learning_params
-      params.require(:critical_learning).permit(:competency_id, :level_id, :description, :number, :not_reached, :partially_reached, :reached, :over_reached)
-    end
+  def critical_learning_params
+    params.require(:critical_learning).permit(:competency_id, :level_id, :description, :number, :not_reached, :partially_reached, :reached, :over_reached)
+  end
 end

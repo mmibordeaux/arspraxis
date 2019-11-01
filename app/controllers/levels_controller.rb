@@ -1,5 +1,5 @@
 class LevelsController < ApplicationController
-  before_action :set_level, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /levels
   # GET /levels.json
@@ -76,13 +76,8 @@ class LevelsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_level
-      @level = Level.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def level_params
-      params.require(:level).permit(:number, :name, :referential_id)
-    end
+  def level_params
+    params.require(:level).permit(:number, :name, :referential_id)
+  end
 end

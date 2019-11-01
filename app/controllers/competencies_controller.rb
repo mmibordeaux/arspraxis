@@ -1,6 +1,5 @@
 class CompetenciesController < ApplicationController
-  before_action :set_competency, only: [:show, :edit, :update, :destroy]
-
+  load_and_authorize_resource
 
   # GET /competencies
   # GET /competencies.json
@@ -77,13 +76,8 @@ class CompetenciesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_competency
-      @competency = Competency.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def competency_params
-      params.require(:competency).permit(:name, :short_name, :description, :essential_components, :position, :referential_id)
-    end
+  def competency_params
+    params.require(:competency).permit(:name, :short_name, :description, :essential_components, :position, :referential_id)
+  end
 end

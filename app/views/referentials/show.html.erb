@@ -13,6 +13,17 @@
       <% end %>
     </ul>
     <%= create_button Level, referential_id: @referential.id %>
+    <hr>
+    <h3>Formations</h3>
+    <table class="table">
+      <% @referential.programs.each do |program| %>
+        <tr>
+          <td class="pl-0"><%= link_to program, program %></td>
+          <td class="small text-right pr-0"><%= program.city %>, <%= program.country_full %></td>
+        </tr>
+      <% end %>
+    </table>
+    <%= create_button Program, referential_id: @referential.id %>
   </div>
   <div class="col-md-8">
     <h3>Compétences</h3>

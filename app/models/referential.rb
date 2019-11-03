@@ -13,6 +13,7 @@
 class Referential < ApplicationRecord
   has_many :competencies
   has_many :levels
+  has_many :programs
 
   def to_s
     "#{name}"

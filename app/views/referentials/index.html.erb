@@ -1,21 +1,16 @@
 <%= content_for :title, 'Référentiels' %>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>Nom</th>
-      <th>Origine</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @referentials.each do |referential| %>
-      <tr>
-        <td><%= link_to referential, referential %></td>
-        <td><%= referential.origin %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="row mb-4">
+  <% @referentials.each do |referential| %>
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body">
+          <h2><%= link_to referential, referential %></h2>
+          <p><%= referential.origin %></p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
 
 <%= create_button Referential %>

@@ -20,7 +20,6 @@ class SituationsController < ApplicationController
   def new
     @competency = Competency.find params[:competency_id]
     @referential = @competency.referential
-    @situation = Situation.new
     @situation.competency = @competency
     @situation.number = @competency.situations.count + 1
     add_breadcrumb 'Référentiels', :referentials_path

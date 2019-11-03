@@ -14,6 +14,7 @@ gem 'devise-i18n'
 gem 'devise-bootstrap-views'
 gem 'breadcrumbs_on_rails'
 gem 'cancancan'
+gem 'country_select'
 gem 'bootsnap', '>= 1.1.0', require: false
 
 # Front

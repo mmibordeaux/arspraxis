@@ -1,0 +1,26 @@
+# == Schema Information
+#
+# Table name: programs
+#
+#  id             :integer          not null, primary key
+#  name           :string
+#  city           :string
+#  country        :string
+#  referential_id :integer
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  city: MyString
+  country: MyString
+  referential: one
+
+two:
+  name: MyString
+  city: MyString
+  country: MyString
+  referential: two

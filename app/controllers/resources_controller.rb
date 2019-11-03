@@ -22,7 +22,6 @@ class ResourcesController < ApplicationController
   def new
     @competency = Competency.find params[:competency_id]
     @referential = @competency.referential
-    @resource = Resource.new
     @resource.competency = @competency
     add_breadcrumb 'Référentiels', :referentials_path
     add_breadcrumb @referential, @referential

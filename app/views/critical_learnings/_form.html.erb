@@ -1,5 +1,5 @@
 
-<%= simple_form_for(@critical_learning) do |f| %>
+<%= simple_form_for(critical_learning) do |f| %>
   <div class="row">
     <div class="col-md-2">
       <%= f.input :number,
@@ -25,5 +25,6 @@
   </div>
   <%= f.association :competency, as: :hidden %>
   <%= f.association :level, as: :hidden %>
-  <%= f.submit 'Enregistrer', class: 'btn btn-primary btn-sm' %>
+  <%= save_button f %>
+  <%= destroy_button critical_learning %>
 <% end %>

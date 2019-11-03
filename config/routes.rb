@@ -1,9 +1,6 @@
 Rails.application.routes.draw do
-  resources :resources
-  resources :critical_learnings
-  resources :situations
-  resources :levels
   devise_for :users
-  resources :referentials, :competencies
+  resources :referentials, :competencies, :programs, :resources,
+            :critical_learnings, :situations, :levels
   root to: 'referentials#index'
 end

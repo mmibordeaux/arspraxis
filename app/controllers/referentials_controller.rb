@@ -17,7 +17,6 @@ class ReferentialsController < ApplicationController
 
   # GET /referentials/new
   def new
-    @referential = Referential.new
     add_breadcrumb 'Nouveau référentiel'
   end
 

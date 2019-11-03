@@ -1,4 +1,4 @@
-<%= simple_form_for(@resource) do |f| %>
+<%= simple_form_for(resource) do |f| %>
   <div class="row">
     <div class="col-md-4">
       <%= f.input :name %>
@@ -8,5 +8,6 @@
     </div>
   </div>
   <%= f.association :competency, as: :hidden %>
-  <%= f.submit 'Enregistrer', class: 'btn btn-primary btn-sm' %>
+  <%= save_button f %>
+  <%= destroy_button resource %>
 <% end %>

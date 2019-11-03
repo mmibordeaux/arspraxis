@@ -25,7 +25,6 @@ class CriticalLearningsController < ApplicationController
     @competency = Competency.find params[:competency_id]
     @level = Level.find params[:level_id]
     @referential = @competency.referential
-    @critical_learning = CriticalLearning.new
     @critical_learning.competency = @competency
     @critical_learning.level = @level
     @critical_learning.number = @competency.critical_learnings.with_level(@level).count + 1

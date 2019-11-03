@@ -19,7 +19,6 @@ class LevelsController < ApplicationController
   # GET /levels/new
   def new
     @referential = Referential.find params[:referential_id]
-    @level = Level.new
     @level.referential = @referential
     @level.number = @referential.levels.length + 1
     add_breadcrumb 'Référentiels', :referentials_path

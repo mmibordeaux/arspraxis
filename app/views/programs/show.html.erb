@@ -1,0 +1,7 @@
+<%= content_for :title, "#{@program}" %>
+
+<p><%= @program.city %>, <%= @program.country_full %></p>
+
+<p><%= link_to @program.referential, @program.referential %></p>
+
+<%= edit_button @program %>

@@ -19,7 +19,6 @@ class CompetenciesController < ApplicationController
   # GET /competencies/new
   def new
     @referential = Referential.find params[:referential_id]
-    @competency = Competency.new
     @competency.referential = @referential
     @competency.number = @referential.competencies.length + 1
     add_breadcrumb 'Référentiels', :referentials_path

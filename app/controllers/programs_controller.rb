@@ -16,8 +16,7 @@ class ProgramsController < ApplicationController
 
   # GET /programs/new
   def new
-    @referential = Referential.find params[:referential_id]
-    @program.referential = @referential
+    @program.referential_id = params[:referential_id]
     add_breadcrumb 'Nouvelle formation'
   end
 

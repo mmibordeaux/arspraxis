@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_03_163214) do
+ActiveRecord::Schema.define(version: 2019_11_06_064510) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,14 @@ ActiveRecord::Schema.define(version: 2019_11_03_163214) do
     t.datetime "updated_at", null: false
     t.index ["competency_id"], name: "index_critical_learnings_on_competency_id"
     t.index ["level_id"], name: "index_critical_learnings_on_level_id"
+  end
+
+  create_table "groups", force: :cascade do |t|
+    t.integer "year"
+    t.bigint "program_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["program_id"], name: "index_groups_on_program_id"
   end
 
   create_table "levels", force: :cascade do |t|
@@ -104,6 +112,7 @@ ActiveRecord::Schema.define(version: 2019_11_03_163214) do
   add_foreign_key "competencies", "referentials"
   add_foreign_key "critical_learnings", "competencies"
   add_foreign_key "critical_learnings", "levels"
+  add_foreign_key "groups", "programs"
   add_foreign_key "levels", "referentials"
   add_foreign_key "programs", "referentials"
   add_foreign_key "resources", "competencies"

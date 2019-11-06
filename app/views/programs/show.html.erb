@@ -1,7 +1,23 @@
 <%= content_for :title, "#{@program}" %>
 
-<p><%= @program.city %>, <%= @program.country_full %></p>
-
-<p><%= link_to @program.referential, @program.referential %></p>
+<div class="row">
+  <div class="col-md-3">
+    <h3>Localisation</h3>
+    <p><%= @program.city %>, <%= @program.country_full %></p>
+  </div>
+  <div class="col-md-3">
+    <h3>Référentiel</h3>
+    <p><%= link_to @program.referential, @program.referential %></p>
+  </div>
+  <div class="col-md-6">
+    <h3>Promotions</h3>
+    <ul class="list-unstyled">
+      <% @program.groups.each do |group| %>
+        <li><%= link_to group, group %></li>
+      <% end %>
+    </ul>
+    <%= create_button Group, program_id: @program.id %>
+  </div>
+</div>
 
 <%= edit_button @program %>

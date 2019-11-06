@@ -1,0 +1,10 @@
+<%= simple_form_for(group) do |f| %>
+<div class="row">
+  <div class="col-md-4">
+    <%= f.input :year, label: 'Année de sortie des étudiants' %>
+  </div>
+</div>
+  <%= f.association :program, as: :hidden %>
+  <%= save_button f %>
+  <%= destroy_button group %>
+<% end %>

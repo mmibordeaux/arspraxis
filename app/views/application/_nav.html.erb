@@ -20,6 +20,9 @@
       <li class="nav-item">
         <%= link_to 'Formations', programs_path, class: 'nav-link' %>
       </li>
+      <li class="nav-item">
+        <%= link_to 'Utilisateurs', users_path, class: 'nav-link' %>
+      </li>
       <% if user_signed_in? %>
         <li class="nav-item">
           <%= link_to 'Mon compte', edit_user_registration_path, class: 'nav-link' %>

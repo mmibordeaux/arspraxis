@@ -20,7 +20,15 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-   def to_s
-     "#{email}"
-   end
+  def name
+    if first_name.blank? && last_name.blank?
+      "Utilisateur anonyme #{id}"
+    else
+      "#{first_name} #{last_name}"
+    end
+  end
+
+  def to_s
+    "#{email}"
+  end
 end

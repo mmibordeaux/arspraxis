@@ -1,0 +1,18 @@
+<%= content_for :title, 'Utilisateurs' %>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Nom</th>
+      <th>Formations</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= link_to user.name, user %></td>
+        <td></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

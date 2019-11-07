@@ -1,10 +1,13 @@
-class CriticalLearningsController < ApplicationController
-  load_and_authorize_resource
+class Referentials::CriticalLearningsController < ReferentialsController
+  skip_load_and_authorize_resource
+  load_and_authorize_resource :referential
+  load_and_authorize_resource :critical_learning,
+                              through: :referential,
+                              class: 'Referential::CriticalLearning'
 
   # GET /critical_learnings
   # GET /critical_learnings.json
   def index
-    @critical_learnings = CriticalLearning.all
   end
 
   # GET /critical_learnings/1
@@ -13,25 +16,23 @@ class CriticalLearningsController < ApplicationController
     @competency = @critical_learning.competency
     @level = @critical_learning.level
     @referential = @competency.referential
-    add_breadcrumb 'Référentiels', :referentials_path
     add_breadcrumb @referential, @referential
-    add_breadcrumb @competency, @competency
-    add_breadcrumb @level, @level
+    add_breadcrumb @competency, referential_competency_path(@referential, @competency)
+    add_breadcrumb @level, referential_level_path(@referential, @level)
     add_breadcrumb @critical_learning
   end
 
   # GET /critical_learnings/new
   def new
-    @competency = Competency.find params[:competency_id]
-    @level = Level.find params[:level_id]
+    @competency = Referential::Competency.find params[:competency_id]
+    @level = Referential::Level.find params[:level_id]
     @referential = @competency.referential
     @critical_learning.competency = @competency
     @critical_learning.level = @level
     @critical_learning.number = @competency.critical_learnings.with_level(@level).count + 1
-    add_breadcrumb 'Référentiels', :referentials_path
     add_breadcrumb @referential, @referential
-    add_breadcrumb @competency, @competency
-    add_breadcrumb @level, @level
+    add_breadcrumb @competency, referential_competency_path(@referential, @competency)
+    add_breadcrumb @level, referential_level_path(@referential, @level)
     add_breadcrumb 'Nouvel apprentissage critique'
   end
 
@@ -40,22 +41,19 @@ class CriticalLearningsController < ApplicationController
     @competency = @critical_learning.competency
     @level = @critical_learning.level
     @referential = @competency.referential
-    add_breadcrumb 'Référentiels', :referentials_path
     add_breadcrumb @referential, @referential
-    add_breadcrumb @competency, @competency
-    add_breadcrumb @level, @level
-    add_breadcrumb @critical_learning, @critical_learning
+    add_breadcrumb @competency, referential_competency_path(@referential, @competency)
+    add_breadcrumb @level, referential_level_path(@referential, @level)
+    add_breadcrumb @critical_learning, referential_critical_learning_path(@referential, @critical_learning)
     add_breadcrumb 'Modifier'
   end
 
   # POST /critical_learnings
   # POST /critical_learnings.json
   def create
-    @critical_learning = CriticalLearning.new(critical_learning_params)
-
     respond_to do |format|
       if @critical_learning.save
-        format.html { redirect_to @critical_learning, notice: 'Critical learning was successfully created.' }
+        format.html { redirect_to referential_critical_learning_path(@referential, @critical_learning), notice: 'Critical learning was successfully created.' }
         format.json { render :show, status: :created, location: @critical_learning }
       else
         format.html { render :new }
@@ -69,7 +67,7 @@ class CriticalLearningsController < ApplicationController
   def update
     respond_to do |format|
       if @critical_learning.update(critical_learning_params)
-        format.html { redirect_to @critical_learning, notice: 'Critical learning was successfully updated.' }
+        format.html { redirect_to referential_critical_learning_path(@referential, @critical_learning), notice: 'Critical learning was successfully updated.' }
         format.json { render :show, status: :ok, location: @critical_learning }
       else
         format.html { render :edit }
@@ -83,7 +81,7 @@ class CriticalLearningsController < ApplicationController
   def destroy
     @critical_learning.destroy
     respond_to do |format|
-      format.html { redirect_to critical_learnings_url, notice: 'Critical learning was successfully destroyed.' }
+      format.html { redirect_to @referential, notice: 'Critical learning was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -91,6 +89,6 @@ class CriticalLearningsController < ApplicationController
   private
 
   def critical_learning_params
-    params.require(:critical_learning).permit(:competency_id, :level_id, :description, :number, :not_reached, :partially_reached, :reached, :over_reached)
+    params.require(:referential_critical_learning).permit(:competency_id, :level_id, :description, :number, :not_reached, :partially_reached, :reached, :over_reached)
   end
 end

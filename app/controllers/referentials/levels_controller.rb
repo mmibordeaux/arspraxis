@@ -1,35 +1,34 @@
-class LevelsController < ApplicationController
-  load_and_authorize_resource
+class Referentials::LevelsController < ReferentialsController
+  skip_load_and_authorize_resource
+  load_and_authorize_resource :referential
+  load_and_authorize_resource :level,
+                              through: :referential,
+                              class: 'Referential::Level'
 
   # GET /levels
   # GET /levels.json
   def index
-    @levels = Level.all
   end
 
   # GET /levels/1
   # GET /levels/1.json
   def show
-    @competencies = @level.referential.competencies
-    add_breadcrumb 'Référentiels', :referentials_path
-    add_breadcrumb @level.referential, @level.referential
+    @competencies = @referential.competencies
+    add_breadcrumb @referential, @referential
     add_breadcrumb @level
   end
 
   # GET /levels/new
   def new
-    @referential = Referential.find params[:referential_id]
     @level.referential = @referential
     @level.number = @referential.levels.length + 1
-    add_breadcrumb 'Référentiels', :referentials_path
     add_breadcrumb @referential, @referential
     add_breadcrumb 'Nouveau niveau'
   end
 
   # GET /levels/1/edit
   def edit
-    add_breadcrumb 'Référentiels', :referentials_path
-    add_breadcrumb @level.referential, @level.referential
+    add_breadcrumb @referential, @referential
     add_breadcrumb @level, @level
     add_breadcrumb 'Modifier'
   end
@@ -37,11 +36,9 @@ class LevelsController < ApplicationController
   # POST /levels
   # POST /levels.json
   def create
-    @level = Level.new(level_params)
-
     respond_to do |format|
       if @level.save
-        format.html { redirect_to @level, notice: 'Level was successfully created.' }
+        format.html { redirect_to referential_level_path(@referential, @level), notice: 'Level was successfully created.' }
         format.json { render :show, status: :created, location: @level }
       else
         format.html { render :new }
@@ -55,7 +52,7 @@ class LevelsController < ApplicationController
   def update
     respond_to do |format|
       if @level.update(level_params)
-        format.html { redirect_to @level, notice: 'Level was successfully updated.' }
+        format.html { redirect_to referential_level_path(@referential, @level), notice: 'Level was successfully updated.' }
         format.json { render :show, status: :ok, location: @level }
       else
         format.html { render :edit }
@@ -69,7 +66,7 @@ class LevelsController < ApplicationController
   def destroy
     @level.destroy
     respond_to do |format|
-      format.html { redirect_to levels_url, notice: 'Level was successfully destroyed.' }
+      format.html { redirect_to @referential, notice: 'Level was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -77,6 +74,6 @@ class LevelsController < ApplicationController
   private
 
   def level_params
-    params.require(:level).permit(:number, :name, :referential_id)
+    params.require(:referential_level).permit(:number, :name, :referential_id)
   end
 end

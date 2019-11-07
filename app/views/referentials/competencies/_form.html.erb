@@ -1,4 +1,6 @@
-<%= simple_form_for competency do |f| %>
+<%= simple_form_for competency,
+                    url:  competency.new_record? ? referential_competencies_path(@referential)
+                            : referential_competency_path(@referential, competency) do |f| %>
   <div class="row">
     <div class="col-md-4">
       <%= f.input :name,

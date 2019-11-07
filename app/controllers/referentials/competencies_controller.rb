@@ -1,18 +1,20 @@
-class CompetenciesController < ApplicationController
-  load_and_authorize_resource
+class Referentials::CompetenciesController < ReferentialsController
+  skip_load_and_authorize_resource
+  load_and_authorize_resource :referential
+  load_and_authorize_resource :competency,
+                              through: :referential,
+                              class: 'Referential::Competency'
 
   # GET /competencies
   # GET /competencies.json
   def index
-    @competencies = Competency.all
-    add_breadcrumb 'Compétences', :competencies_path
+    add_breadcrumb 'Compétences', referential_competencies_path(@referential)
   end
 
   # GET /competencies/1
   # GET /competencies/1.json
   def show
-    add_breadcrumb 'Référentiels', :referentials_path
-    add_breadcrumb @competency.referential, @competency.referential
+    add_breadcrumb @referential, @referential
     add_breadcrumb @competency
   end
 
@@ -21,14 +23,12 @@ class CompetenciesController < ApplicationController
     @referential = Referential.find params[:referential_id]
     @competency.referential = @referential
     @competency.number = @referential.competencies.length + 1
-    add_breadcrumb 'Référentiels', :referentials_path
-    add_breadcrumb @competency.referential, @competency.referential
+    add_breadcrumb @referential, @referential
     add_breadcrumb 'Nouvelle compétence'
   end
 
   # GET /competencies/1/edit
   def edit
-    add_breadcrumb 'Référentiels', :referentials_path
     add_breadcrumb @competency.referential, @competency.referential
     add_breadcrumb @competency.short_name, @competency
     add_breadcrumb 'Modifier'
@@ -37,11 +37,9 @@ class CompetenciesController < ApplicationController
   # POST /competencies
   # POST /competencies.json
   def create
-    @competency = Competency.new(competency_params)
-
     respond_to do |format|
       if @competency.save
-        format.html { redirect_to @competency, notice: 'Competency was successfully created.' }
+        format.html { redirect_to referential_competency_path(@referential, @competency), notice: 'Competency was successfully created.' }
         format.json { render :show, status: :created, location: @competency }
       else
         format.html { render :new }
@@ -55,7 +53,7 @@ class CompetenciesController < ApplicationController
   def update
     respond_to do |format|
       if @competency.update(competency_params)
-        format.html { redirect_to @competency, notice: 'Competency was successfully updated.' }
+        format.html { redirect_to referential_competency_path(@referential, @competency), notice: 'Competency was successfully updated.' }
         format.json { render :show, status: :ok, location: @competency }
       else
         format.html { render :edit }
@@ -69,7 +67,7 @@ class CompetenciesController < ApplicationController
   def destroy
     @competency.destroy
     respond_to do |format|
-      format.html { redirect_to competencies_url, notice: 'Competency was successfully destroyed.' }
+      format.html { redirect_to @referential, notice: 'Competency was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -77,6 +75,6 @@ class CompetenciesController < ApplicationController
   private
 
   def competency_params
-    params.require(:competency).permit(:name, :short_name, :description, :essential_components, :position, :referential_id)
+    params.require(:referential_competency).permit(:name, :short_name, :description, :essential_components, :position, :referential_id)
   end
 end

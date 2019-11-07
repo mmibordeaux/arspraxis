@@ -11,14 +11,15 @@ module ApplicationHelper
     f.submit 'Enregistrer', class: button_classes
   end
 
-  def edit_button(object)
+  def edit_button(object, path = nil)
     return unless can? :edit, object
-    link_to 'Modifier', [:edit, object], class: button_classes
+    path = [:edit, object] if path.nil?
+    link_to 'Modifier', path, class: button_classes
   end
 
   def create_button(klass, *args)
     return unless can? :create, klass
-    path = send "new_#{klass.to_s.underscore}_path", *args
+    path = send "new_#{klass.to_s.underscore.gsub('/', '_')}_path", *args
     link_to 'Créer', path, class: button_classes
   end
 

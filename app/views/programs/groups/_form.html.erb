@@ -1,4 +1,6 @@
-<%= simple_form_for(group) do |f| %>
+<%= simple_form_for group,
+                    url:  group.new_record? ? program_groups_path(@program)
+                            : program_group_path(@program, group) do |f| %>
 <div class="row">
   <div class="col-md-4">
     <%= f.input :year, label: 'Année de sortie des étudiants' %>

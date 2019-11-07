@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: critical_learnings
+# Table name: referential_critical_learnings
 #
 #  id                :integer          not null, primary key
 #  competency_id     :integer
@@ -15,7 +15,7 @@
 #  updated_at        :datetime         not null
 #
 
-class CriticalLearning < ApplicationRecord
+class Referential::CriticalLearning < ApplicationRecord
   belongs_to :competency
   belongs_to :level
 

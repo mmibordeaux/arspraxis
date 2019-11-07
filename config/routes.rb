@@ -1,8 +1,15 @@
 Rails.application.routes.draw do
-  resources :groups
   devise_for :users
-  resources :referentials, :competencies, :programs, :resources,
-            :critical_learnings, :situations, :levels
+  resources :referentials do
+    resources :competencies, controller: 'referentials/competencies'
+    resources :critical_learnings, controller: 'referentials/critical_learnings'
+    resources :levels, controller: 'referentials/levels'
+    resources :resources, controller: 'referentials/resources'
+    resources :situations, controller: 'referentials/situations'
+  end
+  resources :programs do
+    resources :groups, controller: 'programs/groups'
+  end
   resources :users, only: [:index, :show]
   root to: 'dashboard#index'
 end

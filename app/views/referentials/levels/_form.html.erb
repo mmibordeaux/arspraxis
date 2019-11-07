@@ -1,4 +1,6 @@
-<%= simple_form_for(level) do |f| %>
+<%= simple_form_for level,
+                    url:  level.new_record? ? referential_levels_path(@referential)
+                            : referential_level_path(@referential, level) do |f| %>
   <div class="row">
     <div class="col-md-2">
       <%= f.input :number %>

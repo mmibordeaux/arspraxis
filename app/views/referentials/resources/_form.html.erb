@@ -1,4 +1,6 @@
-<%= simple_form_for(resource) do |f| %>
+<%= simple_form_for resource,
+                    url:  resource.new_record? ? referential_resources_path(@referential)
+                            : referential_resource_path(@referential, resource) do |f| %>
   <div class="row">
     <div class="col-md-4">
       <%= f.input :name %>

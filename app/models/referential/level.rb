@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: levels
+# Table name: referential_levels
 #
 #  id             :integer          not null, primary key
 #  number         :integer
@@ -10,7 +10,7 @@
 #  updated_at     :datetime         not null
 #
 
-class Level < ApplicationRecord
+class Referential::Level < ApplicationRecord
   belongs_to :referential
 
   def to_s

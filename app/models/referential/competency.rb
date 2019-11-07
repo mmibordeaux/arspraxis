@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: competencies
+# Table name: referential_competencies
 #
 #  id                   :integer          not null, primary key
 #  name                 :string
@@ -13,7 +13,7 @@
 #  essential_components :text
 #
 
-class Competency < ApplicationRecord
+class Referential::Competency < ApplicationRecord
   belongs_to :referential
 
   has_many :situations

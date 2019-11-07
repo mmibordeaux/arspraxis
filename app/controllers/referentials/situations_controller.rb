@@ -1,37 +1,38 @@
-class SituationsController < ApplicationController
-  load_and_authorize_resource
+class Referentials::SituationsController < ReferentialsController
+  skip_load_and_authorize_resource
+  load_and_authorize_resource :referential
+  load_and_authorize_resource :situation,
+                              through: :referential,
+                              class: 'Referential::Situation'
 
   # GET /situations
   # GET /situations.json
   def index
-    @situations = Situation.all
   end
 
   # GET /situations/1
   # GET /situations/1.json
   def show
-    add_breadcrumb 'Référentiels', :referentials_path
-    add_breadcrumb @situation.referential, @situation.referential
+    add_breadcrumb @referential, @referential
     add_breadcrumb @situation.competency, @situation.competency
     add_breadcrumb @situation
   end
 
   # GET /situations/new
   def new
-    @competency = Competency.find params[:competency_id]
-    @referential = @competency.referential
+    @competency = Referential::Competency.find params[:competency_id]
     @situation.competency = @competency
     @situation.number = @competency.situations.count + 1
-    add_breadcrumb 'Référentiels', :referentials_path
     add_breadcrumb @referential, @referential
-    add_breadcrumb @competency, @competency
+    add_breadcrumb @competency, referential_competency_path(@referential, @competency)
     add_breadcrumb 'Nouvelle situation professionnelle'
   end
 
   # GET /situations/1/edit
   def edit
-    add_breadcrumb @situation.referential, @situation.referential
-    add_breadcrumb @situation.competency, @situation.competency
+    @competency = @situation.competency
+    add_breadcrumb @referential, @referential
+    add_breadcrumb @competency, referential_competency_path(@referential, @competency)
     add_breadcrumb @situation, @situation
     add_breadcrumb 'Modifier'
   end
@@ -39,11 +40,9 @@ class SituationsController < ApplicationController
   # POST /situations
   # POST /situations.json
   def create
-    @situation = Situation.new(situation_params)
-
     respond_to do |format|
       if @situation.save
-        format.html { redirect_to @situation.competency, notice: 'Situation was successfully created.' }
+        format.html { redirect_to referential_situation_path(@referential, @situation), notice: 'Situation was successfully created.' }
         format.json { render :show, status: :created, location: @situation }
       else
         format.html { render :new }
@@ -57,7 +56,7 @@ class SituationsController < ApplicationController
   def update
     respond_to do |format|
       if @situation.update(situation_params)
-        format.html { redirect_to @situation, notice: 'Situation was successfully updated.' }
+        format.html { redirect_to referential_situation_path(@referential, @situation), notice: 'Situation was successfully updated.' }
         format.json { render :show, status: :ok, location: @situation }
       else
         format.html { render :edit }
@@ -71,7 +70,7 @@ class SituationsController < ApplicationController
   def destroy
     @situation.destroy
     respond_to do |format|
-      format.html { redirect_to situations_url, notice: 'Situation was successfully destroyed.' }
+      format.html { redirect_to @referential, notice: 'Situation was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -79,6 +78,6 @@ class SituationsController < ApplicationController
   private
 
   def situation_params
-    params.require(:situation).permit(:description, :number, :competency_id)
+    params.require(:referential_situation).permit(:description, :number, :competency_id)
   end
 end

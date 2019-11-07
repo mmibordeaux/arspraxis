@@ -6,7 +6,7 @@
       <th>Name</th>
       <th>Short name</th>
       <th>Description</th>
-      <th>Position</th>
+      <th>Number</th>
       <th>Referential</th>
       <th colspan="3"></th>
     </tr>
@@ -18,14 +18,14 @@
         <td><%= competency.name %></td>
         <td><%= competency.short_name %></td>
         <td><%= competency.description %></td>
-        <td><%= competency.position %></td>
+        <td><%= competency.number %></td>
         <td><%= competency.referential %></td>
-        <td><%= link_to 'Show', competency %></td>
-        <td><%= link_to 'Edit', edit_competency_path(competency) %></td>
-        <td><%= link_to 'Destroy', competency, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', referential_competency_path(@referential, competency) %></td>
+        <td><%= link_to 'Edit', edit_referential_competency_path(@referential, competency) %></td>
+        <td><%= link_to 'Destroy', referential_competency_path(@referential, competency), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<%= create_button Competency %>
+<%= create_button Referential::Competency %>

@@ -1,22 +1,21 @@
 # == Schema Information
 #
-# Table name: situations
+# Table name: referential_resources
 #
 #  id            :integer          not null, primary key
+#  name          :string
 #  description   :text
-#  number        :integer
-#  competency_id :integer
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
+#  competency_id :integer
 #
 
-class Situation < ApplicationRecord
+class Referential::Resource < ApplicationRecord
   belongs_to :competency
-  delegate :referential, to: :competency
 
-  default_scope { order(:number) }
+  default_scope { order(:name) }
 
   def to_s
-    "#{description}"
+    "#{name}"
   end
 end

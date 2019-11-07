@@ -12,7 +12,7 @@
         <li><%= link_to level, level %></li>
       <% end %>
     </ul>
-    <%= create_button Level, referential_id: @referential.id %>
+    <%= create_button Referential::Level, referential_id: @referential.id %>
     <hr>
     <h3>Formations</h3>
     <table class="table">
@@ -31,7 +31,7 @@
       <% @referential.competencies.each do |competency| %>
         <div class="col-md-6 mb-5">
           <hr>
-          <%= link_to competency do %>
+          <%= link_to referential_competency_path(@referential, competency) do %>
             <p class="badge badge-primary"><%= competency %></p>
             <h4><%= competency.name %></h4>
             <%= competency.full_description %>
@@ -39,6 +39,6 @@
         </div>
       <% end %>
     </div>
-    <%= create_button Competency, referential_id: @referential.id %>
+    <%= create_button Referential::Competency, referential_id: @referential.id %>
   </div>
 </div>

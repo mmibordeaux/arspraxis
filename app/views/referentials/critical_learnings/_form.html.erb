@@ -1,5 +1,7 @@
-
-<%= simple_form_for(critical_learning) do |f| %>
+<%= simple_form_for critical_learning,
+                    url:  critical_learning.new_record? ?
+                            referential_critical_learnings_path(@referential)
+                            : referential_critical_learning_path(@referential, critical_learning) do |f| %>
   <div class="row">
     <div class="col-md-2">
       <%= f.input :number,

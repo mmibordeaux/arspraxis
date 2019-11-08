@@ -8,28 +8,27 @@ class Referentials::LevelsController < ReferentialsController
   # GET /levels
   # GET /levels.json
   def index
+    breadcrumb
   end
 
   # GET /levels/1
   # GET /levels/1.json
   def show
     @competencies = @referential.competencies
-    add_breadcrumb @referential, @referential
-    add_breadcrumb @level
+    breadcrumb
   end
 
   # GET /levels/new
   def new
     @level.referential = @referential
     @level.number = @referential.levels.length + 1
-    add_breadcrumb @referential, @referential
+    breadcrumb
     add_breadcrumb 'Nouveau niveau'
   end
 
   # GET /levels/1/edit
   def edit
-    add_breadcrumb @referential, @referential
-    add_breadcrumb @level, @level
+    breadcrumb
     add_breadcrumb 'Modifier'
   end
 
@@ -69,6 +68,14 @@ class Referentials::LevelsController < ReferentialsController
       format.html { redirect_to @referential, notice: 'Level was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  protected
+
+  def breadcrumb
+    super
+    add_breadcrumb 'Niveaux', referential_levels_path(@referential)
+    add_breadcrumb @level, referential_level_path(@referential, @level) if @level && @level.persisted?
   end
 
   private

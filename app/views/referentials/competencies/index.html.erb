@@ -8,7 +8,7 @@
       <th>Description</th>
       <th>Number</th>
       <th>Referential</th>
-      <th colspan="3"></th>
+      <th></th>
     </tr>
   </thead>
 
@@ -20,9 +20,11 @@
         <td><%= competency.description %></td>
         <td><%= competency.number %></td>
         <td><%= competency.referential %></td>
-        <td><%= link_to 'Show', referential_competency_path(@referential, competency) %></td>
-        <td><%= link_to 'Edit', edit_referential_competency_path(@referential, competency) %></td>
-        <td><%= link_to 'Destroy', referential_competency_path(@referential, competency), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+          <%= show_button [@referential, competency] %>
+          <%= edit_button [@referential, competency] %>
+          <%= destroy_button [@referential, competency] %>
+        </td>
       </tr>
     <% end %>
   </tbody>

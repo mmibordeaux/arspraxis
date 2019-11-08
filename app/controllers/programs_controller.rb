@@ -1,28 +1,28 @@
 class ProgramsController < ApplicationController
   load_and_authorize_resource
 
-  add_breadcrumb 'Formations', :programs_path
-
   # GET /programs
   # GET /programs.json
   def index
+    breadcrumb
   end
 
   # GET /programs/1
   # GET /programs/1.json
   def show
-    add_breadcrumb @program
+    breadcrumb
   end
 
   # GET /programs/new
   def new
     @program.referential_id = params[:referential_id]
+    breadcrumb
     add_breadcrumb 'Nouvelle formation'
   end
 
   # GET /programs/1/edit
   def edit
-    add_breadcrumb @program, @program
+    breadcrumb
     add_breadcrumb 'Modifier'
   end
 
@@ -66,10 +66,17 @@ class ProgramsController < ApplicationController
     end
   end
 
+  protected
+
+  def breadcrumb
+    super
+    add_breadcrumb 'Formations', programs_path
+    add_breadcrumb @program, @program if @program && @program.persisted?
+  end
+
   private
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def program_params
-      params.require(:program).permit(:name, :city, :country, :referential_id)
-    end
+  def program_params
+    params.require(:program).permit(:name, :city, :country, :referential_id)
+  end
 end

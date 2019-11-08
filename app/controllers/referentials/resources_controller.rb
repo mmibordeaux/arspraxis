@@ -8,32 +8,28 @@ class Referentials::ResourcesController < ReferentialsController
   # GET /resources
   # GET /resources.json
   def index
+    breadcrumb
   end
 
   # GET /resources/1
   # GET /resources/1.json
   def show
     @competency = @resource.competency
-    add_breadcrumb @referential, @referential
-    add_breadcrumb @competency, referential_competency_path(@referential, @competency)
-    add_breadcrumb @resource
+    breadcrumb
   end
 
   # GET /resources/new
   def new
     @competency = Referential::Competency.find params[:competency_id]
     @resource.competency = @competency
-    add_breadcrumb @referential, @referential
-    add_breadcrumb @competency, referential_competency_path(@referential, @competency)
+    breadcrumb
     add_breadcrumb 'Nouvelle ressource'
   end
 
   # GET /resources/1/edit
   def edit
     @competency = @resource.competency
-    add_breadcrumb @referential, @referential
-    add_breadcrumb @competency, referential_competency_path(@referential, @competency)
-    add_breadcrumb @resource, referential_resource_path(@referential, @resource)
+    breadcrumb
     add_breadcrumb 'Modifier'
   end
 
@@ -70,9 +66,17 @@ class Referentials::ResourcesController < ReferentialsController
   def destroy
     @resource.destroy
     respond_to do |format|
-      format.html { redirect_to @referential, notice: 'Resource was successfully destroyed.' }
+      format.html { redirect_to referential_resources_path(@referential), notice: 'Resource was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  protected
+
+  def breadcrumb
+    super
+    add_breadcrumb 'Ressources', referential_resources_path(@referential)
+    add_breadcrumb @resource, referential_resource_path(@referential, @resource) if @resource && @resource.persisted?
   end
 
   private

@@ -8,6 +8,7 @@ class Referentials::CriticalLearningsController < ReferentialsController
   # GET /critical_learnings
   # GET /critical_learnings.json
   def index
+    breadcrumb
   end
 
   # GET /critical_learnings/1
@@ -16,10 +17,7 @@ class Referentials::CriticalLearningsController < ReferentialsController
     @competency = @critical_learning.competency
     @level = @critical_learning.level
     @referential = @competency.referential
-    add_breadcrumb @referential, @referential
-    add_breadcrumb @competency, referential_competency_path(@referential, @competency)
-    add_breadcrumb @level, referential_level_path(@referential, @level)
-    add_breadcrumb @critical_learning
+    breadcrumb
   end
 
   # GET /critical_learnings/new
@@ -30,9 +28,7 @@ class Referentials::CriticalLearningsController < ReferentialsController
     @critical_learning.competency = @competency
     @critical_learning.level = @level
     @critical_learning.number = @competency.critical_learnings.with_level(@level).count + 1
-    add_breadcrumb @referential, @referential
-    add_breadcrumb @competency, referential_competency_path(@referential, @competency)
-    add_breadcrumb @level, referential_level_path(@referential, @level)
+    breadcrumb
     add_breadcrumb 'Nouvel apprentissage critique'
   end
 
@@ -41,10 +37,7 @@ class Referentials::CriticalLearningsController < ReferentialsController
     @competency = @critical_learning.competency
     @level = @critical_learning.level
     @referential = @competency.referential
-    add_breadcrumb @referential, @referential
-    add_breadcrumb @competency, referential_competency_path(@referential, @competency)
-    add_breadcrumb @level, referential_level_path(@referential, @level)
-    add_breadcrumb @critical_learning, referential_critical_learning_path(@referential, @critical_learning)
+    breadcrumb
     add_breadcrumb 'Modifier'
   end
 
@@ -84,6 +77,16 @@ class Referentials::CriticalLearningsController < ReferentialsController
       format.html { redirect_to @referential, notice: 'Critical learning was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  protected
+
+  def breadcrumb
+    super
+    add_breadcrumb 'Apprentissages critiques', referential_critical_learnings_path(@referential)
+    add_breadcrumb @competency, referential_competency_path(@referential, @competency) if @competency
+    add_breadcrumb @level, referential_level_path(@referential, @level) if @level
+    add_breadcrumb @critical_learning, referential_critical_learning_path(@referential, @critical_learning) if @critical_learning && @critical_learning.persisted?
   end
 
   private

@@ -9,7 +9,7 @@
 #  updated_at :datetime         not null
 #
 
-class Group < ApplicationRecord
+class Program::Group < ApplicationRecord
   belongs_to :program
 
   def to_s

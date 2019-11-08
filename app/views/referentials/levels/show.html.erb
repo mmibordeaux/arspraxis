@@ -1,6 +1,6 @@
 <%= content_for :title, "#{@level}" %>
 
-<%= edit_button @level %>
+<%= edit_button [@referential, @level] %>
 
 <div class="row mt-5">
   <% @competencies.each do |competency| %>
@@ -10,7 +10,7 @@
       <p><b><%= link_to competency.name, competency %></b></p>
       <ul class="list-unstyled">
         <% competency.critical_learnings.with_level(@level).each do |critical_learning| %>
-          <li><%= link_to critical_learning, critical_learning %></li>
+          <li><%= link_to critical_learning, referential_critical_learning_path(@referential, critical_learning) %></li>
         <% end %>
       </ul>
     </div>

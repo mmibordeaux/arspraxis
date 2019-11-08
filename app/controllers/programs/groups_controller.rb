@@ -8,32 +8,26 @@ class Programs::GroupsController < ProgramsController
   # GET /groups
   # GET /groups.json
   def index
-    @groups = Group.all
+    breadcrumb
   end
 
   # GET /groups/1
   # GET /groups/1.json
   def show
-    add_breadcrumb 'Formations', programs_path
-    add_breadcrumb @group.program, @group.program
-    add_breadcrumb @group
+    breadcrumb
   end
 
   # GET /groups/new
   def new
     @program = Program.find params[:program_id]
-    @group = Group.new
     @group.program = @program
-    add_breadcrumb 'Formations', programs_path
-    add_breadcrumb @program, @program
+    breadcrumb
     add_breadcrumb 'Nouvelle promotion'
   end
 
   # GET /groups/1/edit
   def edit
-    add_breadcrumb 'Formations', programs_path
-    add_breadcrumb @group.program, @group.program
-    add_breadcrumb @group, @group
+    breadcrumb
     add_breadcrumb 'Modifier'
   end
 
@@ -73,6 +67,14 @@ class Programs::GroupsController < ProgramsController
       format.html { redirect_to @program, notice: 'Group was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  protected
+
+  def breadcrumb
+    super
+    add_breadcrumb 'Promotions', program_groups_path(@program)
+    add_breadcrumb @group, program_group_path(@program, @group) if @group && @group.persisted?
   end
 
   private

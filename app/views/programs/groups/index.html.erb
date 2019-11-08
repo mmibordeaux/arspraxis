@@ -1,13 +1,10 @@
-<p id="notice"><%= notice %></p>
+<%= content_for :title, 'Promotions' %>
 
-<h1>Groups</h1>
-
-<table>
+<table class="table">
   <thead>
     <tr>
-      <th>Year</th>
-      <th>Program</th>
-      <th colspan="3"></th>
+      <th>Année de sortie</th>
+      <th></th>
     </tr>
   </thead>
 
@@ -15,15 +12,14 @@
     <% @groups.each do |group| %>
       <tr>
         <td><%= group.year %></td>
-        <td><%= group.program %></td>
-        <td><%= link_to 'Show', group %></td>
-        <td><%= link_to 'Edit', edit_group_path(group) %></td>
-        <td><%= link_to 'Destroy', group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+          <%= show_button [@program, group] %>
+          <%= edit_button [@program, group] %>
+          <%= destroy_button [@program, group] %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Group', new_group_path %>
+<%= create_button Program::Group %>

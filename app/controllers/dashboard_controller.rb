@@ -5,5 +5,6 @@ class DashboardController < ApplicationController
     else
       render 'anonymous'
     end
+    breadcrumb
   end
 end

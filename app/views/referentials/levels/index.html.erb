@@ -16,9 +16,11 @@
         <td><%= level.number %></td>
         <td><%= level.name %></td>
         <td><%= level.referential %></td>
-        <td><%= link_to 'Show', level %></td>
-        <td><%= link_to 'Edit', edit_level_path(level) %></td>
-        <td><%= link_to 'Destroy', level, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+          <%= show_button [@referential, level] %>
+          <%= edit_button [@referential, level] %>
+          <%= destroy_button [@referential, level] %>
+        </td>
       </tr>
     <% end %>
   </tbody>

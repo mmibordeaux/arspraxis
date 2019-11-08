@@ -9,7 +9,7 @@
     <h3>Niveaux</h3>
     <ul class="list-unstyled">
       <% @referential.levels.each do |level| %>
-        <li><%= link_to level, level %></li>
+        <li><%= link_to level, referential_level_path(@referential, level) %></li>
       <% end %>
     </ul>
     <%= create_button Referential::Level, referential_id: @referential.id %>

@@ -1,27 +1,27 @@
 class ReferentialsController < ApplicationController
   load_and_authorize_resource
 
-  add_breadcrumb 'Référentiels', :referentials_path
-
   # GET /referentials
   # GET /referentials.json
   def index
+    breadcrumb
   end
 
   # GET /referentials/1
   # GET /referentials/1.json
   def show
-    add_breadcrumb @referential
+    breadcrumb
   end
 
   # GET /referentials/new
   def new
+    breadcrumb
     add_breadcrumb 'Nouveau référentiel'
   end
 
   # GET /referentials/1/edit
   def edit
-    add_breadcrumb @referential, @referential
+    breadcrumb
     add_breadcrumb 'Modifier'
   end
 
@@ -63,6 +63,14 @@ class ReferentialsController < ApplicationController
       format.html { redirect_to referentials_url, notice: 'Referential was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  protected
+
+  def breadcrumb
+    super
+    add_breadcrumb 'Référentiels', referentials_path
+    add_breadcrumb @referential, @referential if @referential && @referential.persisted?
   end
 
   private

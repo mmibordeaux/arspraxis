@@ -13,10 +13,10 @@
     <h3>Promotions</h3>
     <ul class="list-unstyled">
       <% @program.groups.each do |group| %>
-        <li><%= link_to group, group %></li>
+        <li><%= link_to group, program_group_path(@program, group) %></li>
       <% end %>
     </ul>
-    <%= create_button Group, program_id: @program.id %>
+    <%= create_button Program::Group, program_id: @program.id %>
   </div>
 </div>
 

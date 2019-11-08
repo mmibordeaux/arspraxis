@@ -8,14 +8,14 @@ class Referentials::SituationsController < ReferentialsController
   # GET /situations
   # GET /situations.json
   def index
+    breadcrumb
   end
 
   # GET /situations/1
   # GET /situations/1.json
   def show
-    add_breadcrumb @referential, @referential
-    add_breadcrumb @situation.competency, @situation.competency
-    add_breadcrumb @situation
+    @competency = @situation.competency
+    breadcrumb
   end
 
   # GET /situations/new
@@ -23,17 +23,14 @@ class Referentials::SituationsController < ReferentialsController
     @competency = Referential::Competency.find params[:competency_id]
     @situation.competency = @competency
     @situation.number = @competency.situations.count + 1
-    add_breadcrumb @referential, @referential
-    add_breadcrumb @competency, referential_competency_path(@referential, @competency)
+    breadcrumb
     add_breadcrumb 'Nouvelle situation professionnelle'
   end
 
   # GET /situations/1/edit
   def edit
     @competency = @situation.competency
-    add_breadcrumb @referential, @referential
-    add_breadcrumb @competency, referential_competency_path(@referential, @competency)
-    add_breadcrumb @situation, @situation
+    breadcrumb
     add_breadcrumb 'Modifier'
   end
 
@@ -73,6 +70,15 @@ class Referentials::SituationsController < ReferentialsController
       format.html { redirect_to @referential, notice: 'Situation was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  protected
+
+  def breadcrumb
+    super
+    add_breadcrumb 'Situations professionnelles', referential_situations_path(@referential)
+    add_breadcrumb @competency, referential_competency_path(@referential, @competency) if @competency
+    add_breadcrumb @situation, referential_situation_path(@referential, @situation) if @situation && @situation.persisted?
   end
 
   private

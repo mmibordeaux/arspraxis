@@ -1,3 +1,5 @@
 class ApplicationController < ActionController::Base
-  add_breadcrumb 'Accueil', :root_path
+  def breadcrumb
+    add_breadcrumb 'Accueil', :root_path
+  end
 end

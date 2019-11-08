@@ -11,5 +11,5 @@
   </div>
   <%= f.association :competency, as: :hidden %>
   <%= save_button f %>
-  <%= destroy_button resource, referential_resource_path(@referential, resource) %>
+  <%= destroy_button [@referential, resource] %>
 <% end %>

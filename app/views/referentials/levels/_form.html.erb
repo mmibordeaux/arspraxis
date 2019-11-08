@@ -11,5 +11,5 @@
   </div>
   <%= f.association :referential, as: :hidden %>
   <%= save_button f %>
-  <%= destroy_button level, referential_level_path(@referential, level) %>
+  <%= destroy_button [@referential, level] %>
 <% end %>

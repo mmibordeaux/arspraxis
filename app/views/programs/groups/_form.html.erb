@@ -8,5 +8,5 @@
 </div>
   <%= f.association :program, as: :hidden %>
   <%= save_button f %>
-  <%= destroy_button group, program_group_path(@program, group) %>
+  <%= destroy_button [@program, group] %>
 <% end %>

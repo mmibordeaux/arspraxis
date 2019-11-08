@@ -28,5 +28,5 @@
   <%= f.association :competency, as: :hidden %>
   <%= f.association :level, as: :hidden %>
   <%= save_button f %>
-  <%= destroy_button critical_learning, referential_critical_learning_path(@referential, critical_learning) %>
+  <%= destroy_button [@referential, critical_learning] %>
 <% end %>

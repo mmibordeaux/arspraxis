@@ -10,7 +10,7 @@
     <h3>Situations professionnelles</h3>
     <ul class="list-unstyled">
       <% @competency.situations.each do |situation| %>
-        <li><%= link_to situation, situation %></li>
+        <li><%= link_to situation, referential_situation_path(@referential, situation) %></li>
       <% end %>
     </ul>
     <%= create_button Referential::Situation, competency_id: @competency.id %>
@@ -19,7 +19,7 @@
     <h3>Ressources</h3>
     <ul class="list-unstyled">
       <% @competency.resources.each do |resource| %>
-        <li><%= link_to resource, resource %></li>
+        <li><%= link_to resource, referential_resource_path(@referential, resource) %></li>
       <% end %>
     </ul>
     <%= create_button Referential::Resource, competency_id: @competency.id %>
@@ -42,7 +42,7 @@
         <td>
           <ul class="list-unstyled">
             <% @competency.critical_learnings.with_level(level).each do |critical_learning| %>
-              <li><%= link_to critical_learning, critical_learning %></li>
+              <li><%= link_to critical_learning, referential_critical_learning_path(@referential, critical_learning) %></li>
             <% end %>
           </ul>
           <%= create_button Referential::CriticalLearning, competency_id: @competency.id, level_id: level.id %>

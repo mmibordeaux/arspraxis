@@ -1,14 +1,21 @@
 module ApplicationHelper
   def button_classes
-    'btn btn-primary btn-sm'
+    'btn btn-primary btn-sm mb-1'
   end
 
   def button_classes_danger
-    'btn btn-danger btn-sm'
+    'btn btn-danger btn-sm mb-1'
   end
 
   def save_button(f)
     f.submit 'Enregistrer', class: button_classes
+  end
+
+  def show_button(object, path = nil)
+    last_object = object.is_a?(Array) ? object.last
+                                      : object
+    return unless can? :show, last_object
+    link_to 'Voir', nested_path(object), class: button_classes
   end
 
   def edit_button(object, path = nil)
@@ -46,7 +53,7 @@ module ApplicationHelper
       path = send method, *args
     else
       # Auto path generation
-      path = prefix.empty?  ? class_or_array
+      path = prefix.blank?  ? class_or_array
                             : [prefix, class_or_array]
     end
   end

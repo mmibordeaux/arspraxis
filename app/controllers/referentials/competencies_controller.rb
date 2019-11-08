@@ -8,14 +8,13 @@ class Referentials::CompetenciesController < ReferentialsController
   # GET /competencies
   # GET /competencies.json
   def index
-    add_breadcrumb 'Compétences', referential_competencies_path(@referential)
+    breadcrumb
   end
 
   # GET /competencies/1
   # GET /competencies/1.json
   def show
-    add_breadcrumb @referential, @referential
-    add_breadcrumb @competency
+    breadcrumb
   end
 
   # GET /competencies/new
@@ -23,14 +22,13 @@ class Referentials::CompetenciesController < ReferentialsController
     @referential = Referential.find params[:referential_id]
     @competency.referential = @referential
     @competency.number = @referential.competencies.length + 1
-    add_breadcrumb @referential, @referential
+    breadcrumb
     add_breadcrumb 'Nouvelle compétence'
   end
 
   # GET /competencies/1/edit
   def edit
-    add_breadcrumb @referential, @referential
-    add_breadcrumb @competency.short_name, referential_competency_path(@referential, @competency)
+    breadcrumb
     add_breadcrumb 'Modifier'
   end
 
@@ -70,6 +68,14 @@ class Referentials::CompetenciesController < ReferentialsController
       format.html { redirect_to @referential, notice: 'Competency was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  protected
+
+  def breadcrumb
+    super
+    add_breadcrumb 'Compétences', referential_competencies_path(@referential)
+    add_breadcrumb @competency, referential_competency_path(@referential, @competency) if @competency && @competency.persisted?
   end
 
   private

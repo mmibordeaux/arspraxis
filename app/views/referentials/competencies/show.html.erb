@@ -4,7 +4,7 @@
   <div class="col-md-4">
     <h2><%= @competency.name %></h2>
     <p><%= @competency.full_description %></p>
-    <%= edit_button @competency, edit_referential_competency_path(@referential, @competency) %>
+    <%= edit_button [@referential, @competency] %>
   </div>
   <div class="col-md-4">
     <h3>Situations professionnelles</h3>

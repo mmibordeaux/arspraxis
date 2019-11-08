@@ -6,7 +6,6 @@ class ReferentialsController < ApplicationController
   # GET /referentials
   # GET /referentials.json
   def index
-    @referentials = Referential.all
   end
 
   # GET /referentials/1

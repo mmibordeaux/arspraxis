@@ -75,6 +75,6 @@ class Referentials::CompetenciesController < ReferentialsController
   private
 
   def competency_params
-    params.require(:referential_competency).permit(:name, :short_name, :description, :essential_components, :position, :referential_id)
+    params.require(:referential_competency).permit(:name, :short_name, :description, :essential_components, :number, :referential_id)
   end
 end

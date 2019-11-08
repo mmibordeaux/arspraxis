@@ -12,9 +12,10 @@ module ApplicationHelper
   end
 
   def edit_button(object, path = nil)
-    return unless can? :edit, object
-    path = [:edit, object] if path.nil?
-    link_to 'Modifier', path, class: button_classes
+    last_object = object.is_a?(Array) ? object.last
+                                      : object
+    return unless can? :edit, last_object
+    link_to 'Modifier', nested_path(object, :edit), class: button_classes
   end
 
   def create_button(klass, *args)
@@ -24,8 +25,29 @@ module ApplicationHelper
   end
 
   def destroy_button(object)
-    return unless can? :destroy, object
-    return unless object.persisted?
-    link_to 'Supprimer', object, method: :delete, data: { confirm: 'Are you sure?' }, class: button_classes_danger
+    last_object = object.is_a?(Array) ? object.last
+                                      : object
+    return unless can? :destroy, last_object
+    return unless last_object.persisted?
+    link_to 'Supprimer', nested_path(object), method: :delete, data: { confirm: 'Are you sure?' }, class: button_classes_danger
+  end
+
+  def nested_path(class_or_array, prefix = nil)
+    if class_or_array.is_a?(Array)
+      # Nested path
+      method = ''
+      method += "#{prefix}_" unless prefix.nil?
+      args = []
+      class_or_array.each do |o|
+        method += "#{o.class.name.demodulize.underscore.downcase}_"
+        args << o
+      end
+      method += 'path'
+      path = send method, *args
+    else
+      # Auto path generation
+      path = prefix.empty?  ? class_or_array
+                            : [prefix, class_or_array]
+    end
   end
 end

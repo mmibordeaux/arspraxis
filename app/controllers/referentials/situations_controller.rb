@@ -1,5 +1,4 @@
-class Referentials::SituationsController < ReferentialsController
-  skip_load_and_authorize_resource
+class Referentials::SituationsController < Referentials::ApplicationController
   load_and_authorize_resource :referential
   load_and_authorize_resource :situation,
                               through: :referential,

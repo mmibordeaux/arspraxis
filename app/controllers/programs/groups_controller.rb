@@ -1,5 +1,4 @@
-class Programs::GroupsController < ProgramsController
-  skip_load_and_authorize_resource
+class Programs::GroupsController < Programs::ApplicationController
   load_and_authorize_resource :program
   load_and_authorize_resource :group,
                               through: :program,

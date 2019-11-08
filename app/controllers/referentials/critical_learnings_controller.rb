@@ -1,5 +1,4 @@
-class Referentials::CriticalLearningsController < ReferentialsController
-  skip_load_and_authorize_resource
+class Referentials::CriticalLearningsController < Referentials::ApplicationController
   load_and_authorize_resource :referential
   load_and_authorize_resource :critical_learning,
                               through: :referential,

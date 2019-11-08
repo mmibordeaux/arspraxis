@@ -29,8 +29,8 @@ class Referentials::CompetenciesController < ReferentialsController
 
   # GET /competencies/1/edit
   def edit
-    add_breadcrumb @competency.referential, @competency.referential
-    add_breadcrumb @competency.short_name, @competency
+    add_breadcrumb @referential, @referential
+    add_breadcrumb @competency.short_name, referential_competency_path(@referential, @competency)
     add_breadcrumb 'Modifier'
   end
 

@@ -1,1 +1,8 @@
 <% content_for :title, "Bonjour #{current_user.first_name}" %>
+
+<% if current_user.teacher_in_programs.any? %>
+  <h2>J'enseigne en...</h2>
+  <% current_user.teacher_in_programs.each do |teacher| %>
+    <h3><%= link_to teacher.program, teacher.program %></h3>
+  <% end %>
+<% end %>

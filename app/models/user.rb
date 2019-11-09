@@ -20,6 +20,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_many  :teacher_in_programs,
+            class_name: 'Program::Teacher'
+
   def name
     if first_name.blank? && last_name.blank?
       "Utilisateur anonyme #{id}"

@@ -1,17 +1,39 @@
 <%= content_for :title, 'Utilisateurs' %>
 
-<table class="table">
+<table class="table table-striped">
   <thead>
     <tr>
       <th>Nom</th>
-      <th>Formations</th>
+      <th>Enseignant</th>
+      <th>Etudiant</th>
+      <th>Gestionnaire de référentiel</th>
     </tr>
   </thead>
   <tbody>
     <% @users.each do |user| %>
       <tr>
         <td><%= link_to user, user %></td>
-        <td></td>
+        <td class="small">
+          <ul class="list-unstyled">
+            <% user.teacher_in_programs.each do |teacher| %>
+              <li><%= link_to teacher.program, teacher.program %></li>
+            <% end %>
+          </ul>
+        </td>
+        <td class="small">
+          <ul class="list-unstyled">
+            <% user.teacher_in_programs.each do |teacher| %>
+              <li><%= link_to teacher.program, teacher.program %></li>
+            <% end %>
+          </ul>
+        </td>
+        <td class="small">
+          <ul class="list-unstyled">
+            <% user.teacher_in_programs.each do |teacher| %>
+              <li><%= link_to teacher.program, teacher.program %></li>
+            <% end %>
+          </ul>
+        </td>
       </tr>
     <% end %>
   </tbody>

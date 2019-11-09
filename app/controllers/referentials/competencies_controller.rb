@@ -19,7 +19,7 @@ class Referentials::CompetenciesController < Referentials::ApplicationController
   def new
     @referential = Referential.find params[:referential_id]
     @competency.referential = @referential
-    @competency.number = @referential.competencies.length + 1
+    @competency.number = @referential.competencies.count + 1
     breadcrumb
     add_breadcrumb 'Nouvelle compétence'
   end

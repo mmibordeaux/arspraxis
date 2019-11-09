@@ -7,7 +7,8 @@
                   label: 'Origine' %>
     </div>
     <div class="col-md-8">
-      <%= f.input :description %>
+      <%= f.input :description,
+                  input_html: { rows: 6 }%>
     </div>
   </div>
   <%= save_button f %>

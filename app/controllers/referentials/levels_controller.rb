@@ -19,7 +19,7 @@ class Referentials::LevelsController < Referentials::ApplicationController
   # GET /levels/new
   def new
     @level.referential = @referential
-    @level.number = @referential.levels.length + 1
+    @level.number = @referential.levels.count + 1
     breadcrumb
     add_breadcrumb 'Nouveau niveau'
   end

@@ -1,0 +1,26 @@
+<%= content_for :title, 'Enseignants' %>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Utilisateur</th>
+      <th>Rôle</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @teachers.each do |teacher| %>
+      <tr>
+        <td><%= teacher.user %></td>
+        <td><%= teacher.role %></td>
+        <td>
+          <%= show_button [@program, teacher] %>
+          <%= edit_button [@program, teacher] %>
+          <%= destroy_button [@program, teacher] %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= create_button Program::Teacher %>

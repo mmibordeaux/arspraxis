@@ -4,12 +4,13 @@
   <div class="col-md-3">
     <h3>Localisation</h3>
     <p><%= @program.city %>, <%= @program.country_full %></p>
+    <%= edit_button @program %>
   </div>
   <div class="col-md-3">
     <h3>Référentiel</h3>
     <p><%= link_to @program.referential, @program.referential %></p>
   </div>
-  <div class="col-md-6">
+  <div class="col-md-3">
     <h3>Promotions</h3>
     <ul class="list-unstyled">
       <% @program.groups.each do |group| %>
@@ -18,6 +19,13 @@
     </ul>
     <%= create_button Program::Group, program_id: @program.id %>
   </div>
+  <div class="col-md-3">
+    <h3>Enseignants</h3>
+    <ul class="list-unstyled">
+      <% @program.teachers.each do |teacher| %>
+        <li><%= link_to teacher, program_teacher_path(@program, teacher) %></li>
+      <% end %>
+    </ul>
+    <%= create_button Program::Teacher, program_id: @program.id %>
+  </div>
 </div>
-
-<%= edit_button @program %>

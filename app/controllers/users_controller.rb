@@ -7,7 +7,7 @@ class UsersController < ApplicationController
 
   def show
     breadcrumb
-    add_breadcrumb @user.name
+    add_breadcrumb @user
   end
 
   protected

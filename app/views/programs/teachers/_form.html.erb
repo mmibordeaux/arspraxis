@@ -1,0 +1,21 @@
+<%= simple_form_for teacher,
+                    url:  teacher.new_record? ? program_teachers_path(@program)
+                            : program_teacher_path(@program, teacher) do |f| %>
+<div class="row">
+  <div class="col-md-6">
+    <%= f.association :user,
+                      label: 'Utilisateur',
+                      include_blank: false %>
+    <%= f.input :role,
+                label: 'Rôle' %>
+  </div>
+  <div class="col-md-6">
+    <%= f.input :details,
+                label: 'Détails',
+                input_html: { rows: 5 } %>
+  </div>
+</div>
+  <%= f.association :program, as: :hidden %>
+  <%= save_button f %>
+  <%= destroy_button [@program, teacher] %>
+<% end %>

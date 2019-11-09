@@ -1,11 +1,11 @@
 <%= simple_form_for group,
                     url:  group.new_record? ? program_groups_path(@program)
                             : program_group_path(@program, group) do |f| %>
-<div class="row">
-  <div class="col-md-4">
-    <%= f.input :year, label: 'Année de sortie des étudiants' %>
+  <div class="row">
+    <div class="col-md-4">
+      <%= f.input :year, label: 'Année de sortie des étudiants' %>
+    </div>
   </div>
-</div>
   <%= f.association :program, as: :hidden %>
   <%= save_button f %>
   <%= destroy_button [@program, group] %>

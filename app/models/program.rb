@@ -14,6 +14,7 @@
 class Program < ApplicationRecord
   belongs_to :referential
   has_many :groups
+  has_many :teachers
 
   def country_full
     ISO3166::Country[country].name

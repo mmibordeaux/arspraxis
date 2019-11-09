@@ -1,0 +1,9 @@
+<%= content_for :title, "#{@teacher}" %>
+
+<div class="row">
+  <div class="col-md-4">
+    <h2><%= @teacher.role %></h2>
+    <%= simple_format @teacher.details %>
+    <%= edit_button [@program, @teacher] %>
+  </div>
+</div>

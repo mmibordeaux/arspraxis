@@ -1,5 +1,4 @@
 class Referentials::CompetenciesController < Referentials::ApplicationController
-  load_and_authorize_resource :referential
   load_and_authorize_resource :competency,
                               through: :referential,
                               class: 'Referential::Competency'

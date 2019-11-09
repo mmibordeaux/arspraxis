@@ -1,5 +1,4 @@
 class Referentials::LevelsController < Referentials::ApplicationController
-  load_and_authorize_resource :referential
   load_and_authorize_resource :level,
                               through: :referential,
                               class: 'Referential::Level'

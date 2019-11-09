@@ -1,5 +1,4 @@
 class Referentials::ResourcesController < Referentials::ApplicationController
-  load_and_authorize_resource :referential
   load_and_authorize_resource :resource,
                               through: :referential,
                               class: 'Referential::Resource'

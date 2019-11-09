@@ -1,5 +1,4 @@
 class Referentials::SituationsController < Referentials::ApplicationController
-  load_and_authorize_resource :referential
   load_and_authorize_resource :situation,
                               through: :referential,
                               class: 'Referential::Situation'

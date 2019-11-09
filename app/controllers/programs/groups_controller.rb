@@ -1,5 +1,4 @@
 class Programs::GroupsController < Programs::ApplicationController
-  load_and_authorize_resource :program
   load_and_authorize_resource :group,
                               through: :program,
                               class: 'Program::Group'

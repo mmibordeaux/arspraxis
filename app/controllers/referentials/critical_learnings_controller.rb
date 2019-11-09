@@ -1,5 +1,4 @@
 class Referentials::CriticalLearningsController < Referentials::ApplicationController
-  load_and_authorize_resource :referential
   load_and_authorize_resource :critical_learning,
                               through: :referential,
                               class: 'Referential::CriticalLearning'

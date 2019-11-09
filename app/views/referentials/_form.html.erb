@@ -1,8 +1,10 @@
 <%= simple_form_for(referential) do |f| %>
   <div class="row">
     <div class="col-md-4">
-      <%= f.input :name %>
-      <%= f.input :origin %>
+      <%= f.input :name,
+                  label: 'Nom' %>
+      <%= f.input :origin,
+                  label: 'Origine' %>
     </div>
     <div class="col-md-8">
       <%= f.input :description %>

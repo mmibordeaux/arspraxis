@@ -4,12 +4,16 @@ class ReferentialsController < ApplicationController
   # GET /referentials
   # GET /referentials.json
   def index
+    @new_referential = Referential.new
     breadcrumb
   end
 
   # GET /referentials/1
   # GET /referentials/1.json
   def show
+    @new_level = Referential::Level.new referential: @referential
+    @new_manager = Referential::Manager.new referential: @referential
+    @new_competency = Referential::Competency.new referential: @referential
     breadcrumb
   end
 

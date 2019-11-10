@@ -12,7 +12,15 @@
         <li><%= link_to level, referential_level_path(@referential, level) %></li>
       <% end %>
     </ul>
-    <%= create_button Referential::Level, referential_id: @referential.id %>
+    <%= create_button @new_level, new_referential_level_path(@referential) %>
+    <hr>
+    <h3>Responsables</h3>
+    <ul class="list-unstyled">
+      <% @referential.managers.each do |manager| %>
+        <li><%= link_to manager, referential_manager_path(@referential, manager) %></li>
+      <% end %>
+    </ul>
+    <%= create_button @new_manager, new_referential_manager_path(@referential) %>
     <hr>
     <h3>Formations</h3>
     <table class="table">
@@ -23,7 +31,6 @@
         </tr>
       <% end %>
     </table>
-    <%= create_button Program, referential_id: @referential.id %>
   </div>
   <div class="col-md-8">
     <h3>Compétences</h3>
@@ -39,6 +46,6 @@
         </div>
       <% end %>
     </div>
-    <%= create_button Referential::Competency, referential_id: @referential.id %>
+    <%= create_button @new_competency, new_referential_competency_path(@referential) %>
   </div>
 </div>

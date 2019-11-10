@@ -1,1 +1,25 @@
 <%= content_for :title, "#{@user}" %>
+
+
+<div class="row">
+  <% if current_user.teacher_in_programs.any? %>
+    <div class="col-md-4">
+      <h2>Enseignant</h2>
+      <ul class="list-unstyled">
+        <% current_user.teacher_in_programs.each do |teacher| %>
+          <li><%= link_to teacher.program, teacher.program %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <% if current_user.manager_of_referentials.any? %>
+    <div class="col-md-4">
+      <h2>Responsable de référentiel</h2>
+      <ul class="list-unstyled">
+      <% current_user.manager_of_referentials.each do |manager| %>
+        <li><%= link_to manager.referential, manager.referential %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+</div>

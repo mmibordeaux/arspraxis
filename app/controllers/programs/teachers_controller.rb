@@ -6,6 +6,7 @@ class Programs::TeachersController < Programs::ApplicationController
   # GET /program/teachers
   # GET /program/teachers.json
   def index
+    @new_teacher = Program::Teacher.new program: @program
     breadcrumb
   end
 

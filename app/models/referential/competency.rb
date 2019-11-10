@@ -1,18 +1,3 @@
-# == Schema Information
-#
-# Table name: referential_competencies
-#
-#  id                   :integer          not null, primary key
-#  name                 :string
-#  short_name           :string
-#  description          :text
-#  number               :integer
-#  referential_id       :integer
-#  created_at           :datetime         not null
-#  updated_at           :datetime         not null
-#  essential_components :text
-#
-
 class Referential::Competency < ApplicationRecord
   belongs_to :referential
 

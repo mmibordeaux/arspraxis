@@ -22,6 +22,8 @@ class User < ApplicationRecord
 
   has_many  :teacher_in_programs,
             class_name: 'Program::Teacher'
+  has_many  :manager_of_referentials,
+            class_name: 'Referential::Manager'
 
   def name
     if first_name.blank? && last_name.blank?

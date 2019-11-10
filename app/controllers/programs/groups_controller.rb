@@ -6,6 +6,7 @@ class Programs::GroupsController < Programs::ApplicationController
   # GET /groups
   # GET /groups.json
   def index
+    @new_group = Program::Group.new program: @program
     breadcrumb
   end
 

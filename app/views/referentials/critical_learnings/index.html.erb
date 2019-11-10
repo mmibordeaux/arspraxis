@@ -7,10 +7,6 @@
       <th>Niveau</th>
       <th>Description</th>
       <th>Numéro</th>
-      <th>Not reached</th>
-      <th>Partially reached</th>
-      <th>Reached</th>
-      <th>Over reached</th>
       <th></th>
     </tr>
   </thead>
@@ -22,10 +18,6 @@
         <td><%= critical_learning.level %></td>
         <td><%= critical_learning.description %></td>
         <td><%= critical_learning.number %></td>
-        <td><%= critical_learning.not_reached %></td>
-        <td><%= critical_learning.partially_reached %></td>
-        <td><%= critical_learning.reached %></td>
-        <td><%= critical_learning.over_reached %></td>
         <td>
           <%= show_button [@referential, critical_learning] %>
           <%= edit_button [@referential, critical_learning] %>
@@ -36,4 +28,4 @@
   </tbody>
 </table>
 
-<%= create_button Referential::CriticalLearning %>
+<%= create_button @new_critical_learning, new_referential_critical_learning_path(@referential) %>

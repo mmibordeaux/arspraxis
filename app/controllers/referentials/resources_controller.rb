@@ -6,6 +6,7 @@ class Referentials::ResourcesController < Referentials::ApplicationController
   # GET /resources
   # GET /resources.json
   def index
+    @new_resource = Referential::Resource.new(referential: @referential)
     breadcrumb
   end
 
@@ -18,8 +19,9 @@ class Referentials::ResourcesController < Referentials::ApplicationController
 
   # GET /resources/new
   def new
-    @competency = Referential::Competency.find params[:competency_id]
-    @resource.competency = @competency
+    # if params.has_key
+    # @competency = Referential::Competency.find params[:competency_id]
+    @resource.competency_id = params[:competency_id]
     breadcrumb
     add_breadcrumb 'Nouvelle ressource'
   end

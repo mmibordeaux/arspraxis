@@ -1,0 +1,10 @@
+<%= simple_form_for manager,
+                    url:  manager.new_record? ? referential_managers_path(@referential)
+                            : referential_manager_path(@referential, manager) do |f| %>
+  <%= f.association :user,
+                    label: 'Utilisateur',
+                    include_blank: false %>
+  <%= f.association :referential, as: :hidden %>
+  <%= save_button f %>
+  <%= destroy_button [@referential, manager] %>
+<% end %>

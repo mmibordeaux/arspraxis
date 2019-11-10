@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resources :competencies, controller: 'referentials/competencies'
     resources :critical_learnings, controller: 'referentials/critical_learnings'
     resources :levels, controller: 'referentials/levels'
+    resources :managers, controller: 'referentials/managers'
     resources :resources, controller: 'referentials/resources'
     resources :situations, controller: 'referentials/situations'
   end

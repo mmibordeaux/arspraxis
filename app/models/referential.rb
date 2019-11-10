@@ -12,11 +12,12 @@
 
 class Referential < ApplicationRecord
   has_many :competencies
+  has_many :critical_learnings
   has_many :levels
+  has_many :managers
   has_many :programs
-  has_many :critical_learnings, through: :competencies
-  has_many :resources, through: :competencies
-  has_many :situations, through: :competencies
+  has_many :resources
+  has_many :situations
 
   def to_s
     "#{name}"

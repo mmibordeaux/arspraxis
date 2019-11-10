@@ -3,30 +3,46 @@
                             referential_critical_learnings_path(@referential)
                             : referential_critical_learning_path(@referential, critical_learning) do |f| %>
   <div class="row">
-    <div class="col-md-2">
+    <div class="col-md-4">
       <%= f.input :number,
                   label: 'Numéro'%>
+      <%= f.association :competency,
+                        label: 'Compétence',
+                        collection: @referential.competencies,
+                        include_blank: false %>
+      <%= f.association :level,
+                        label: 'Niveau',
+                        collection: @referential.levels,
+                        include_blank: false %>
+
     </div>
-    <div class="col-md-10">
-      <%= f.input :description %>
+    <div class="col-md-8">
+      <%= f.input :description,
+                  input_html: { rows: 5 } %>
     </div>
   </div>
   <div class="row">
     <div class="col-md-3">
-      <%= f.input :not_reached, label: 'Non atteint' %>
+      <%= f.input :not_reached,
+                  label: 'Non atteint',
+                  input_html: { rows: 5 } %>
     </div>
     <div class="col-md-3">
-      <%= f.input :partially_reached, label: 'Partiellement atteint' %>
+      <%= f.input :partially_reached,
+                  label: 'Partiellement atteint',
+                  input_html: { rows: 5 } %>
     </div>
     <div class="col-md-3">
-      <%= f.input :reached, label: 'Atteint' %>
+      <%= f.input :reached,
+                  label: 'Atteint',
+                  input_html: { rows: 5 } %>
     </div>
     <div class="col-md-3">
-      <%= f.input :over_reached, label: 'Dépassé' %>
+      <%= f.input :over_reached,
+                  label: 'Dépassé',
+                  input_html: { rows: 5 } %>
     </div>
   </div>
-  <%= f.association :competency, as: :hidden %>
-  <%= f.association :level, as: :hidden %>
   <%= save_button f %>
   <%= destroy_button [@referential, critical_learning] %>
 <% end %>

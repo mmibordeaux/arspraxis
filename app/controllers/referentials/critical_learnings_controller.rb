@@ -6,6 +6,7 @@ class Referentials::CriticalLearningsController < Referentials::ApplicationContr
   # GET /critical_learnings
   # GET /critical_learnings.json
   def index
+    @new_critical_learning = Referential::CriticalLearning.new referential: @referential
     breadcrumb
   end
 
@@ -82,8 +83,6 @@ class Referentials::CriticalLearningsController < Referentials::ApplicationContr
   def breadcrumb
     super
     add_breadcrumb 'Apprentissages critiques', referential_critical_learnings_path(@referential)
-    add_breadcrumb @competency, referential_competency_path(@referential, @competency) if @competency
-    add_breadcrumb @level, referential_level_path(@referential, @level) if @level
     add_breadcrumb @critical_learning, referential_critical_learning_path(@referential, @critical_learning) if @critical_learning && @critical_learning.persisted?
   end
 

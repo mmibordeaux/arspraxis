@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_09_173339) do
+ActiveRecord::Schema.define(version: 2019_11_10_072944) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,8 +67,10 @@ ActiveRecord::Schema.define(version: 2019_11_09_173339) do
     t.text "over_reached"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "referential_id"
     t.index ["competency_id"], name: "index_referential_critical_learnings_on_competency_id"
     t.index ["level_id"], name: "index_referential_critical_learnings_on_level_id"
+    t.index ["referential_id"], name: "index_referential_critical_learnings_on_referential_id"
   end
 
   create_table "referential_levels", force: :cascade do |t|
@@ -80,13 +82,24 @@ ActiveRecord::Schema.define(version: 2019_11_09_173339) do
     t.index ["referential_id"], name: "index_referential_levels_on_referential_id"
   end
 
+  create_table "referential_managers", force: :cascade do |t|
+    t.bigint "referential_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["referential_id"], name: "index_referential_managers_on_referential_id"
+    t.index ["user_id"], name: "index_referential_managers_on_user_id"
+  end
+
   create_table "referential_resources", force: :cascade do |t|
     t.string "name"
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "competency_id"
+    t.bigint "referential_id"
     t.index ["competency_id"], name: "index_referential_resources_on_competency_id"
+    t.index ["referential_id"], name: "index_referential_resources_on_referential_id"
   end
 
   create_table "referential_situations", force: :cascade do |t|
@@ -95,7 +108,9 @@ ActiveRecord::Schema.define(version: 2019_11_09_173339) do
     t.bigint "competency_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "referential_id"
     t.index ["competency_id"], name: "index_referential_situations_on_competency_id"
+    t.index ["referential_id"], name: "index_referential_situations_on_referential_id"
   end
 
   create_table "referentials", force: :cascade do |t|
@@ -129,6 +144,8 @@ ActiveRecord::Schema.define(version: 2019_11_09_173339) do
   add_foreign_key "referential_critical_learnings", "referential_competencies", column: "competency_id"
   add_foreign_key "referential_critical_learnings", "referential_levels", column: "level_id"
   add_foreign_key "referential_levels", "referentials"
+  add_foreign_key "referential_managers", "referentials"
+  add_foreign_key "referential_managers", "users"
   add_foreign_key "referential_resources", "referential_competencies", column: "competency_id"
   add_foreign_key "referential_situations", "referential_competencies", column: "competency_id"
 end

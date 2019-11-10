@@ -6,3 +6,10 @@
     <h3><%= link_to teacher.program, teacher.program %></h3>
   <% end %>
 <% end %>
+
+<% if current_user.manager_of_referentials.any? %>
+  <h2>Je suis responsable de référentiel...</h2>
+  <% current_user.manager_of_referentials.each do |manager| %>
+    <h3><%= link_to manager.referential, manager.referential %></h3>
+  <% end %>
+<% end %>

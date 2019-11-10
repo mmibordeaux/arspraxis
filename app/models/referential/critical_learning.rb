@@ -1,23 +1,7 @@
-# == Schema Information
-#
-# Table name: referential_critical_learnings
-#
-#  id                :integer          not null, primary key
-#  competency_id     :integer
-#  level_id          :integer
-#  description       :text
-#  number            :integer
-#  not_reached       :text
-#  partially_reached :text
-#  reached           :text
-#  over_reached      :text
-#  created_at        :datetime         not null
-#  updated_at        :datetime         not null
-#
-
 class Referential::CriticalLearning < ApplicationRecord
   belongs_to :competency
   belongs_to :level
+  belongs_to :referential
 
   scope :with_level, -> (level) { where(level: level) }
   scope :with_compency, -> (competency) { where(competency: competency) }

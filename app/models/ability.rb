@@ -14,6 +14,7 @@ class Ability
     programs
     referentials
     users
+    admin
   end
 
   def programs
@@ -28,18 +29,23 @@ class Ability
   end
 
   def referentials
-    referential_ids = [1, 2]
+    referential_ids = @user.manager_of_referentials.pluck(:referential_id)
     can :manage, Referential, id: referential_ids
     cannot :create, Referential
-    can :create, Referential if @user.admin?
     can :manage, Referential::Competency, referential_id: referential_ids
     can :manage, Referential::CriticalLearning, referential_id: referential_ids
     can :manage, Referential::Level, referential_id: referential_ids
     can :manage, Referential::Resource, referential_id: referential_ids
     can :manage, Referential::Situation, referential_id: referential_ids
+    can :manage, Referential::Manager, referential_id: referential_ids
   end
 
   def users
+    # TODO
     can :manage, User if @user.admin?
+  end
+
+  def admin
+    can :manage, :all if @user.admin?
   end
 end

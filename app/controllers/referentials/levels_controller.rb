@@ -6,6 +6,7 @@ class Referentials::LevelsController < Referentials::ApplicationController
   # GET /levels
   # GET /levels.json
   def index
+    @new_level = Referential::Level.new referential: @referential
     breadcrumb
   end
 

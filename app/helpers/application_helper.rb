@@ -11,6 +11,11 @@ module ApplicationHelper
     f.submit 'Enregistrer', class: button_classes
   end
 
+  def create_button(object, path)
+    return unless can? :create, object
+    link_to 'Créer', path, class: button_classes
+  end
+
   def show_button(object, path = nil)
     last_object = object.is_a?(Array) ? object.last
                                       : object
@@ -23,12 +28,6 @@ module ApplicationHelper
                                       : object
     return unless can? :edit, last_object
     link_to 'Modifier', nested_path(object, :edit), class: button_classes
-  end
-
-  def create_button(klass, *args)
-    return unless can? :create, klass
-    path = send "new_#{klass.to_s.underscore.gsub('/', '_')}_path", *args
-    link_to 'Créer', path, class: button_classes
   end
 
   def destroy_button(object)

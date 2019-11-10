@@ -1,0 +1,26 @@
+<%= content_for :title, 'Responsables' %>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Referential</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @managers.each do |manager| %>
+      <tr>
+        <td><%= manager.user %></td>
+        <td>
+          <%= show_button [@referential, manager] %>
+          <%= edit_button [@referential, manager] %>
+          <%= destroy_button [@referential, manager] %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= create_button Referential::Manager %>

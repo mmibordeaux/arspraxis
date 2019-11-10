@@ -5,8 +5,7 @@
     <tr>
       <th>Number</th>
       <th>Name</th>
-      <th>Referential</th>
-      <th colspan="3"></th>
+      <th></th>
     </tr>
   </thead>
 
@@ -15,7 +14,6 @@
       <tr>
         <td><%= level.number %></td>
         <td><%= level.name %></td>
-        <td><%= level.referential %></td>
         <td>
           <%= show_button [@referential, level] %>
           <%= edit_button [@referential, level] %>
@@ -26,4 +24,4 @@
   </tbody>
 </table>
 
-<%= create_button Referential::Level %>
+<%= create_button @new_level, new_referential_level_path(@referential) %>

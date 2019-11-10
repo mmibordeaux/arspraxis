@@ -3,11 +3,9 @@
 <table class="table">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Short name</th>
-      <th>Description</th>
-      <th>Number</th>
-      <th>Referential</th>
+      <th>Numéro</th>
+      <th>Nom court</th>
+      <th>Nom</th>
       <th></th>
     </tr>
   </thead>
@@ -15,11 +13,9 @@
   <tbody>
     <% @competencies.each do |competency| %>
       <tr>
-        <td><%= competency.name %></td>
-        <td><%= competency.short_name %></td>
-        <td><%= competency.description %></td>
         <td><%= competency.number %></td>
-        <td><%= competency.referential %></td>
+        <td><%= competency.short_name %></td>
+        <td><%= competency.name %></td>
         <td>
           <%= show_button [@referential, competency] %>
           <%= edit_button [@referential, competency] %>
@@ -30,4 +26,4 @@
   </tbody>
 </table>
 
-<%= create_button Referential::Competency %>
+<%= create_button @new_competency, new_referential_competency_path(@referential) %>

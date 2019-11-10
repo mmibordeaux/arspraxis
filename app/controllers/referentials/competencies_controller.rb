@@ -6,12 +6,19 @@ class Referentials::CompetenciesController < Referentials::ApplicationController
   # GET /competencies
   # GET /competencies.json
   def index
+    @new_competency = Referential::Competency.new referential: @referential
     breadcrumb
   end
 
   # GET /competencies/1
   # GET /competencies/1.json
   def show
+    @new_situation = Referential::Situation.new referential: @referential,
+                                                competency: @competency
+    @new_resource = Referential::Resource.new referential: @referential,
+                                              competency: @competency
+    @new_critical_learning = Referential::CriticalLearning.new  referential: @referential,
+                                                                competency: @competency
     breadcrumb
   end
 

@@ -17,7 +17,7 @@
         <li><%= link_to group, program_group_path(@program, group) %></li>
       <% end %>
     </ul>
-    <%= create_button Program::Group, program_id: @program.id %>
+    <%= create_button @new_group, new_program_group_path(@program) %>
   </div>
   <div class="col-md-3">
     <h3>Enseignants</h3>
@@ -26,6 +26,6 @@
         <li><%= link_to teacher, program_teacher_path(@program, teacher) %></li>
       <% end %>
     </ul>
-    <%= create_button Program::Teacher, program_id: @program.id %>
+    <%= create_button @new_teacher, new_program_teacher_path(@program) %>
   </div>
 </div>

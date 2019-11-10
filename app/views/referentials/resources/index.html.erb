@@ -3,8 +3,8 @@
 <table class="table">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Description</th>
+      <th>Nom</th>
+      <th>Compétence</th>
       <th></th>
     </tr>
   </thead>
@@ -13,7 +13,7 @@
     <% @resources.each do |resource| %>
       <tr>
         <td><%= resource.name %></td>
-        <td><%= resource.description %></td>
+        <td><%= resource.competency %></td>
         <td>
           <%= show_button [@referential, resource] %>
           <%= edit_button [@referential, resource] %>
@@ -24,4 +24,4 @@
   </tbody>
 </table>
 
-<%= create_button Referential::Resource %>
+<%= create_button @new_resource, new_referential_resource_path(@referential) %>

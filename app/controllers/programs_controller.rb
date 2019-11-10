@@ -4,12 +4,15 @@ class ProgramsController < ApplicationController
   # GET /programs
   # GET /programs.json
   def index
+    @new_program = Program.new
     breadcrumb
   end
 
   # GET /programs/1
   # GET /programs/1.json
   def show
+    @new_group = Program::Group.new program: @program
+    @new_teacher = Program::Teacher.new program: @program
     breadcrumb
   end
 

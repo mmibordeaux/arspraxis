@@ -6,6 +6,7 @@ class Referentials::SituationsController < Referentials::ApplicationController
   # GET /situations
   # GET /situations.json
   def index
+    @new_situation = Referential::Situation.new referential: @referential
     breadcrumb
   end
 
@@ -18,9 +19,12 @@ class Referentials::SituationsController < Referentials::ApplicationController
 
   # GET /situations/new
   def new
-    @competency = Referential::Competency.find params[:competency_id]
-    @situation.competency = @competency
-    @situation.number = @competency.situations.count + 1
+    @situation.referential = @referential
+    if params.has_key? :competency_id
+      @competency = Referential::Competency.find params[:competency_id]
+      @situation.competency = @competency
+      @situation.number = @competency.situations.count + 1
+    end
     breadcrumb
     add_breadcrumb 'Nouvelle situation professionnelle'
   end
@@ -75,7 +79,6 @@ class Referentials::SituationsController < Referentials::ApplicationController
   def breadcrumb
     super
     add_breadcrumb 'Situations professionnelles', referential_situations_path(@referential)
-    add_breadcrumb @competency, referential_competency_path(@referential, @competency) if @competency
     add_breadcrumb @situation, referential_situation_path(@referential, @situation) if @situation && @situation.persisted?
   end
 

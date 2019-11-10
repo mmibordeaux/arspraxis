@@ -15,7 +15,12 @@ Rails.application.routes.draw do
     resources :groups, controller: 'programs/groups'
   end
 
-  resources :users, only: [:index, :show]
+  resources :users, only: [:index, :show] do
+    collection do
+      get 'me' => 'users#me', as: :me
+      patch 'me' => 'users#update'
+    end
+  end
 
   root to: 'dashboard#index'
 end

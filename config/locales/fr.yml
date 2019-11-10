@@ -1,0 +1,12 @@
+fr:
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            password:
+              too_short: 'trop court'
+            password_confirmation:
+              confirmation: 'incorrecte'
+            current_password:
+              blank: 'manquant'

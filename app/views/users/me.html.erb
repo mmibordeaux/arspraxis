@@ -1,0 +1,40 @@
+<%= content_for :title, "Mon compte" %>
+
+<%= simple_form_for current_user, url: me_users_path do |f| %>
+<div class="row">
+  <div class="col-md-4">
+    <%= f.input :email,
+                required: true,
+                autofocus: true %>
+    <%= f.input :first_name,
+                label: 'Prénom' %>
+    <%= f.input :last_name,
+                label: 'Nom' %>
+  </div>
+  <div class="col-md-4">
+    <%= f.input :password,
+                hint: t("devise.registrations.edit.leave_blank_if_you_don_t_want_to_change_it"),
+                required: false,
+                input_html: { autocomplete: "new-password" } %>
+    <%= f.input :password_confirmation,
+                required: false,
+                input_html: { autocomplete: "new-password" } %>
+    <%= f.input :current_password,
+                hint: t("devise.registrations.edit.we_need_your_current_password_to_confirm_your_changes"),
+                required: true,
+                input_html: { autocomplete: "current-password" } %>
+
+  </div>
+  <div class="col-md-4">
+    <h3><%= t("devise.registrations.edit.cancel_my_account") %></h3>
+    <p><%= t("devise.registrations.edit.unhappy") %></p>
+    <%= link_to t("devise.registrations.edit.cancel_my_account"),
+                registration_path(current_user),
+                data: { confirm: t("devise.registrations.edit.are_you_sure") },
+                method: :delete,
+                class: button_classes_danger %>
+
+  </div>
+</div>
+  <%= save_button f %>
+<% end %>

@@ -41,7 +41,8 @@ class Ability
   end
 
   def users
-    # TODO
+    can :me, User
+    can :update, User
     can :manage, User if @user.admin?
   end
 

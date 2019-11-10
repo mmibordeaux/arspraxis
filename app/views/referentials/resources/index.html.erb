@@ -13,7 +13,7 @@
     <% @resources.each do |resource| %>
       <tr>
         <td><%= resource.name %></td>
-        <td><%= resource.competency %></td>
+        <td><%= link_to resource.competency, referential_competency_path(@referential, resource.competency) %></td>
         <td>
           <%= show_button [@referential, resource] %>
           <%= edit_button [@referential, resource] %>

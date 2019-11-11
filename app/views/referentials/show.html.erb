@@ -1,50 +1,12 @@
 <%= content_for :title, "#{@referential}" %>
 
 <div class="row">
-  <div class="col-md-4">
-    <% if @referential.image.attached? && @referential.image.variable? %>
-      <%= image_tag @referential.image.variant(resize: 600), class: 'img-fluid' %>
-    <% end %>
-    <div class="mt-4">
-      <%= simple_format @referential.description %>
-      <p class="small"><b>Origine</b> <%= @referential.origin %></p>
-      <%= edit_button @referential %>
-    </div>
-
-    <hr>
-
-    <h3>Niveaux</h3>
-    <ul class="list-unstyled">
-      <% @referential.levels.each do |level| %>
-        <li><%= link_to level, referential_level_path(@referential, level) %></li>
-      <% end %>
-    </ul>
-    <%= create_button @new_level, new_referential_level_path(@referential) %>
-
-    <hr>
-
-    <h3>Responsables</h3>
-    <ul class="list-unstyled">
-      <% @referential.managers.each do |manager| %>
-        <li><%= link_to manager, referential_manager_path(@referential, manager) %></li>
-      <% end %>
-    </ul>
-    <%= create_button @new_manager, new_referential_manager_path(@referential) %>
-
-    <hr>
-
-    <h3>Formations</h3>
-    <table class="table">
-      <% @referential.programs.each do |program| %>
-        <tr>
-          <td class="pl-0"><%= link_to program, program %></td>
-          <td class="small text-right pr-0"><%= program.city %>, <%= program.country_full %></td>
-        </tr>
-      <% end %>
-    </table>
-  </div>
   <div class="col-md-8">
-    <h3>Compétences</h3>
+    <% if @referential.image.attached? && @referential.image.variable? %>
+      <%= image_tag @referential.image.variant(resize: 1024), class: 'img-fluid' %>
+    <% end %>
+
+    <h3 class="mt-5">Compétences</h3>
     <div class="row">
       <% @referential.competencies.each do |competency| %>
         <div class="col-md-6 mb-5">
@@ -58,5 +20,44 @@
       <% end %>
     </div>
     <%= create_button @new_competency, new_referential_competency_path(@referential) %>
+  </div>
+
+  <div class="col-md-4">
+    <%= simple_format @referential.description %>
+    <p class="small"><b>Origine</b> <%= @referential.origin %></p>
+    <%= edit_button @referential %>
+
+    <hr class="mt-5">
+
+    <h3 class="mt-5">Niveaux</h3>
+    <ul class="list-unstyled">
+      <% @referential.levels.each do |level| %>
+        <li><%= link_to level, referential_level_path(@referential, level) %></li>
+      <% end %>
+    </ul>
+    <%= create_button @new_level, new_referential_level_path(@referential) %>
+
+    <hr class="mt-5">
+
+    <h3 class="mt-5">Formations</h3>
+    <table class="table">
+      <% @referential.programs.each do |program| %>
+        <tr>
+          <td class="pl-0"><%= link_to program, program %></td>
+          <td class="small text-right pr-0"><%= program.city %>, <%= program.country_full %></td>
+        </tr>
+      <% end %>
+    </table>
+
+    <hr class="mt-5">
+
+    <h3 class="mt-5">Responsables</h3>
+    <ul class="list-unstyled">
+      <% @referential.managers.each do |manager| %>
+        <li><%= link_to manager, referential_manager_path(@referential, manager) %></li>
+      <% end %>
+    </ul>
+    <%= create_button @new_manager, new_referential_manager_path(@referential) %>
+
   </div>
 </div>

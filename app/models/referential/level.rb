@@ -23,6 +23,6 @@ class Referential::Level < ApplicationRecord
   belongs_to :referential
 
   def to_s
-    "L#{number}. #{name}"
+    "N#{number}. #{name}"
   end
 end

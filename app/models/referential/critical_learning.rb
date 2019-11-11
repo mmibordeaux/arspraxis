@@ -38,6 +38,6 @@ class Referential::CriticalLearning < ApplicationRecord
   default_scope { order(:number) }
 
   def to_s
-    "CL#{number}. #{name}"
+    "AC#{number}. #{name}"
   end
 end

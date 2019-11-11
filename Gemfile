@@ -5,6 +5,7 @@ ruby '2.6.5'
 
 # Back
 gem 'rails', '~> 5.2.3'
+gem 'rails-i18n'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 3.11'
 gem 'jbuilder', '~> 2.5'

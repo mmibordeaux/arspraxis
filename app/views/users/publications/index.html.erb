@@ -4,7 +4,7 @@
   <thead>
     <tr>
       <th>Titre</th>
-      <th>Statut</th>
+      <th>Date</th>
       <th>Formation</th>
       <th></th>
     </tr>
@@ -13,7 +13,7 @@
     <% @publications.each do |publication| %>
       <tr>
         <td><%= publication.title %></td>
-        <td><%= render 'users/publications/status', publication: publication %></td>
+        <td><%= l publication.updated_at.to_date, format: :default %></td>
         <td><%= publication.group.name_with_program %></td>
         <td>
           <%= show_button [@user, publication] %>

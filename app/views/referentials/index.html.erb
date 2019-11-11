@@ -6,7 +6,7 @@
       <div class="card">
         <%= link_to referential do %>
           <% if referential.image.attached? && referential.image.variable? %>
-            <%= image_tag referential.image.variant(resize: '600', crop: '600x300+0+0'), class: 'img-fluid' %>
+            <%= image_tag referential.image.variant(resize: '600'), class: 'img-fluid' %>
           <% end %>
           <div class="card-body">
             <h2><%= referential %></h2>

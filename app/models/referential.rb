@@ -21,6 +21,8 @@ class Referential < ApplicationRecord
 
   has_one_attached :image
 
+  default_scope { order(:name) }
+
   def to_s
     "#{name}"
   end

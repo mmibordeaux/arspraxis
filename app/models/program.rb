@@ -24,6 +24,8 @@ class Program < ApplicationRecord
   has_many :groups
   has_many :teachers
 
+  default_scope { order(:name) }
+
   def country_full
     ISO3166::Country[country].name
   end

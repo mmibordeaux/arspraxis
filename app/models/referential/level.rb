@@ -3,6 +3,7 @@
 # Table name: referential_levels
 #
 #  id             :bigint           not null, primary key
+#  description    :text
 #  name           :string
 #  number         :integer
 #  created_at     :datetime         not null

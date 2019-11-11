@@ -2,11 +2,15 @@
                     url:  level.new_record? ? referential_levels_path(@referential)
                             : referential_level_path(@referential, level) do |f| %>
   <div class="row">
-    <div class="col-md-2">
-      <%= f.input :number %>
+    <div class="col-md-4">
+      <%= f.input :number,
+                  label: 'Numéro' %>
+      <%= f.input :name,
+                  label: 'Nom' %>
     </div>
-    <div class="col-md-10">
-      <%= f.input :name %>
+    <div class="col-md-8">
+      <%= f.input :description,
+                  input_html: { rows: 5 }%>
     </div>
   </div>
   <%= f.association :referential, as: :hidden %>

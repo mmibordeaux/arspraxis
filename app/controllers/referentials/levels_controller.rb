@@ -80,6 +80,6 @@ class Referentials::LevelsController < Referentials::ApplicationController
   private
 
   def level_params
-    params.require(:referential_level).permit(:number, :name, :referential_id)
+    params.require(:referential_level).permit(:number, :name, :description, :referential_id)
   end
 end

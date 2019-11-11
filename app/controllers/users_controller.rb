@@ -7,6 +7,9 @@ class UsersController < ApplicationController
   end
 
   def show
+    @teacher_in_programs = @user.teacher_in_programs
+    @manager_of_referentials = @user.manager_of_referentials
+    @publications = @user.publications.published
     breadcrumb
     add_breadcrumb 'Utilisateurs', users_path
     add_breadcrumb @user

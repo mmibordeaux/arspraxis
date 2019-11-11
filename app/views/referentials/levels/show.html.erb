@@ -7,7 +7,7 @@
     <div class="col-md-4 mb-5">
       <hr>
       <p class="badge badge-primary"><%= competency %></p>
-      <p><b><%= link_to competency.name, competency %></b></p>
+      <p><b><%= link_to competency.name, referential_competency_path(@referential, competency) %></b></p>
       <ul class="list-unstyled">
         <% competency.critical_learnings.with_level(@level).each do |critical_learning| %>
           <li><%= link_to critical_learning, referential_critical_learning_path(@referential, critical_learning) %></li>

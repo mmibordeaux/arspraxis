@@ -1,15 +1,54 @@
 <% content_for :title, "Bonjour #{current_user.first_name}" %>
 
-<% if current_user.teacher_in_programs.any? %>
-  <h2>J'enseigne en...</h2>
-  <% current_user.teacher_in_programs.each do |teacher| %>
-    <h3><%= link_to teacher.program, teacher.program %></h3>
-  <% end %>
-<% end %>
+<h2>Mes publications</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Titre</th>
+      <th>Statut</th>
+      <th>Formation</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @publications.each do |publication| %>
+      <tr>
+        <td><%= publication.title %></td>
+        <td><%= render 'users/publications/status', publication: publication %></td>
+        <td><%= publication.group.name_with_program %></td>
+        <td>
+            <%= show_button [current_user, publication] %>
+            <%= edit_button [current_user, publication] %>
+            <%= destroy_button [current_user, publication] %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= create_button @new_publication, new_user_publication_path(current_user) %>
 
-<% if current_user.manager_of_referentials.any? %>
-  <h2>Je suis responsable de référentiel...</h2>
-  <% current_user.manager_of_referentials.each do |manager| %>
-    <h3><%= link_to manager.referential, manager.referential %></h3>
+<hr>
+
+<div class="row">
+  <% if @teacher_in_programs.any? %>
+    <div class="col-md-4">
+      <h2>J'enseigne en...</h2>
+      <ul class="list-unstyled">
+        <% @teacher_in_programs.each do |teacher| %>
+          <li><%= link_to teacher.program, teacher.program %></li>
+        <% end %>
+      </ul>
+    </div>
   <% end %>
-<% end %>
+
+  <% if @manager_of_referentials.any? %>
+  <div class="col-md-4">
+    <h2>Je suis responsable de référentiel...</h2>
+    <ul class="list-unstyled">
+    <% @manager_of_referentials.each do |manager| %>
+      <li><%= link_to manager.referential, manager.referential %></li>
+    <% end %>
+    </ul>
+  </div>
+  <% end %>
+</div>

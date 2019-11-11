@@ -6,6 +6,7 @@ class Referentials::ManagersController < Referentials::ApplicationController
   # GET /referential/managers
   # GET /referential/managers.json
   def index
+    @new_manager = Referential::Manager.new referential: @referential
     breadcrumb
   end
 

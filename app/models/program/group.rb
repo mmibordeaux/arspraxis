@@ -1,16 +1,28 @@
 # == Schema Information
 #
-# Table name: groups
+# Table name: program_groups
 #
-#  id         :integer          not null, primary key
+#  id         :bigint           not null, primary key
 #  year       :integer
-#  program_id :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  program_id :bigint
+#
+# Indexes
+#
+#  index_program_groups_on_program_id  (program_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (program_id => programs.id)
 #
 
 class Program::Group < ApplicationRecord
   belongs_to :program
+
+  def name_with_program
+    "#{program} - #{to_s}"
+  end
 
   def to_s
     "#{year}"

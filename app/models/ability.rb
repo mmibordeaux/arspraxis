@@ -44,6 +44,7 @@ class Ability
     can :me, User
     can :update, User
     can :manage, User if @user.admin?
+    can :manage, User::Publication, user_id: @user.id
   end
 
   def admin

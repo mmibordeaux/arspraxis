@@ -15,12 +15,14 @@ gem 'devise-bootstrap-views'
 gem 'breadcrumbs_on_rails'
 gem 'cancancan'
 gem 'country_select'
+gem 'aws-sdk-s3', require: false
 
 # Front
 gem 'uglifier', '>= 1.3.0'
 gem 'bootstrap'
 gem 'sassc-rails'
 gem 'jquery-rails'
+gem 'trix-rails', require: 'trix'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

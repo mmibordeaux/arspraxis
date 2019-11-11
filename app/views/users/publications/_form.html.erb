@@ -1,0 +1,25 @@
+<%= simple_form_for publication,
+                    url:  publication.new_record? ? user_publications_path(@user)
+                            : user_publication_path(@user, publication) do |f| %>
+  <div class="row">
+    <div class="col-md-4">
+      <%= f.association :user, as: :hidden %>
+      <%= f.input :title,
+                  label: 'Titre',
+                  as: :text %>
+      <%= f.association :group,
+                        label: 'Promotion',
+                        label_method: :name_with_program,
+                        include_blank: false %>
+      <%= f.input :published,
+                  label: 'Publiée' %>
+    </div>
+    <div class="col-md-8">
+      <%= f.input :content,
+                  label: 'Contenu',
+                  as: :trix_editor %>
+    </div>
+  </div>
+  <%= save_button f %>
+  <%= destroy_button [@user, publication] %>
+<% end %>

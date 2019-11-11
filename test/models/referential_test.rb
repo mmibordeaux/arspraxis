@@ -2,12 +2,12 @@
 #
 # Table name: referentials
 #
-#  id          :integer          not null, primary key
+#  id          :bigint           not null, primary key
+#  description :text
 #  name        :string
+#  origin      :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  origin      :string
-#  description :text
 #
 
 require 'test_helper'

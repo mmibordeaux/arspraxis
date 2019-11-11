@@ -27,6 +27,6 @@ class Referential::Resource < ApplicationRecord
   default_scope { order(:name) }
 
   def to_s
-    "#{name}"
+    "R#{id}. #{name}"
   end
 end

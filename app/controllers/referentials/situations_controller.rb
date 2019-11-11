@@ -85,6 +85,6 @@ class Referentials::SituationsController < Referentials::ApplicationController
   private
 
   def situation_params
-    params.require(:referential_situation).permit(:description, :number, :competency_id)
+    params.require(:referential_situation).permit(:name, :description, :number, :competency_id)
   end
 end

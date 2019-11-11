@@ -35,6 +35,6 @@ class Referential::Competency < ApplicationRecord
   end
 
   def to_s
-    "#{number}. #{short_name}"
+    "C#{number}. #{short_name}"
   end
 end

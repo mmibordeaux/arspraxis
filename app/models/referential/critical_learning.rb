@@ -4,6 +4,7 @@
 #
 #  id                :bigint           not null, primary key
 #  description       :text
+#  name              :string
 #  not_reached       :text
 #  number            :integer
 #  over_reached      :text
@@ -37,6 +38,6 @@ class Referential::CriticalLearning < ApplicationRecord
   default_scope { order(:number) }
 
   def to_s
-    "#{description}"
+    "CL#{number}. #{name}"
   end
 end

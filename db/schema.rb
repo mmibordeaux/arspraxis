@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_11_100633) do
+ActiveRecord::Schema.define(version: 2019_11_11_102950) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -89,6 +89,7 @@ ActiveRecord::Schema.define(version: 2019_11_11_100633) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "referential_id"
+    t.string "name"
     t.index ["competency_id"], name: "index_referential_critical_learnings_on_competency_id"
     t.index ["level_id"], name: "index_referential_critical_learnings_on_level_id"
     t.index ["referential_id"], name: "index_referential_critical_learnings_on_referential_id"
@@ -131,6 +132,7 @@ ActiveRecord::Schema.define(version: 2019_11_11_100633) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "referential_id"
+    t.string "name"
     t.index ["competency_id"], name: "index_referential_situations_on_competency_id"
     t.index ["referential_id"], name: "index_referential_situations_on_referential_id"
   end

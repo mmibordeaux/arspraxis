@@ -89,6 +89,6 @@ class Referentials::CriticalLearningsController < Referentials::ApplicationContr
   private
 
   def critical_learning_params
-    params.require(:referential_critical_learning).permit(:competency_id, :level_id, :description, :number, :not_reached, :partially_reached, :reached, :over_reached)
+    params.require(:referential_critical_learning).permit(:competency_id, :level_id, :name, :description, :number, :not_reached, :partially_reached, :reached, :over_reached)
   end
 end

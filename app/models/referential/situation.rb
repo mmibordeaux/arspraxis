@@ -4,6 +4,7 @@
 #
 #  id             :bigint           not null, primary key
 #  description    :text
+#  name           :string
 #  number         :integer
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
@@ -27,6 +28,6 @@ class Referential::Situation < ApplicationRecord
   default_scope { order(:number) }
 
   def to_s
-    "#{description}"
+    "S#{number}. #{name}"
   end
 end

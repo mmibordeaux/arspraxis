@@ -7,20 +7,28 @@
 </div>
 
 <div class="row">
-  <div class="col-md-3">
-    <h3>Non atteint</h3>
-    <%= simple_format @critical_learning.not_reached %>
-  </div>
-  <div class="col-md-3">
-    <h3>Partiellement atteint</h3>
-    <%= simple_format @critical_learning.partially_reached %>
-  </div>
-  <div class="col-md-3">
-    <h3>Atteint</h3>
-    <%= simple_format @critical_learning.reached %>
-  </div>
-  <div class="col-md-3">
-    <h3>Dépassé</h3>
-    <%= simple_format @critical_learning.over_reached %>
-  </div>
+  <% unless @critical_learning.not_reached.blank? %>
+    <div class="col-md-3">
+      <h3>Non atteint</h3>
+      <%= simple_format @critical_learning.not_reached %>
+    </div>
+  <% end %>
+  <% unless @critical_learning.partially_reached.blank? %>
+    <div class="col-md-3">
+      <h3>Partiellement atteint</h3>
+      <%= simple_format @critical_learning.partially_reached %>
+    </div>
+  <% end %>
+  <% unless @critical_learning.reached.blank? %>
+    <div class="col-md-3">
+      <h3>Atteint</h3>
+      <%= simple_format @critical_learning.reached %>
+    </div>
+  <% end %>
+  <% unless @critical_learning.over_reached.blank? %>
+    <div class="col-md-3">
+      <h3>Dépassé</h3>
+      <%= simple_format @critical_learning.over_reached %>
+    </div>
+  <% end %>
 </div>

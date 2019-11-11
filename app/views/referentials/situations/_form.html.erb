@@ -4,9 +4,9 @@
   <div class="row">
     <div class="col-md-4">
       <%= f.input :number %>
-      <%= f.association :competency,
-                        label: 'Compétence',
-                        collection: @referential.competencies,
+      <%= f.association :level,
+                        label: 'Niveau',
+                        collection: @referential.levels,
                         include_blank: false %>
     </div>
     <div class="col-md-8">

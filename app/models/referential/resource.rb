@@ -21,8 +21,8 @@
 #
 
 class Referential::Resource < ApplicationRecord
-  belongs_to :competency
   belongs_to :referential
+  belongs_to :competency
 
   default_scope { order(:name) }
 

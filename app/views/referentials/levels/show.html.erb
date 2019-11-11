@@ -1,12 +1,21 @@
 <%= content_for :title, "#{@level}" %>
 
 <div class="row">
-  <div class="col-md-6">
+  <div class="col-md-4">
     <%= simple_format @level.description %>
+    <%= edit_button [@referential, @level] %>
+  </div>
+  <div class="col-md-4">
+    <h4>Situations</h4>
+    <ul class="list-unstyled">
+      <% @situations.each do |situation| %>
+        <li><%= link_to situation, referential_situation_path(@referential, situation) %></li>
+      <% end %>
+    </ul>
+    <%= create_button @new_situation, new_referential_situation_path(@referential, level_id: @level.id) %>
   </div>
 </div>
 
-<%= edit_button [@referential, @level] %>
 
 <div class="row mt-5">
   <% @competencies.each do |competency| %>

@@ -13,17 +13,17 @@ class Referentials::SituationsController < Referentials::ApplicationController
   # GET /situations/1
   # GET /situations/1.json
   def show
-    @competency = @situation.competency
+    @level = @situation.level
     breadcrumb
   end
 
   # GET /situations/new
   def new
     @situation.referential = @referential
-    if params.has_key? :competency_id
-      @competency = Referential::Competency.find params[:competency_id]
-      @situation.competency = @competency
-      @situation.number = @competency.situations.count + 1
+    if params.has_key? :level_id
+      @level = Referential::Level.find params[:level_id]
+      @situation.level = @level
+      @situation.number = @level.situations.count + 1
     end
     breadcrumb
     add_breadcrumb 'Nouvelle situation professionnelle'
@@ -31,7 +31,7 @@ class Referentials::SituationsController < Referentials::ApplicationController
 
   # GET /situations/1/edit
   def edit
-    @competency = @situation.competency
+    @level = @situation.level
     breadcrumb
     add_breadcrumb 'Modifier'
   end
@@ -85,6 +85,6 @@ class Referentials::SituationsController < Referentials::ApplicationController
   private
 
   def situation_params
-    params.require(:referential_situation).permit(:name, :description, :number, :competency_id)
+    params.require(:referential_situation).permit(:name, :description, :number, :level_id)
   end
 end

@@ -13,10 +13,9 @@ class Referentials::CompetenciesController < Referentials::ApplicationController
   # GET /competencies/1
   # GET /competencies/1.json
   def show
-    @new_situation = Referential::Situation.new referential: @referential,
-                                                competency: @competency
     @new_resource = Referential::Resource.new referential: @referential,
                                               competency: @competency
+    @new_situation = Referential::Situation.new referential: @referential
     @new_critical_learning = Referential::CriticalLearning.new  referential: @referential,
                                                                 competency: @competency
     breadcrumb

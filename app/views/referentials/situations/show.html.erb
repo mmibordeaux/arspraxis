@@ -1,3 +1,5 @@
 <%= content_for :title, "#{@situation}" %>
 
+<p><%= link_to @level, referential_level_path(@referential, @level) %></p>
+
 <%= edit_button [@referential, @situation] %>

@@ -7,15 +7,6 @@
     <%= edit_button [@referential, @competency] %>
   </div>
   <div class="col-md-4">
-    <h3>Situations professionnelles</h3>
-    <ul class="list-unstyled">
-      <% @competency.situations.each do |situation| %>
-        <li><%= link_to situation, referential_situation_path(@referential, situation) %></li>
-      <% end %>
-    </ul>
-    <%= create_button @new_situation, new_referential_situation_path(@referential, competency_id: @competency) %>
-  </div>
-  <div class="col-md-4">
     <h3>Ressources</h3>
     <ul class="list-unstyled">
       <% @competency.resources.each do |resource| %>
@@ -31,14 +22,14 @@
 <table class="table table-bordered mt-3">
   <thead>
     <tr>
-      <% @competency.referential.levels.each do |level| %>
-        <th><%= level %></th>
+      <% @referential.levels.each do |level| %>
+        <th width="<%= 100/@referential.levels.count %>%"><%= level %></th>
       <% end %>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <% @competency.referential.levels.each do |level| %>
+      <% @referential.levels.each do |level| %>
         <td>
           <ul class="list-unstyled">
             <% @competency.critical_learnings.with_level(level).each do |critical_learning| %>

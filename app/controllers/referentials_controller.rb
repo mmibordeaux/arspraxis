@@ -80,6 +80,6 @@ class ReferentialsController < ApplicationController
   private
 
   def referential_params
-    params.require(:referential).permit(:name, :origin, :description)
+    params.require(:referential).permit(:name, :origin, :description, :image)
   end
 end

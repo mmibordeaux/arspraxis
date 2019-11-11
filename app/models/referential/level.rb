@@ -21,6 +21,9 @@
 
 class Referential::Level < ApplicationRecord
   belongs_to :referential
+  has_many :situations
+
+  default_scope { order(:number) }
 
   def to_s
     "N#{number}. #{name}"

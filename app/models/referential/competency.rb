@@ -23,8 +23,6 @@
 
 class Referential::Competency < ApplicationRecord
   belongs_to :referential
-
-  has_many :situations
   has_many :resources
   has_many :critical_learnings
 

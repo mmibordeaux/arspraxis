@@ -14,6 +14,8 @@ class Referentials::LevelsController < Referentials::ApplicationController
   # GET /levels/1.json
   def show
     @competencies = @referential.competencies
+    @situations = @level.situations
+    @new_situation = Referential::Situation.new referential_id: @referential.id
     breadcrumb
   end
 

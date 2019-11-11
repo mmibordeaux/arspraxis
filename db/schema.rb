@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_11_102950) do
+ActiveRecord::Schema.define(version: 2019_11_11_111536) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -128,12 +128,12 @@ ActiveRecord::Schema.define(version: 2019_11_11_102950) do
   create_table "referential_situations", force: :cascade do |t|
     t.text "description"
     t.integer "number"
-    t.bigint "competency_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "referential_id"
     t.string "name"
-    t.index ["competency_id"], name: "index_referential_situations_on_competency_id"
+    t.bigint "level_id"
+    t.index ["level_id"], name: "index_referential_situations_on_level_id"
     t.index ["referential_id"], name: "index_referential_situations_on_referential_id"
   end
 
@@ -184,7 +184,6 @@ ActiveRecord::Schema.define(version: 2019_11_11_102950) do
   add_foreign_key "referential_managers", "referentials"
   add_foreign_key "referential_managers", "users"
   add_foreign_key "referential_resources", "referential_competencies", column: "competency_id"
-  add_foreign_key "referential_situations", "referential_competencies", column: "competency_id"
   add_foreign_key "user_publications", "program_groups"
   add_foreign_key "user_publications", "users"
 end

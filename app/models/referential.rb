@@ -19,6 +19,8 @@ class Referential < ApplicationRecord
   has_many :resources
   has_many :situations
 
+  has_one_attached :image
+
   def to_s
     "#{name}"
   end

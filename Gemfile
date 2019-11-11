@@ -17,6 +17,7 @@ gem 'breadcrumbs_on_rails'
 gem 'cancancan'
 gem 'country_select'
 gem 'aws-sdk-s3', require: false
+gem 'image_processing'
 
 # Front
 gem 'uglifier', '>= 1.3.0'

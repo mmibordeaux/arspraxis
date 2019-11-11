@@ -1,4 +1,10 @@
 <%= content_for :title, "#{@critical_learning}" %>
+<div class="row">
+  <div class="col-md-6">
+    <%= simple_format @critical_learning.description %>
+    <%= edit_button [@referential, @critical_learning] %>
+  </div>
+</div>
 
 <div class="row">
   <div class="col-md-3">
@@ -18,5 +24,3 @@
     <%= simple_format @critical_learning.over_reached %>
   </div>
 </div>
-
-<%= edit_button [@referential, @critical_learning] %>

@@ -1,5 +1,11 @@
 <%= content_for :title, "#{@level}" %>
 
+<div class="row">
+  <div class="col-md-6">
+    <%= simple_format @level.description %>
+  </div>
+</div>
+
 <%= edit_button [@referential, @level] %>
 
 <div class="row mt-5">

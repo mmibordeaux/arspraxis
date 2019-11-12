@@ -24,7 +24,9 @@
     <thead>
       <tr>
         <% @referential.levels.each do |level| %>
-          <th width="<%= 100/@referential.levels.count %>%" style="min-width: 300px"><%= level %></th>
+          <th width="<%= 100/@referential.levels.count %>%" style="min-width: 300px">
+            <%= link_to level, referential_level_path(@referential, level) %>
+          </th>
         <% end %>
       </tr>
     </thead>

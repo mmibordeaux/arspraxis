@@ -40,6 +40,7 @@
           </li>
         <% end %>
       </ul>
+      <%= create_button @new_critical_learning, new_referential_critical_learning_path(@referential, competency_id: competency.id, level_id: @level.id) %>
     </div>
   <% end %>
 </div>

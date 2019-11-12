@@ -27,8 +27,6 @@
     <p class="small"><b>Origine</b> <%= @referential.origin %></p>
     <%= edit_button @referential %>
 
-    <hr class="mt-5">
-
     <h3 class="mt-5">Niveaux</h3>
     <ul class="list-unstyled">
       <% @referential.levels.each do |level| %>
@@ -36,8 +34,6 @@
       <% end %>
     </ul>
     <%= create_button @new_level, new_referential_level_path(@referential) %>
-
-    <hr class="mt-5">
 
     <h3 class="mt-5">Formations</h3>
     <table class="table">
@@ -48,8 +44,6 @@
         </tr>
       <% end %>
     </table>
-
-    <hr class="mt-5">
 
     <h3 class="mt-5">Responsables</h3>
     <ul class="list-unstyled">

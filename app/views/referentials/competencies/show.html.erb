@@ -17,28 +17,35 @@
   </div>
 </div>
 
-<h3 class="mt-5">Apprentissages critiques</h3>
+<h3 class="mt-5">Apprentissages critiques par niveaux</h3>
 
-<table class="table table-bordered mt-3">
-  <thead>
-    <tr>
-      <% @referential.levels.each do |level| %>
-        <th width="<%= 100/@referential.levels.count %>%"><%= level %></th>
-      <% end %>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <% @referential.levels.each do |level| %>
-        <td>
-          <ul class="list-unstyled">
-            <% @competency.critical_learnings.with_level(level).each do |critical_learning| %>
-              <li><%= link_to critical_learning, referential_critical_learning_path(@referential, critical_learning) %></li>
-            <% end %>
-          </ul>
-          <%= create_button @new_critical_learning, new_referential_critical_learning_path(@referential, competency_id: @competency.id, level_id: level.id) %>
-        </td>
-      <% end %>
-    </tr>
-  </tbody>
-</table>
+<div class="table-responsive">
+  <table class="table table-bordered mt-3">
+    <thead>
+      <tr>
+        <% @referential.levels.each do |level| %>
+          <th width="<%= 100/@referential.levels.count %>%" style="min-width: 300px"><%= level %></th>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <% @referential.levels.each do |level| %>
+          <td>
+            <ul class="list-unstyled">
+              <% @competency.critical_learnings.with_level(level).each do |critical_learning| %>
+                <li>
+                  <%= link_to critical_learning, referential_critical_learning_path(@referential, critical_learning) %>
+                  <div class="small">
+                    <%= simple_format critical_learning.description %>
+                  </div>
+                </li>
+              <% end %>
+            </ul>
+            <%= create_button @new_critical_learning, new_referential_critical_learning_path(@referential, competency_id: @competency.id, level_id: level.id) %>
+          </td>
+        <% end %>
+      </tr>
+    </tbody>
+  </table>
+</div>

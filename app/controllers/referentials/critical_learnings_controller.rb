@@ -26,7 +26,7 @@ class Referentials::CriticalLearningsController < Referentials::ApplicationContr
     @referential = @competency.referential
     @critical_learning.competency = @competency
     @critical_learning.level = @level
-    @critical_learning.number = @competency.critical_learnings.with_level(@level).count + 1
+    @critical_learning.number = @competency.critical_learnings.with_level(@level).last&.number.to_i + 1
     breadcrumb
     add_breadcrumb 'Nouvel apprentissage critique'
   end

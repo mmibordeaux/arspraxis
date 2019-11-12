@@ -10,7 +10,7 @@
     <ul class="list-unstyled">
       <% @situations.each do |situation| %>
         <li>
-          <%= link_to situation, referential_situation_path(@referential, situation) %>
+          <p><%= link_to situation, referential_situation_path(@referential, situation) %></p>
           <div class="small">
             <%= simple_format situation.description %>
           </div>
@@ -33,7 +33,7 @@
       <ul class="list-unstyled">
         <% competency.critical_learnings.with_level(@level).each do |critical_learning| %>
           <li>
-            <%= link_to critical_learning, referential_critical_learning_path(@referential, critical_learning) %>
+            <p><%= link_to critical_learning, referential_critical_learning_path(@referential, critical_learning) %></p>
             <div class="small">
               <%= simple_format critical_learning.description %>
             </div>

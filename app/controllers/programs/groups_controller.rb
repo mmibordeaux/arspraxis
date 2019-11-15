@@ -14,6 +14,10 @@ class Programs::GroupsController < Programs::ApplicationController
   # GET /groups/1.json
   def show
     @student = @group.students.where(user: current_user).first
+    @students = @group.students.confirmed
+    if current_user.teaches_in?(@program)
+      @students_unconfirmed = @group.students.unconfirmed
+    end
     breadcrumb
   end
 

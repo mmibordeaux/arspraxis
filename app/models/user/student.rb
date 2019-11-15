@@ -26,4 +26,5 @@ class User::Student < ApplicationRecord
   alias :group :program_group
 
   scope :confirmed, -> { where(confirmed: true) }
+  scope :unconfirmed, -> { where(confirmed: false) }
 end

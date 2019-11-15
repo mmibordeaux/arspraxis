@@ -34,6 +34,11 @@ class User < ApplicationRecord
   has_many  :student_in_groups,
             class_name: 'User::Student'
   alias :students :student_in_groups
+
+  def teaches_in?(program)
+    teacher_in_programs.where(program: program).any?
+  end
+
   def name
     if first_name.blank? && last_name.blank?
       "Utilisateur anonyme #{id}"

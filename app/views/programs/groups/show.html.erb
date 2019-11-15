@@ -10,3 +10,47 @@
 <% else %>
   <%= link_to 'Demander l\'inscription', new_user_student_path(user_id: current_user, program_group_id: @group), class: button_classes %>
 <% end %>
+
+
+<h2>Etudiants</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Etudiant</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @students.each do |student| %>
+      <tr>
+        <td><%= student.user %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% if @students_unconfirmed&.any? %>
+<h3>Non confirmés</h3>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Etudiant</th>
+      <th>Confirmer ?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @students_unconfirmed.each do |student| %>
+      <%= simple_form_for student, url: user_student_path(student.user, student) do |f| %>
+        <% student.confirmed = true %>
+        <%= f.input :confirmed, as: :hidden %>
+        <tr>
+          <td><%= student.user %></td>
+          <td>
+              <%= f.submit 'Confirmer', class: button_classes %>
+          </td>
+        </tr>
+        <% end %>
+    <% end %>
+  </tbody>
+</table>
+<% end %>

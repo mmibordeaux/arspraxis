@@ -40,6 +40,7 @@ class Users::StudentsController < Users::ApplicationController
   # PATCH/PUT /user/students/1
   # PATCH/PUT /user/students/1.json
   def update
+    @student = User::Student.find(params[:id])
     respond_to do |format|
       if @student.update(student_params)
         format.html { redirect_to user_student_path(@user, @student), notice: 'Student was successfully updated.' }

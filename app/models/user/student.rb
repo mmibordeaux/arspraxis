@@ -24,4 +24,6 @@ class User::Student < ApplicationRecord
   belongs_to :user
   belongs_to :program_group, class_name: 'Program::Group'
   alias :group :program_group
+
+  scope :confirmed, -> { where(confirmed: true) }
 end

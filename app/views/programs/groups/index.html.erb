@@ -4,6 +4,7 @@
   <thead>
     <tr>
       <th>Année de sortie</th>
+      <th>Etudiants</th>
       <th></th>
     </tr>
   </thead>
@@ -12,6 +13,7 @@
     <% @groups.each do |group| %>
       <tr>
         <td><%= group.year %></td>
+        <td><%= group.students.confirmed.count %></td>
         <td>
           <%= show_button [@program, group] %>
           <%= edit_button [@program, group] %>

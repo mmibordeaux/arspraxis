@@ -19,6 +19,9 @@
 
 class Program::Group < ApplicationRecord
   belongs_to :program
+  has_many  :students,
+            foreign_key: :program_group_id,
+            class_name: 'User::Student'
 
   def name_with_program
     "#{program} - #{to_s}"

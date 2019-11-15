@@ -13,6 +13,7 @@ class Programs::GroupsController < Programs::ApplicationController
   # GET /groups/1
   # GET /groups/1.json
   def show
+    @student = @group.students.where(user: current_user).first
     breadcrumb
   end
 

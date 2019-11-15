@@ -1,0 +1,26 @@
+
+<%= simple_form_for(@user_evaluation) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <%= f.association :publication %>
+    <%= f.input :program_teacher %>
+    <%= f.input :completeness_validated %>
+    <%= f.input :completeness_comment %>
+    <%= f.input :authenticity_validated %>
+    <%= f.input :authenticity_comment %>
+    <%= f.input :validity_validated %>
+    <%= f.input :validity_comment %>
+    <%= f.input :depth_validated %>
+    <%= f.input :depth_comment %>
+    <%= f.input :extent_validated %>
+    <%= f.input :extent_comment %>
+    <%= f.input :explanation_validated %>
+    <%= f.input :explanation_comment %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

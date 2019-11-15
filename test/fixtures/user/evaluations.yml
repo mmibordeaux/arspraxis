@@ -1,0 +1,33 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  publication: one
+  program_teacher: 
+  completeness_validated: false
+  completeness_comment: MyText
+  authenticity_validated: false
+  authenticity_comment: MyText
+  validity_validated: false
+  validity_comment: MyText
+  depth_validated: false
+  depth_comment: MyText
+  extent_validated: false
+  extent_comment: MyText
+  explanation_validated: false
+  explanation_comment: MyText
+
+two:
+  publication: two
+  program_teacher: 
+  completeness_validated: false
+  completeness_comment: MyText
+  authenticity_validated: false
+  authenticity_comment: MyText
+  validity_validated: false
+  validity_comment: MyText
+  depth_validated: false
+  depth_comment: MyText
+  extent_validated: false
+  extent_comment: MyText
+  explanation_validated: false
+  explanation_comment: MyText

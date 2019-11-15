@@ -1,0 +1,74 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Publication:</strong>
+  <%= @user_evaluation.publication %>
+</p>
+
+<p>
+  <strong>Program teacher:</strong>
+  <%= @user_evaluation.program_teacher %>
+</p>
+
+<p>
+  <strong>Completeness validated:</strong>
+  <%= @user_evaluation.completeness_validated %>
+</p>
+
+<p>
+  <strong>Completeness comment:</strong>
+  <%= @user_evaluation.completeness_comment %>
+</p>
+
+<p>
+  <strong>Authenticity validated:</strong>
+  <%= @user_evaluation.authenticity_validated %>
+</p>
+
+<p>
+  <strong>Authenticity comment:</strong>
+  <%= @user_evaluation.authenticity_comment %>
+</p>
+
+<p>
+  <strong>Validity validated:</strong>
+  <%= @user_evaluation.validity_validated %>
+</p>
+
+<p>
+  <strong>Validity comment:</strong>
+  <%= @user_evaluation.validity_comment %>
+</p>
+
+<p>
+  <strong>Depth validated:</strong>
+  <%= @user_evaluation.depth_validated %>
+</p>
+
+<p>
+  <strong>Depth comment:</strong>
+  <%= @user_evaluation.depth_comment %>
+</p>
+
+<p>
+  <strong>Extent validated:</strong>
+  <%= @user_evaluation.extent_validated %>
+</p>
+
+<p>
+  <strong>Extent comment:</strong>
+  <%= @user_evaluation.extent_comment %>
+</p>
+
+<p>
+  <strong>Explanation validated:</strong>
+  <%= @user_evaluation.explanation_validated %>
+</p>
+
+<p>
+  <strong>Explanation comment:</strong>
+  <%= @user_evaluation.explanation_comment %>
+</p>
+
+<%= link_to 'Edit', edit_user_evaluation_path(@user_evaluation) %> |
+<%= link_to 'Back', user_evaluations_path %>

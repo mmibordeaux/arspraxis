@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_15_062108) do
+ActiveRecord::Schema.define(version: 2019_11_15_082613) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -182,11 +182,11 @@ ActiveRecord::Schema.define(version: 2019_11_15_062108) do
 
   create_table "user_students", force: :cascade do |t|
     t.bigint "user_id"
-    t.bigint "program_group_id"
+    t.bigint "group_id"
     t.boolean "confirmed", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["program_group_id"], name: "index_user_students_on_program_group_id"
+    t.index ["group_id"], name: "index_user_students_on_group_id"
     t.index ["user_id"], name: "index_user_students_on_user_id"
   end
 
@@ -222,6 +222,6 @@ ActiveRecord::Schema.define(version: 2019_11_15_062108) do
   add_foreign_key "user_evaluations", "user_publications", column: "publication_id"
   add_foreign_key "user_publications", "program_groups"
   add_foreign_key "user_publications", "users"
-  add_foreign_key "user_students", "program_groups"
+  add_foreign_key "user_students", "program_groups", column: "group_id"
   add_foreign_key "user_students", "users"
 end

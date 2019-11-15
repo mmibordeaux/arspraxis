@@ -1,26 +1,31 @@
 class Users::StudentsController < Users::ApplicationController
-  load_and_authorize_resource :students,
+  load_and_authorize_resource :student,
                               through: :user,
                               class: 'User::Student'
 
   # GET /user/students
   # GET /user/students.json
   def index
+    @new_student = User::Publication.new user: @user
+    breadcrumb
   end
 
   # GET /user/students/1
   # GET /user/students/1.json
   def show
+    breadcrumb
   end
 
   # GET /user/students/new
   def new
-    @student = User::Student.create(user: current_user, program_group_id: params[:program_group_id])
-    redirect_to program_group_path(@student.group.program, @student.group)
+    breadcrumb
+    add_breadcrumb 'Nouvelle candidature'
   end
 
   # GET /user/students/1/edit
   def edit
+    breadcrumb
+    add_breadcrumb 'Modifier'
   end
 
   # POST /user/students
@@ -28,7 +33,9 @@ class Users::StudentsController < Users::ApplicationController
   def create
     respond_to do |format|
       if @student.save
-        format.html { redirect_to user_student_path(@user, @student), notice: 'Student was successfully created.' }
+        @group = @student.group
+        @program = @group.program
+        format.html { redirect_to program_group_path(@program, @group), notice: 'Vous inscription est enregistrée.' }
         format.json { render :show, status: :created, location: user_student_path(@user, @student) }
       else
         format.html { render :new }
@@ -74,6 +81,6 @@ class Users::StudentsController < Users::ApplicationController
   private
 
   def student_params
-    params.require(:user_student).permit(:user_id, :program_group_id, :confirmed)
+    params.require(:user_student).permit(:user_id, :group_id, :confirmed)
   end
 end

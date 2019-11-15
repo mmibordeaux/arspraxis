@@ -2,13 +2,16 @@
 
 <%= edit_button [@program, @group] %>
 
-<% if @student %>
+<% if @student.persisted? %>
   <p>
     <%= @student.confirmed  ? 'Inscription confirmée'
                             : 'Inscription en attente de confirmation' %>
   </p>
 <% else %>
-  <%= link_to 'Demander l\'inscription', new_user_student_path(user_id: current_user, program_group_id: @group), class: button_classes %>
+  <%= simple_form_for @student, url: user_students_path(current_user) do |f| %>
+    <%= f.association :group, as: :hidden %>
+    <%= f.submit 'Demander l\'inscription', class: button_classes %>
+  <% end %>
 <% end %>
 
 

@@ -1,6 +1,7 @@
 <%= simple_form_for student,
                     url:  student.new_record? ? user_students_path(@user)
                             : user_student_path(@user, student) do |f| %>
-  <%= f.association :program_group %>
-  <%= f.button :submit %>
+  <%= f.association :group %>
+  <%= save_button f %>
+  <%= destroy_button [@user, student] %>
 <% end %>

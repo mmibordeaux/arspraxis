@@ -9,8 +9,9 @@
                   as: :text %>
       <%= f.association :group,
                         label: 'Promotion',
-                        label_method: :name_with_program,
-                        include_blank: false %>
+                        label_method: -> (student) { student.group.name_with_program },
+                        include_blank: false,
+                        collection: @groups %>
       <%= f.input :published,
                   label: 'Publiée' %>
     </div>

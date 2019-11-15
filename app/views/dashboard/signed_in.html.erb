@@ -27,46 +27,45 @@
 </table>
 <%= create_button @new_publication, new_user_publication_path(current_user) %>
 
-<hr>
+<hr class="mt-5">
 
-<div class="row">
-  <div class="col-md-4">
-    <h2>J'étudie en...</h2>
-    <% if @student_in_groups.any? %>
-      <ul class="list-unstyled">
-      <% @student_in_groups.each do |student| %>
-        <li>
-          <%= link_to student.group.name_with_program, program_group_path(student.group.program, student.group) %>
-          <% unless student.confirmed %>
-            <span class="badge badge-dark">En attente de confirmation</span>
-          <% end %>
-        </li>
+<h2 class="mt-5">J'étudie en...</h2>
+<% if @student_in_groups.any? %>
+  <ul class="list-unstyled">
+  <% @student_in_groups.each do |student| %>
+    <li>
+      <%= link_to student.group.name_with_program, program_group_path(student.group.program, student.group) %>
+      <% unless student.confirmed %>
+        <span class="badge badge-dark">En attente de confirmation</span>
       <% end %>
-      </ul>
-    <% else %>
-      Vous n'êtes inscrit(e) dans aucune formation pour le moment.
-      Découvrez <a href="<%= programs_path %>">ici la liste des formations</a>.
+    </li>
+  <% end %>
+  </ul>
+<% else %>
+  Vous n'êtes inscrit(e) dans aucune formation pour le moment.
+  Découvrez <a href="<%= programs_path %>">ici la liste des formations</a>.
+<% end %>
+
+
+<% if @teacher_in_programs.any? %>
+  <hr class="mt-5">
+
+  <h2 class="mt-5">J'enseigne en...</h2>
+  <ul class="list-unstyled">
+    <% @teacher_in_programs.each do |teacher| %>
+      <li><%= link_to teacher.program, teacher.program %></li>
     <% end %>
-  </div>
-  <% if @teacher_in_programs.any? %>
-    <div class="col-md-4">
-      <h2>J'enseigne en...</h2>
-      <ul class="list-unstyled">
-        <% @teacher_in_programs.each do |teacher| %>
-          <li><%= link_to teacher.program, teacher.program %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+  </ul>
+<% end %>
 
-  <% if @manager_of_referentials.any? %>
-    <div class="col-md-4">
-      <h2>Je suis responsable de référentiel...</h2>
-      <ul class="list-unstyled">
-      <% @manager_of_referentials.each do |manager| %>
-        <li><%= link_to manager.referential, manager.referential %></li>
-      <% end %>
-      </ul>
-    </div>
+
+<% if @manager_of_referentials.any? %>
+  <hr class="mt-5">
+
+  <h2 class="mt-5">Je suis responsable de référentiel...</h2>
+  <ul class="list-unstyled">
+  <% @manager_of_referentials.each do |manager| %>
+    <li><%= link_to manager.referential, manager.referential %></li>
   <% end %>
-</div>
+  </ul>
+<% end %>

@@ -33,7 +33,8 @@ class User < ApplicationRecord
             class_name: 'Referential::Manager'
   has_many  :student_in_groups,
             class_name: 'User::Student'
-  alias :students :student_in_groups
+
+  has_many :students
 
   def teaches_in?(program)
     teacher_in_programs.where(program: program).any?

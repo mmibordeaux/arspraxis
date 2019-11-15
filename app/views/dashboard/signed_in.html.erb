@@ -30,6 +30,16 @@
 <hr>
 
 <div class="row">
+    <% if @student_in_groups.any? %>
+      <div class="col-md-4">
+        <h2>J'étudie en...</h2>
+        <ul class="list-unstyled">
+        <% @student_in_groups.each do |student| %>
+          <li><%= link_to student.group.name_with_program, program_group_path(student.group.program, student.group) %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
   <% if @teacher_in_programs.any? %>
     <div class="col-md-4">
       <h2>J'enseigne en...</h2>
@@ -42,13 +52,13 @@
   <% end %>
 
   <% if @manager_of_referentials.any? %>
-  <div class="col-md-4">
-    <h2>Je suis responsable de référentiel...</h2>
-    <ul class="list-unstyled">
-    <% @manager_of_referentials.each do |manager| %>
-      <li><%= link_to manager.referential, manager.referential %></li>
-    <% end %>
-    </ul>
-  </div>
+    <div class="col-md-4">
+      <h2>Je suis responsable de référentiel...</h2>
+      <ul class="list-unstyled">
+      <% @manager_of_referentials.each do |manager| %>
+        <li><%= link_to manager.referential, manager.referential %></li>
+      <% end %>
+      </ul>
+    </div>
   <% end %>
 </div>

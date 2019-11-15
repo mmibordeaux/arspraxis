@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_11_111536) do
+ActiveRecord::Schema.define(version: 2019_11_15_062108) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -145,6 +145,29 @@ ActiveRecord::Schema.define(version: 2019_11_11_111536) do
     t.text "description"
   end
 
+  create_table "user_evaluations", force: :cascade do |t|
+    t.bigint "publication_id"
+    t.bigint "referential_critical_learning_id"
+    t.bigint "program_teacher_id"
+    t.boolean "completeness_validated"
+    t.text "completeness_comment"
+    t.boolean "authenticity_validated"
+    t.text "authenticity_comment"
+    t.boolean "validity_validated"
+    t.text "validity_comment"
+    t.boolean "depth_validated"
+    t.text "depth_comment"
+    t.boolean "extent_validated"
+    t.text "extent_comment"
+    t.boolean "explanation_validated"
+    t.text "explanation_comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["program_teacher_id"], name: "index_user_evaluations_on_program_teacher_id"
+    t.index ["publication_id"], name: "index_user_evaluations_on_publication_id"
+    t.index ["referential_critical_learning_id"], name: "index_user_evaluations_on_referential_critical_learning_id"
+  end
+
   create_table "user_publications", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "program_group_id"
@@ -155,6 +178,16 @@ ActiveRecord::Schema.define(version: 2019_11_11_111536) do
     t.datetime "updated_at", null: false
     t.index ["program_group_id"], name: "index_user_publications_on_program_group_id"
     t.index ["user_id"], name: "index_user_publications_on_user_id"
+  end
+
+  create_table "user_students", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "program_group_id"
+    t.boolean "confirmed", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["program_group_id"], name: "index_user_students_on_program_group_id"
+    t.index ["user_id"], name: "index_user_students_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -184,6 +217,11 @@ ActiveRecord::Schema.define(version: 2019_11_11_111536) do
   add_foreign_key "referential_managers", "referentials"
   add_foreign_key "referential_managers", "users"
   add_foreign_key "referential_resources", "referential_competencies", column: "competency_id"
+  add_foreign_key "user_evaluations", "program_teachers"
+  add_foreign_key "user_evaluations", "referential_critical_learnings"
+  add_foreign_key "user_evaluations", "user_publications", column: "publication_id"
   add_foreign_key "user_publications", "program_groups"
   add_foreign_key "user_publications", "users"
+  add_foreign_key "user_students", "program_groups"
+  add_foreign_key "user_students", "users"
 end

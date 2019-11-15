@@ -104,6 +104,22 @@
 #                                    PATCH  /users/:user_id/publications/:id(.:format)                                               users/publications#update
 #                                    PUT    /users/:user_id/publications/:id(.:format)                                               users/publications#update
 #                                    DELETE /users/:user_id/publications/:id(.:format)                                               users/publications#destroy
+#                   user_evaluations GET    /users/:user_id/evaluations(.:format)                                                    users/evaluations#index
+#                                    POST   /users/:user_id/evaluations(.:format)                                                    users/evaluations#create
+#                new_user_evaluation GET    /users/:user_id/evaluations/new(.:format)                                                users/evaluations#new
+#               edit_user_evaluation GET    /users/:user_id/evaluations/:id/edit(.:format)                                           users/evaluations#edit
+#                    user_evaluation GET    /users/:user_id/evaluations/:id(.:format)                                                users/evaluations#show
+#                                    PATCH  /users/:user_id/evaluations/:id(.:format)                                                users/evaluations#update
+#                                    PUT    /users/:user_id/evaluations/:id(.:format)                                                users/evaluations#update
+#                                    DELETE /users/:user_id/evaluations/:id(.:format)                                                users/evaluations#destroy
+#                      user_students GET    /users/:user_id/students(.:format)                                                       users/students#index
+#                                    POST   /users/:user_id/students(.:format)                                                       users/students#create
+#                   new_user_student GET    /users/:user_id/students/new(.:format)                                                   users/students#new
+#                  edit_user_student GET    /users/:user_id/students/:id/edit(.:format)                                              users/students#edit
+#                       user_student GET    /users/:user_id/students/:id(.:format)                                                   users/students#show
+#                                    PATCH  /users/:user_id/students/:id(.:format)                                                   users/students#update
+#                                    PUT    /users/:user_id/students/:id(.:format)                                                   users/students#update
+#                                    DELETE /users/:user_id/students/:id(.:format)                                                   users/students#destroy
 #                           me_users GET    /users/me(.:format)                                                                      users#me
 #                                    PATCH  /users/me(.:format)                                                                      users#update
 #                              users GET    /users(.:format)                                                                         users#index
@@ -134,6 +150,8 @@ Rails.application.routes.draw do
 
   resources :users, only: [:index, :show] do
     resources :publications, controller: 'users/publications'
+    resources :evaluations, controller: 'users/evaluations'
+    resources :students, controller: 'users/students'
     collection do
       get 'me' => 'users#me', as: :me
       patch 'me' => 'users#update'

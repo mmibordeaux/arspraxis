@@ -22,8 +22,8 @@
         </td>
         <td class="small">
           <ul class="list-unstyled">
-            <% user.teacher_in_programs.each do |teacher| %>
-              <li><%= link_to teacher.program, teacher.program %></li>
+            <% user.student_in_groups.each do |student| %>
+              <li><%= link_to student.group.name_with_program, program_group_path(student.group.program, student.group) %></li>
             <% end %>
           </ul>
         </td>

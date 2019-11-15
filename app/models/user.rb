@@ -31,7 +31,9 @@ class User < ApplicationRecord
             class_name: 'Program::Teacher'
   has_many  :manager_of_referentials,
             class_name: 'Referential::Manager'
-
+  has_many  :student_in_groups,
+            class_name: 'User::Student'
+  alias :students :student_in_groups
   def name
     if first_name.blank? && last_name.blank?
       "Utilisateur anonyme #{id}"

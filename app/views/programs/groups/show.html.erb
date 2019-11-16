@@ -21,12 +21,20 @@
   <thead>
     <tr>
       <th>Etudiant</th>
+      <th>Publications</th>
+      <th>Brouillons</th>
     </tr>
   </thead>
   <tbody>
     <% @students.each do |student| %>
+      <%
+      user = student.user
+      publications = user.publications
+      %>
       <tr>
-        <td><%= student.user %></td>
+        <td><%= user %></td>
+        <td><%= publications.published.count %></td>
+        <td><%= publications.draft.count %></td>
       </tr>
     <% end %>
   </tbody>

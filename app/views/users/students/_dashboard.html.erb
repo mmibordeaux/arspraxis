@@ -1,0 +1,16 @@
+<h2 class="mt-5">J'étudie en...</h2>
+<% if student_in_groups.any? %>
+  <ul class="list-unstyled">
+  <% student_in_groups.each do |student| %>
+    <li>
+      <%= link_to student.group.name_with_program, program_group_path(student.group.program, student.group) %>
+      <% unless student.confirmed %>
+        <span class="badge badge-dark">En attente de confirmation</span>
+      <% end %>
+    </li>
+  <% end %>
+  </ul>
+<% else %>
+  Vous n'êtes inscrit(e) dans aucune formation pour le moment.
+  Découvrez <a href="<%= programs_path %>">ici la liste des formations</a>.
+<% end %>

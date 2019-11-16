@@ -1,71 +1,16 @@
 <% content_for :title, "Bonjour #{current_user.first_name}" %>
 
-<h2>Mes publications</h2>
-<table class="table">
-  <thead>
-    <tr>
-      <th>Titre</th>
-      <th>Statut</th>
-      <th>Formation</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @publications.each do |publication| %>
-      <tr>
-        <td><%= publication.title %></td>
-        <td><%= render 'users/publications/status', publication: publication %></td>
-        <td><%= publication.group.name_with_program %></td>
-        <td>
-            <%= show_button [current_user, publication] %>
-            <%= edit_button [current_user, publication] %>
-            <%= destroy_button [current_user, publication] %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-<%= create_button @new_publication, new_user_publication_path(current_user) %>
+<%= render 'users/publications/dashboard', publications: @publications, new_publication: @new_publication %>
 
 <hr class="mt-5">
-
-<h2 class="mt-5">J'étudie en...</h2>
-<% if @student_in_groups.any? %>
-  <ul class="list-unstyled">
-  <% @student_in_groups.each do |student| %>
-    <li>
-      <%= link_to student.group.name_with_program, program_group_path(student.group.program, student.group) %>
-      <% unless student.confirmed %>
-        <span class="badge badge-dark">En attente de confirmation</span>
-      <% end %>
-    </li>
-  <% end %>
-  </ul>
-<% else %>
-  Vous n'êtes inscrit(e) dans aucune formation pour le moment.
-  Découvrez <a href="<%= programs_path %>">ici la liste des formations</a>.
-<% end %>
-
+<%= render 'users/students/dashboard', student_in_groups: @student_in_groups %>
 
 <% if @teacher_in_programs.any? %>
   <hr class="mt-5">
-
-  <h2 class="mt-5">J'enseigne en...</h2>
-  <ul class="list-unstyled">
-    <% @teacher_in_programs.each do |teacher| %>
-      <li><%= link_to teacher.program, teacher.program %></li>
-    <% end %>
-  </ul>
+  <%= render 'programs/teachers/dashboard', teacher_in_programs: @teacher_in_programs %>
 <% end %>
-
 
 <% if @manager_of_referentials.any? %>
   <hr class="mt-5">
-
-  <h2 class="mt-5">Je suis responsable de référentiel...</h2>
-  <ul class="list-unstyled">
-  <% @manager_of_referentials.each do |manager| %>
-    <li><%= link_to manager.referential, manager.referential %></li>
-  <% end %>
-  </ul>
+  <%= render 'referentials/managers/dashboard', manager_of_referentials: @manager_of_referentials %>
 <% end %>

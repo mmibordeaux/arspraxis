@@ -10,7 +10,7 @@
     </tr>
   </thead>
   <tbody>
-    <% @publications.each do |publication| %>
+    <% @publications.published.each do |publication| %>
       <tr>
         <td><%= publication.title %></td>
         <td><%= l publication.updated_at.to_date, format: :default %></td>
@@ -26,3 +26,32 @@
 </table>
 
 <%= create_button @new_publication, new_user_publication_path(@user) %>
+
+<% if current_user == @user %>
+  <h2 class="mt-5">Mes brouillons</h2>
+  <p>Seulement visibles par moi.</p>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Titre</th>
+        <th>Date</th>
+        <th>Formation</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @publications.draft.each do |publication| %>
+        <tr>
+          <td><%= publication.title %></td>
+          <td><%= l publication.updated_at.to_date, format: :default %></td>
+          <td><%= publication.group.name_with_program %></td>
+          <td>
+            <%= show_button [@user, publication] %>
+            <%= edit_button [@user, publication] %>
+            <%= destroy_button [@user, publication] %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

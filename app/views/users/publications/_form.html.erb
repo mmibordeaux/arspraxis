@@ -7,11 +7,10 @@
       <%= f.input :title,
                   label: 'Titre',
                   as: :text %>
-      <%= f.association :group,
+      <%= f.association :program_group,
                         label: 'Promotion',
-                        label_method: -> (student) { student.group.name_with_program },
                         include_blank: false,
-                        collection: @groups %>
+                        collection: @user.student_in_groups.map { |s| [s.group.name_with_program, s.group.id]} %>
       <%= f.input :published,
                   label: 'Publiée' %>
     </div>

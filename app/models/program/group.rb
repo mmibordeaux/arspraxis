@@ -21,12 +21,15 @@ class Program::Group < ApplicationRecord
   belongs_to :program
   has_many  :students,
             class_name: 'User::Student'
+  has_many  :publications,
+            class_name: 'User::Publication',
+            foreign_key: :program_group_id
 
   def name_with_program
     "#{program} - #{to_s}"
   end
 
   def to_s
-    "#{year}"
+    "Promotion #{year}"
   end
 end

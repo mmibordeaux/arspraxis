@@ -24,9 +24,9 @@
 
 class User::Publication < ApplicationRecord
   belongs_to :user
-  belongs_to  :group,
-              foreign_key: :program_group_id,
+  belongs_to  :program_group,
               class_name: 'Program::Group'
+  alias :group :program_group
 
   scope :published, -> { where(published: true) }
   scope :draft, -> { where(published: false) }

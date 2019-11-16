@@ -1,0 +1,6 @@
+<h2 class="mt-5">Je suis responsable de référentiel...</h2>
+<ul class="list-unstyled">
+<% manager_of_referentials.each do |manager| %>
+  <li><%= link_to manager.referential, manager.referential %></li>
+<% end %>
+</ul>

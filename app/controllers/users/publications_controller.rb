@@ -6,7 +6,6 @@ class Users::PublicationsController < Users::ApplicationController
   # GET /user/publications
   # GET /user/publications.json
   def index
-    @publications = @publications.published
     @new_publication = User::Publication.new user: @user
     breadcrumb
   end
@@ -19,7 +18,6 @@ class Users::PublicationsController < Users::ApplicationController
 
   # GET /user/publications/new
   def new
-    @groups = @user.student_in_groups
     breadcrumb
     add_breadcrumb 'Nouvelle publication'
   end
@@ -33,13 +31,16 @@ class Users::PublicationsController < Users::ApplicationController
   # POST /user/publications
   # POST /user/publications.json
   def create
-    byebug
     respond_to do |format|
       if @publication.save
         format.html { redirect_to user_publication_path(@user, @publication), notice: 'Publication was successfully created.' }
         format.json { render :show, status: :created, location: user_publication_path(@user, @publication) }
       else
-        format.html { render :new }
+        format.html {
+          breadcrumb
+          add_breadcrumb 'Nouvelle publication'
+          render :new
+        }
         format.json { render json: @publication.errors, status: :unprocessable_entity }
       end
     end

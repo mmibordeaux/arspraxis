@@ -23,12 +23,12 @@ referential = program.referential
           <% referential.levels.each do |level| %>
             <td>
               <% competency.critical_learnings.with_level(level).each do |critical_learning|
-                %><div class="progression__critical_learning
-                            progression__critical_learning<%= '--validated' if current_user.validated?(critical_learning) %>">
-                  <span class="progression__critical_learning__name">
-                    <%= critical_learning %>
-                  </span>
-                </div><%
+                %><%= link_to referential_critical_learning_path(referential, critical_learning) do %><div  class=" progression__critical_learning
+                                progression__critical_learning<%= '--validated' if current_user.validated?(critical_learning) %>"
+                        data-toggle="tooltip"
+                        data-placement="bottom"
+                        title="<%= critical_learning %>">
+                </div><% end %><%
               end %>
             </td>
           <% end %>

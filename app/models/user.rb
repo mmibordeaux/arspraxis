@@ -40,6 +40,10 @@ class User < ApplicationRecord
     teacher_in_programs.where(program: program).any?
   end
 
+  def studies_in?(group)
+    student_in_groups.where(group: group, confirmed: true).any?
+  end
+
   def name
     if first_name.blank? && last_name.blank?
       "Utilisateur anonyme #{id}"

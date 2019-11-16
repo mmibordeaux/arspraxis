@@ -1,26 +1,29 @@
 <h2>Mes publications</h2>
-<table class="table">
-  <thead>
-    <tr>
-      <th>Titre</th>
-      <th>Statut</th>
-      <th>Formation</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% publications.each do |publication| %>
+
+<% if publications.any? %>
+  <table class="table">
+    <thead>
       <tr>
-        <td><%= publication.title %></td>
-        <td><%= render 'users/publications/status', publication: publication %></td>
-        <td><%= publication.group.name_with_program %></td>
-        <td>
-            <%= show_button [current_user, publication] %>
-            <%= edit_button [current_user, publication] %>
-            <%= destroy_button [current_user, publication] %>
-        </td>
+        <th>Titre</th>
+        <th>Statut</th>
+        <th>Formation</th>
+        <th></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% publications.each do |publication| %>
+        <tr>
+          <td><%= publication.title %></td>
+          <td><%= render 'users/publications/status', publication: publication %></td>
+          <td><%= publication.group.name_with_program %></td>
+          <td>
+              <%= show_button [current_user, publication] %>
+              <%= edit_button [current_user, publication] %>
+              <%= destroy_button [current_user, publication] %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
 <%= create_button new_publication, new_user_publication_path(current_user) %>

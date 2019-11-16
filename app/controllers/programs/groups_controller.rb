@@ -13,11 +13,11 @@ class Programs::GroupsController < Programs::ApplicationController
   # GET /groups/1
   # GET /groups/1.json
   def show
-    @student = @group.students.where(user: current_user).first_or_initialize
-    @students = @group.students.confirmed
-    if current_user.teaches_in?(@program)
-      @students_unconfirmed = @group.students.unconfirmed
-    end
+    @new_student = @group.students.where(user: current_user).first_or_initialize
+    @is_member = current_user.teaches_in?(@program) || current_user.studies_in?(@group)
+    @is_teacher = current_user.teaches_in?(@program)
+    @students = @group.students.confirmed if @is_member
+    @students_unconfirmed = @group.students.unconfirmed if @is_teacher
     breadcrumb
   end
 

@@ -1,29 +1,32 @@
 <h2 class="mt-5">J'enseigne en...</h2>
 <% teacher_in_programs.each do |teacher| %>
   <% program = teacher.program %>
-  <h3><%= link_to program, program %></h3>
+  <h3 class="mt-5"><%= link_to program, program %></h3>
   <% program.groups.each do |group| %>
     <h4><%= link_to group, program_group_path(program, group) %></h4>
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Titre</th>
-          <th>Etudiant</th>
-          <th>Date</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <% group.publications.published.each do |publication| %>
+    <% if group.publications.published.any? %>
+      <h5>Publications à lire</h5>
+      <table class="table">
+        <thead>
           <tr>
-            <td><%= publication.title %></td>
-            <td><%= publication.user %></td>
-            <td><%= l publication.updated_at.to_date, format: :default %></td>
-            <td>
-            </td>
+            <th>Titre</th>
+            <th>Etudiant</th>
+            <th>Date</th>
+            <th></th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          <% group.publications.published.each do |publication| %>
+            <tr>
+              <td><%= publication.title %></td>
+              <td><%= publication.user %></td>
+              <td><%= l publication.updated_at.to_date, format: :default %></td>
+              <td>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% end %>
   <% end %>
 <% end %>

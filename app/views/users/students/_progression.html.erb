@@ -1,0 +1,39 @@
+<%
+mode ||= 'normal'
+group = student.group
+program = group.program
+referential = program.referential
+%>
+<div class="table-responsive">
+  <table class="progression progression--<%= mode %>">
+    <thead>
+      <tr>
+        <th><%= link_to 'Compétences', referential_competencies_path(referential) %></th>
+        <% referential.levels.each do |level| %>
+          <th><%= link_to level, referential_level_path(referential, level) %></td>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <% referential.competencies.each do |competency| %>
+        <tr class="progression__competency">
+          <td class="progression__competency__name">
+            <%= link_to competency, referential_competency_path(referential, competency) %>
+          </td>
+          <% referential.levels.each do |level| %>
+            <td>
+              <% competency.critical_learnings.with_level(level).each do |critical_learning|
+                %><div class="progression__critical_learning
+                            progression__critical_learning<%= '--validated' if current_user.validated?(critical_learning) %>">
+                  <span class="progression__critical_learning__name">
+                    <%= critical_learning %>
+                  </span>
+                </div><%
+              end %>
+            </td>
+          <% end %>
+        </tr>
+      <% end%>
+    </tbody>
+  </table>
+</div>

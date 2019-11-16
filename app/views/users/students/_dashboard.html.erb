@@ -5,31 +5,7 @@
       <%= link_to student.group.name_with_program, program_group_path(student.group.program, student.group) %>
     </h3>
     <% if student.confirmed %>
-      <%
-      group = student.group
-      program = group.program
-      referential = program.referential
-      %>
-      <table class="table table-bordered">
-        <% referential.competencies.each do |competency| %>
-          <tr>
-            <td><%= competency %></td>
-            <% referential.levels.each do |level| %>
-              <td>
-                <ul class="list-unstyled">
-                  <% competency.critical_learnings.with_level(level).each do |critical_learning| %>
-                    <% if current_user.validated?(critical_learning) %>
-                      x
-                    <% else %>
-                      o
-                    <% end %>
-                  <% end %>
-                </ul>
-              </td>
-            <% end %>
-          </tr>
-        <% end%>
-      </table>
+      <%= render 'users/students/progression', student: student %>
     <% else %>
       <span class="badge badge-dark">En attente de confirmation</span>
     <% end %>

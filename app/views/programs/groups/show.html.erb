@@ -3,62 +3,59 @@
 <%= edit_button [@program, @group] %>
 
 <% if @is_member %>
-  <div class="row mt-5">
-    <div class="col-md-6">
-      <h2>Etudiants</h2>
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Etudiant</th>
-            <th>Publications</th>
-            <th>Brouillons</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @students.each do |student| %>
-            <%
-            user = student.user
-            publications = user.publications
-            %>
-            <tr>
-              <td><%= user %></td>
-              <td><%= publications.published.count %></td>
-              <td><%= publications.draft.count %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-
-      <% if @students_unconfirmed&.any? %>
-        <h3>Non confirmés</h3>
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Etudiant</th>
-              <th>Confirmer ?</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @students_unconfirmed.each do |student| %>
-              <%= simple_form_for student, url: user_student_path(student.user, student) do |f| %>
-                <% student.confirmed = true %>
-                <%= f.input :confirmed, as: :hidden %>
-                <tr>
-                  <td><%= student.user %></td>
-                  <td>
-                      <%= f.submit 'Confirmer', class: button_classes %>
-                  </td>
-                </tr>
-                <% end %>
-            <% end %>
-          </tbody>
-        </table>
-      <% end %>
-    </div>
-    <div class="col-md-6">
-
-    </div>
+  <h2>Etudiants</h2>
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Etudiant</th>
+          <th>Publications</th>
+          <th>Progression</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @students.each do |student| %>
+        <%
+        user = student.user
+        publications = user.publications
+        %>
+        <tr>
+          <td><%= user %></td>
+          <td>
+            <%= publications.published.count %>
+            (<%= publications.draft.count %> brouillons)
+          </td>
+          <td><%= render 'users/students/progression', student: student, mode: :compact %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
   </div>
+  <% if @students_unconfirmed&.any? %>
+    <h3>Non confirmés</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Etudiant</th>
+          <th>Confirmer ?</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @students_unconfirmed.each do |student| %>
+        <%= simple_form_for student, url: user_student_path(student.user, student) do |f| %>
+        <% student.confirmed = true %>
+        <%= f.input :confirmed, as: :hidden %>
+        <tr>
+          <td><%= student.user %></td>
+          <td>
+            <%= f.submit 'Confirmer', class: button_classes %>
+          </td>
+        </tr>
+        <% end %>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
 <% else %>
 <% if @new_student.persisted? %>
     <p class="badge badge-primary">

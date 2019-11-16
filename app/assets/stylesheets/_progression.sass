@@ -1,0 +1,30 @@
+.progression
+  border-spacing: 0
+  thead
+    font-size: 11px
+    font-weight: normal
+  th, td
+    padding: 0 60px 0 0
+    border: none
+    min-width: 200px
+  &__critical_learning
+    display: inline-block
+    width: 20px
+    height: 10px
+    margin-right: 2px
+    border: 1px solid map-get($theme-colors, 'primary')
+    opacity: 0.5
+    &__name
+      display: none
+    &--validated
+      opacity: 1
+      background: map-get($theme-colors, 'primary')
+  &--compact
+    thead
+      display: none
+    .progression__competency__name
+      display: none
+    td
+      min-width: unset
+      padding-right: 15px
+      line-height: 13px

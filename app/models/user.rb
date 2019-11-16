@@ -44,6 +44,10 @@ class User < ApplicationRecord
     student_in_groups.where(group: group, confirmed: true).any?
   end
 
+  def validated?(critical_learning)
+    false
+  end
+
   def name
     if first_name.blank? && last_name.blank?
       "Utilisateur anonyme #{id}"

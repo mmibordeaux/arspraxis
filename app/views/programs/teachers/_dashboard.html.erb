@@ -22,6 +22,9 @@
               <td><%= publication.user %></td>
               <td><%= l publication.updated_at.to_date, format: :default %></td>
               <td>
+                <%= link_to 'Evaluer',
+                            user_publication_path(publication.user, publication),
+                            class: button_classes %>
               </td>
             </tr>
           <% end %>

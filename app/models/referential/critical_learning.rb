@@ -37,7 +37,11 @@ class Referential::CriticalLearning < ApplicationRecord
   scope :with_compency, -> (competency) { where(competency: competency) }
   default_scope { order(:number) }
 
+  def code
+    "C#{competency.number}N#{level.number}AC#{number}"
+  end
+
   def to_s
-    "AC#{number}. #{name}"
+    "#{code}. #{name}"
   end
 end

@@ -20,7 +20,7 @@
         publications = user.publications
         %>
         <tr>
-          <td><%= user %></td>
+          <td><%= link_to user, user %></td>
           <td>
             <%= publications.published.count %>
             (<%= publications.draft.count %> brouillons)

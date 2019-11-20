@@ -7,7 +7,7 @@
       <h1 class="article__title"><%= link_to @publication.title, user_publication_path(@publication.user, @publication) %></h1>
       <%= render 'users/publications/meta', publication: @publication %>
       <div class="publication__content">
-        <%= simple_format @publication.content %>
+        <%= @publication.content.html_safe %>
       </div>
     </article>
   </div>

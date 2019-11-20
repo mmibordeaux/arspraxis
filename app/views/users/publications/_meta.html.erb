@@ -1,7 +1,14 @@
-<div class="publication__meta">
-  <span class="publication__author"><%= link_to publication.user, publication.user %></span>
-  <span class="publication__program"><%= link_to publication.program, publication.program %></span>
-  <span class="publication__group"><%= link_to publication.group, program_group_path(publication.program, publication.group) %></span>
-  <span class="publication__status"><%= publication.published ? 'Publié' : 'Brouillon' %></span>
-  <span class="publication__date"><%= l publication.updated_at.to_date, format: :default %></span>
-</div>
+<dl class="publication__meta">
+  <dt>Titre</dt>
+  <dd><%= publication.title %></dd>
+  <dt>Auteur</dt>
+  <dd><%= link_to publication.user, publication.user %></dd>
+  <dt>Formation</dt>
+  <dd><%= link_to publication.program, publication.program %></dd>
+  <dt>Promotion</dt>
+  <dd><%= link_to publication.group, program_group_path(publication.program, publication.group) %></dd>
+  <dt>Statut</dt>
+  <dd><%= publication.published ? 'Publié' : 'Brouillon' %></dd>
+  <dt>Date</dt>
+  <dd><%= l publication.updated_at.to_date, format: :default %></dd>
+</dl>

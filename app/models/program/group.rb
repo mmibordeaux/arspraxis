@@ -25,6 +25,8 @@ class Program::Group < ApplicationRecord
             class_name: 'User::Publication',
             foreign_key: :program_group_id
 
+  delegate :referential, to: :program
+
   def name_with_program
     "#{program} - #{to_s}"
   end

@@ -10,7 +10,7 @@ referential = program.referential
       <tr>
         <th><%= link_to 'Compétences', referential_competencies_path(referential) %></th>
         <% referential.levels.each do |level| %>
-          <th><%= link_to level, referential_level_path(referential, level) %></td>
+          <th><%= link_to level, referential_level_path(referential, level) %></th>
         <% end %>
       </tr>
     </thead>
@@ -24,7 +24,7 @@ referential = program.referential
             <td>
               <% competency.critical_learnings.with_level(level).each do |critical_learning|
                 %><%= link_to referential_critical_learning_path(referential, critical_learning) do %><div  class=" progression__critical_learning
-                                progression__critical_learning<%= '--validated' if current_user.validated?(critical_learning) %>"
+                                progression__critical_learning<%= '--validated' if student.user.validated?(critical_learning) %>"
                         data-toggle="tooltip"
                         data-placement="bottom"
                         title="<%= critical_learning %>">

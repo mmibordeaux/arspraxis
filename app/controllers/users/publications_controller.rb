@@ -13,6 +13,7 @@ class Users::PublicationsController < Users::ApplicationController
   # GET /user/publications/1
   # GET /user/publications/1.json
   def show
+    @referential = @publication.referential
     breadcrumb
   end
 

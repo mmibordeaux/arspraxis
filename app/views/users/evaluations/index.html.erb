@@ -1,53 +1,32 @@
-<p id="notice"><%= notice %></p>
+<%= content_for :title, 'Evaluations' %>
 
-<h1>User Evaluations</h1>
-
-<table>
+<table class="table">
   <thead>
     <tr>
+      <th>Evaluation</th>
+      <th>Etudiant</th>
       <th>Publication</th>
-      <th>Program teacher</th>
-      <th>Completeness validated</th>
-      <th>Completeness comment</th>
-      <th>Authenticity validated</th>
-      <th>Authenticity comment</th>
-      <th>Validity validated</th>
-      <th>Validity comment</th>
-      <th>Depth validated</th>
-      <th>Depth comment</th>
-      <th>Extent validated</th>
-      <th>Extent comment</th>
-      <th>Explanation validated</th>
-      <th>Explanation comment</th>
-      <th colspan="3"></th>
+      <th>Apprentissage critique</th>
+      <th>Date</th>
+      <th>Validé?</th>
+      <th></th>
     </tr>
   </thead>
-
   <tbody>
-    <% @user_evaluations.each do |user_evaluation| %>
+    <% @evaluations.each do |evaluation| %>
       <tr>
-        <td><%= user_evaluation.publication %></td>
-        <td><%= user_evaluation.program_teacher %></td>
-        <td><%= user_evaluation.completeness_validated %></td>
-        <td><%= user_evaluation.completeness_comment %></td>
-        <td><%= user_evaluation.authenticity_validated %></td>
-        <td><%= user_evaluation.authenticity_comment %></td>
-        <td><%= user_evaluation.validity_validated %></td>
-        <td><%= user_evaluation.validity_comment %></td>
-        <td><%= user_evaluation.depth_validated %></td>
-        <td><%= user_evaluation.depth_comment %></td>
-        <td><%= user_evaluation.extent_validated %></td>
-        <td><%= user_evaluation.extent_comment %></td>
-        <td><%= user_evaluation.explanation_validated %></td>
-        <td><%= user_evaluation.explanation_comment %></td>
-        <td><%= link_to 'Show', user_evaluation %></td>
-        <td><%= link_to 'Edit', edit_user_evaluation_path(user_evaluation) %></td>
-        <td><%= link_to 'Destroy', user_evaluation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= evaluation %></td>
+        <td><%= evaluation.publication.user %></td>
+        <td width="300" class="small"><%= evaluation.publication %></td>
+        <td width="300" class="small"><%= evaluation.critical_learning %></td>
+        <td><%= l evaluation.updated_at.to_date, format: :default %></td>
+        <td><%= evaluation.validated ? 'Oui' : 'Non' %></td>
+        <td>
+          <%= show_button [@user, evaluation] %>
+          <%= edit_button [@user, evaluation] %>
+          <%= destroy_button [@user, evaluation] %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New User Evaluation', new_user_evaluation_path %>

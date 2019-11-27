@@ -1,26 +1,80 @@
-
-<%= simple_form_for(@user_evaluation) do |f| %>
-  <%= f.error_notification %>
-  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-
-  <div class="form-inputs">
-    <%= f.association :publication %>
-    <%= f.input :program_teacher %>
-    <%= f.input :completeness_validated %>
-    <%= f.input :completeness_comment %>
-    <%= f.input :authenticity_validated %>
-    <%= f.input :authenticity_comment %>
-    <%= f.input :validity_validated %>
-    <%= f.input :validity_comment %>
-    <%= f.input :depth_validated %>
-    <%= f.input :depth_comment %>
-    <%= f.input :extent_validated %>
-    <%= f.input :extent_comment %>
-    <%= f.input :explanation_validated %>
-    <%= f.input :explanation_comment %>
+<%= simple_form_for evaluation,
+                    url:  evaluation.new_record? ? user_evaluations_path(@user)
+                            : user_evaluation_path(@user, evaluation) do |f| %>
+  <div class="row">
+    <div class="col-md-4">
+      <%= render 'users/publications/meta', publication: @publication %>
+    </div>
+    <div class="col-md-8">
+      <article class="publication">
+        <h1 class="article__title"><%= @publication.title %></h1>
+        <div class="publication__content">
+          <%= @publication.content.html_safe %>
+        </div>
+      </article>
+    </div>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
+  <hr class="mt-5">
+
+  <h1 class="mt-5">Evaluation</h1>
+
+  <%= render 'about', critical_learning: @critical_learning %>
+
+  <%= f.association :publication, as: :hidden %>
+  <%= f.association :referential_critical_learning, as: :hidden %>
+
+  <h2 class="mt-5">Critères de recevabilité</h2>
+
+  <div class="row">
+    <div class="col-md-4">
+      <%= f.input :completeness_validated,
+                  label: 'Complétude',
+                  hint: "Tous les aspects de l'apprentissage critique sont couverts par l'étudiant•e." %>
+      <%= f.input :completeness_comment,
+                  label: 'Commentaire sur la complétude' %>
+    </div>
+    <div class="col-md-4">
+      <%= f.input :validity_validated,
+                  label: 'Validité',
+                  hint: "Les preuves sont en adéquation avec l'apprentissage critique." %>
+      <%= f.input :validity_comment,
+                  label: 'Commentaire sur la validité' %>
+    </div>
+    <div class="col-md-4">
+      <%= f.input :authenticity_validated,
+                  label: 'Authenticité',
+                  hint: "Les traces sont incontestables, objectivées, issues du contexte professionnel ou citoyen de l'étudiant•e lui•elle-même." %>
+      <%= f.input :authenticity_comment,
+                  label: "Commentaire sur l'authenticité"  %>
+    </div>
   </div>
+
+  <h2 class="mt-5">Critères pédagogiques</h2>
+  <div class="row">
+    <div class="col-md-4">
+      <%= f.input :depth_validated,
+                  label: 'Profondeur',
+                  hint: "La documentation est riche, les actions peuvent effectivement être jugées efficaces au regard des situations vécues. L'étudiant•e ne se contente pas de montrer qu'il•elle a agi, il•elle analyse également les traces de l'efficacité de ses actions sur le public visé. Cette profondeur couvre toutes les composantes de l'apprentissage critique." %>
+      <%= f.input :depth_comment,
+                  label: 'Commentaire sur la profondeur' %>
+    </div>
+    <div class="col-md-4">
+      <%= f.input :extent_validated,
+                  label: 'Etendue',
+                  hint: "Diversité des situations couvertes: l'efficacité de l'action n'est pas due au hasard, elle apparaît avec évidence dans des contextes pluriels." %>
+      <%= f.input :extent_comment,
+                  label: "Commentaire sur l'étendue"  %>
+    </div>
+    <div class="col-md-4">
+      <%= f.input :explanation_validated,
+                  label: 'Explicitation',
+                  hint: "Les commentaires sont pertinents, clairs et fondés, bien en lien avec le référentiel, abordant le mobilisable et combinable, parfois scientifiquement documentés (ce critère peut varier en fonction de l'exigence académique du programme)." %>
+      <%= f.input :explanation_comment,
+                  label: "Commentaire sur l'explicitation"  %>
+    </div>
+  </div>
+
+  <%= save_button f %>
+  <%= destroy_button [@user, evaluation] %>
 <% end %>

@@ -6,24 +6,39 @@ class Users::EvaluationsController < Users::ApplicationController
   # GET /user/evaluations
   # GET /user/evaluations.json
   def index
+    breadcrumb
   end
 
   # GET /user/evaluations/1
   # GET /user/evaluations/1.json
   def show
+    @publication = @evaluation.publication
+    @critical_learning = @evaluation.critical_learning
+    breadcrumb
   end
 
   # GET /user/evaluations/new
   def new
+    @publication = User::Publication.find params[:publication_id]
+    @critical_learning = Referential::CriticalLearning.find params[:critical_learning_id]
+    @evaluation.publication = @publication
+    @evaluation.referential_critical_learning = @critical_learning
+    breadcrumb
+    add_breadcrumb 'Nouvelle évaluation'
   end
 
   # GET /user/evaluations/1/edit
   def edit
+    @publication = @evaluation.publication
+    @critical_learning = @evaluation.critical_learning
+    breadcrumb
+    add_breadcrumb 'Modifier'
   end
 
   # POST /user/evaluations
   # POST /user/evaluations.json
   def create
+    @evaluation.user = current_user
     respond_to do |format|
       if @evaluation.save
         format.html { redirect_to user_evaluation_path(@user, @evaluation), notice: 'Evaluation was successfully created.' }
@@ -63,13 +78,13 @@ class Users::EvaluationsController < Users::ApplicationController
 
   def breadcrumb
     super
-    add_breadcrumb 'Evaluations', user_evaluations_path(@user)
-    add_breadcrumb @evaluation, user_evaluation_path(@user, @evaluation) if @evaluation && @evaluation.persisted?
+    add_breadcrumb 'Evaluations', user_evaluations_path(current_user)
+    add_breadcrumb @evaluation, user_evaluation_path(current_user, @evaluation) if @evaluation && @evaluation.persisted?
   end
 
   private
 
   def evaluation_params
-    params.require(:user_evaluation).permit(:publication_id, :program_teacher, :completeness_validated, :completeness_comment, :authenticity_validated, :authenticity_comment, :validity_validated, :validity_comment, :depth_validated, :depth_comment, :extent_validated, :extent_comment, :explanation_validated, :explanation_comment)
+    params.require(:user_evaluation).permit(:publication_id, :referential_critical_learning_id, :completeness_validated, :completeness_comment, :authenticity_validated, :authenticity_comment, :validity_validated, :validity_comment, :depth_validated, :depth_comment, :extent_validated, :extent_comment, :explanation_validated, :explanation_comment)
   end
 end

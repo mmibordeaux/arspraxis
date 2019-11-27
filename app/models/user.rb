@@ -33,7 +33,7 @@ class User < ApplicationRecord
             class_name: 'Referential::Manager'
   has_many  :student_in_groups,
             class_name: 'User::Student'
-
+  has_many  :evaluations
   has_many :students
 
   def teaches_in?(program)
@@ -45,7 +45,7 @@ class User < ApplicationRecord
   end
 
   def validated?(critical_learning)
-    false
+    User::Evaluation.where(referential_critical_learning: critical_learning, publication: publications, validated: true).count > 1
   end
 
   def name

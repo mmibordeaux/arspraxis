@@ -1,18 +1,69 @@
 <%= content_for :title, "#{@publication}" %>
 
-<div class="row">
-  <div class="col-md-4">
-    <p>
-      <strong>Promotion</strong><br/>
-      <%= @publication.group.name_with_program %>
-    </p>
-    <p>
-      <strong>Publiée</strong><br/>
-      <%= @publication.published ? 'Oui' : 'Non' %>
-    </p>
-    <%= edit_button [@user, @publication] %>
+<article class="publication">
+  <div class="row">
+    <div class="col-md-4">
+      <%= render 'meta', publication: @publication %>
+      <%= edit_button [@user, @publication] %>
+    </div>
+    <div class="col-md-8">
+      <div class="publication__content">
+        <%= @publication.content.html_safe %>
+      </div>
+    </div>
   </div>
-  <div class="col-md-8">
-    <%= raw @publication.content %>
-  </div>
-</div>
+</article>
+
+<% if can? :evaluate, @publication %>
+  <section class="mt-5">
+    <h2>Evaluation</h2>
+
+    <div class="table-responsive">
+      <table class="progression progression--evaluation">
+        <thead>
+          <tr>
+            <th>Compétences</th>
+            <% @referential.levels.each do |level| %>
+              <th><%= level %></th>
+            <% end %>
+          </tr>
+        </thead>
+        <tbody>
+          <% @referential.competencies.each do |competency| %>
+            <tr class="progression__competency">
+              <td class="progression__competency__name"><%= competency %></td>
+              <% @referential.levels.each do |level| %>
+                <td>
+                  <% competency.critical_learnings.with_level(level).each do |critical_learning| %>
+                    <div class="mb-4">
+                      <p class="m-0">
+                        <%= @user.validated?(critical_learning) ? 'Validé' : 'Non validé' %>:
+                        <%= critical_learning %>
+                      </p>
+                      <ul class="list-unstyled m-0">
+                        <% @publication.evaluations.where(referential_critical_learning: critical_learning).each do |evaluation| %>
+                          <li>
+                            <%= link_to user_evaluation_path(evaluation.user, evaluation) do %>
+                              <%= evaluation.validated ? 'Validé' : 'Non validé' %>
+                            <% end %>
+                            (<%= (evaluation.user == @publication.user) ? 'Auto-évaluation' : evaluation.user %>)
+                          </li>
+                        <% end %>
+                      </ul>
+                      <% evaluation = current_user.evaluations.find_by(publication: @publication, referential_critical_learning: critical_learning) %>
+                      <% unless evaluation %>
+                        <%= link_to 'Evaluer',
+                                    new_user_evaluation_path(user_id: current_user, publication_id: @publication, critical_learning_id: critical_learning),
+                                    class: button_classes %>
+                      <% end %>
+                    </div>
+                  <% end %>
+                </td>
+              <% end %>
+            </tr>
+          <% end%>
+        </tbody>
+      </table>
+    </div>
+  </section>
+<% end %>

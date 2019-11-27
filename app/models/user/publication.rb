@@ -27,6 +27,10 @@ class User::Publication < ApplicationRecord
   belongs_to  :program_group,
               class_name: 'Program::Group'
   alias :group :program_group
+  has_many :evaluations
+
+  delegate :referential, to: :group
+  delegate :program, to: :group
 
   scope :published, -> { where(published: true) }
   scope :draft, -> { where(published: false) }

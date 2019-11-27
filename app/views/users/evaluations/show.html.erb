@@ -1,74 +1,86 @@
-<p id="notice"><%= notice %></p>
+<%= content_for :title, "#{@evaluation}" %>
 
+
+<div class="row">
+  <div class="col-md-4">
+    <%= render 'users/publications/meta', publication: @publication %>
+  </div>
+  <div class="col-md-8">
+    <article class="publication">
+      <h1 class="article__title"><%= link_to @publication.title, user_publication_path(@publication.user, @publication) %></h1>
+      <div class="publication__content">
+        <%= @publication.content.html_safe %>
+      </div>
+    </article>
+  </div>
+</div>
+
+<hr class="mt-5">
+
+<h1 class="mt-5">Evaluation</h1>
 <p>
-  <strong>Publication:</strong>
-  <%= @user_evaluation.publication %>
+  Par <%= @evaluation.user %>,
+  le <%= l @evaluation.updated_at.to_date, format: :default %>
 </p>
+<%= render 'about', critical_learning: @critical_learning %>
 
-<p>
-  <strong>Program teacher:</strong>
-  <%= @user_evaluation.program_teacher %>
-</p>
+<h2 class="mt-5">Critères de recevabilité</h2>
 
-<p>
-  <strong>Completeness validated:</strong>
-  <%= @user_evaluation.completeness_validated %>
-</p>
+<div class="row">
+  <div class="col-md-4">
+    <h3>
+      Complétude :
+      <%= @evaluation.completeness_validated ? 'validé' : 'non validé'%>
+    </h3>
+    <%= simple_format @evaluation.completeness_comment %>
+  </div>
+  <div class="col-md-4">
+    <h3>
+      Validité :
+      <%= @evaluation.validity_validated ? 'validé' : 'non validé'%>
+    </h3>
+    <%= simple_format @evaluation.validity_comment %>
+  </div>
+  <div class="col-md-4">
+    <h3>
+      Authenticité :
+      <%= @evaluation.authenticity_validated ? 'validé' : 'non validé'%>
+    </h3>
+    <%= simple_format @evaluation.authenticity_comment %>
+  </div>
+</div>
 
-<p>
-  <strong>Completeness comment:</strong>
-  <%= @user_evaluation.completeness_comment %>
-</p>
+<h2 class="mt-5">Critères pédagogiques</h2>
 
-<p>
-  <strong>Authenticity validated:</strong>
-  <%= @user_evaluation.authenticity_validated %>
-</p>
+<div class="row">
+  <div class="col-md-4">
+    <h3>
+      Profondeur :
+      <%= @evaluation.depth_validated ? 'validé' : 'non validé'%>
+    </h3>
+    <%= simple_format @evaluation.depth_comment %>
+  </div>
+  <div class="col-md-4">
+    <h3>
+      Etendue :
+      <%= @evaluation.extent_validated ? 'validé' : 'non validé'%>
+    </h3>
+    <%= simple_format @evaluation.extent_comment %>
+  </div>
+  <div class="col-md-4">
+    <h3>
+      Explicitation :
+      <%= @evaluation.explanation_validated ? 'validé' : 'non validé'%>
+    </h3>
+    <%= simple_format @evaluation.explanation_comment %>
+  </div>
+</div>
 
-<p>
-  <strong>Authenticity comment:</strong>
-  <%= @user_evaluation.authenticity_comment %>
-</p>
+<h2 class="mt-5">
+  Apprentissage critique :
+  <%= @evaluation.validated ? 'validé' : 'non validé' %>
+</h2>
 
-<p>
-  <strong>Validity validated:</strong>
-  <%= @user_evaluation.validity_validated %>
-</p>
-
-<p>
-  <strong>Validity comment:</strong>
-  <%= @user_evaluation.validity_comment %>
-</p>
-
-<p>
-  <strong>Depth validated:</strong>
-  <%= @user_evaluation.depth_validated %>
-</p>
-
-<p>
-  <strong>Depth comment:</strong>
-  <%= @user_evaluation.depth_comment %>
-</p>
-
-<p>
-  <strong>Extent validated:</strong>
-  <%= @user_evaluation.extent_validated %>
-</p>
-
-<p>
-  <strong>Extent comment:</strong>
-  <%= @user_evaluation.extent_comment %>
-</p>
-
-<p>
-  <strong>Explanation validated:</strong>
-  <%= @user_evaluation.explanation_validated %>
-</p>
-
-<p>
-  <strong>Explanation comment:</strong>
-  <%= @user_evaluation.explanation_comment %>
-</p>
-
-<%= link_to 'Edit', edit_user_evaluation_path(@user_evaluation) %> |
-<%= link_to 'Back', user_evaluations_path %>
+<div class="mt-5">
+  <%= edit_button [@user, @evaluation] %>
+</div>

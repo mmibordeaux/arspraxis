@@ -1,5 +1,3 @@
-<h1>New User Evaluation</h1>
+<%= content_for :title, 'Nouvelle évaluation' %>
 
-<%= render 'form', user_evaluation: @user_evaluation %>
-
-<%= link_to 'Back', user_evaluations_path %>
+<%= render 'form', evaluation: @evaluation %>

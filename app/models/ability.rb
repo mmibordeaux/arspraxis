@@ -18,26 +18,23 @@ class Ability
   end
 
   def programs
-    program_ids = @user.teacher_in_programs.pluck(:program_id)
-    can :manage, Program, id: program_ids
+    can :manage, Program, id: teacher_in_programs_ids
     cannot :create, Program
     can :create, Program if @user.admin?
-    can :manage, Program::Group, program_id: program_ids
-    can :manage, Program::Teacher, program_id: program_ids
-    # TODO teacher admin only?
-    # Teacher must be able to evaluate
+    can :manage, Program::Group, program_id: teacher_in_programs_ids
+    can :manage, Program::Teacher, program_id: teacher_in_programs_ids
+    can :evaluate, User::Publication, program_group_id: teacher_in_program_group_ids, published: true
   end
 
   def referentials
-    referential_ids = @user.manager_of_referentials.pluck(:referential_id)
-    can :manage, Referential, id: referential_ids
-    cannot :create, Referential
-    can :manage, Referential::Competency, referential_id: referential_ids
-    can :manage, Referential::CriticalLearning, referential_id: referential_ids
-    can :manage, Referential::Level, referential_id: referential_ids
-    can :manage, Referential::Resource, referential_id: referential_ids
-    can :manage, Referential::Situation, referential_id: referential_ids
-    can :manage, Referential::Manager, referential_id: referential_ids
+    can :manage, Referential, id: manager_of_referentials_ids
+    cannot :create, Referential # Admin only
+    can :manage, Referential::Competency, referential_id: manager_of_referentials_ids
+    can :manage, Referential::CriticalLearning, referential_id: manager_of_referentials_ids
+    can :manage, Referential::Level, referential_id: manager_of_referentials_ids
+    can :manage, Referential::Resource, referential_id: manager_of_referentials_ids
+    can :manage, Referential::Situation, referential_id: manager_of_referentials_ids
+    can :manage, Referential::Manager, referential_id: manager_of_referentials_ids
   end
 
   def users
@@ -46,9 +43,24 @@ class Ability
     can :manage, User if @user.admin?
     can :manage, User::Publication, user_id: @user.id
     can :manage, User::Student, user_id: @user.id
+    can :manage, User::Evaluation, user_id: @user.id
   end
 
   def admin
     can :manage, :all if @user.admin?
+  end
+
+  protected
+
+  def teacher_in_programs_ids
+    @teacher_in_programs_ids ||= @user.teacher_in_programs.pluck(:program_id)
+  end
+
+  def manager_of_referentials_ids
+    @referential_ids ||= @user.manager_of_referentials.pluck(:referential_id)
+  end
+
+  def teacher_in_program_group_ids
+    @teacher_in_program_group_ids = Program::Group.where(program_id: teacher_in_programs_ids).pluck(:id)
   end
 end

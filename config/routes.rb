@@ -124,6 +124,10 @@
 #                                    PATCH  /users/me(.:format)                                                                      users#update
 #                              users GET    /users(.:format)                                                                         users#index
 #                               user GET    /users/:id(.:format)                                                                     users#show
+#         documentation_for_students GET    /documentation-for-students(.:format)                                                    documentation#students
+#         documentation_for_teachers GET    /documentation-for-teachers(.:format)                                                    documentation#teachers
+#       documentation_for_university GET    /documentation-for-university(.:format)                                                  documentation#university
+#       documentation_for_developers GET    /documentation-for-developers(.:format)                                                  documentation#developers
 #                               root GET    /                                                                                        dashboard#index
 #                 rails_service_blob GET    /rails/active_storage/blobs/:signed_id/*filename(.:format)                               active_storage/blobs#show
 #          rails_blob_representation GET    /rails/active_storage/representations/:signed_blob_id/:variation_key/*filename(.:format) active_storage/representations#show
@@ -156,6 +160,14 @@ Rails.application.routes.draw do
       get 'me' => 'users#me', as: :me
       patch 'me' => 'users#update'
     end
+  end
+
+  scope :documentation do
+    get 'for-students' => 'documentation#students', as: :documentation_for_students
+    get 'for-teachers' => 'documentation#teachers', as: :documentation_for_teachers
+    get 'for-university' => 'documentation#university', as: :documentation_for_university
+    get 'for-developers' => 'documentation#developers', as: :documentation_for_developers
+    root to: 'documentation#index', as: :documentation
   end
 
   root to: 'dashboard#index'

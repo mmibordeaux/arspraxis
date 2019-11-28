@@ -7,9 +7,8 @@ class DashboardController < ApplicationController
       @publications = current_user.publications
       @new_publication = User::Publication.new(user: current_user)
       breadcrumb
-      render 'signed_in'
     else
-      render 'anonymous'
+      render 'documentation/index'
     end
   end
 end

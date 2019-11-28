@@ -14,6 +14,21 @@
       <li class="nav-item">
         <a class="nav-link" href="<%= root_path %>">Accueil <span class="sr-only">(current)</span></a>
       </li>
+      <li class="nav-item dropdown">
+        <a  class="nav-link dropdown-toggle"
+            data-toggle="dropdown"
+            href="#"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false">Comment ça marche?</a>
+        <div class="dropdown-menu">
+          <%= link_to 'Présentation', documentation_path, class: 'dropdown-item' %>
+          <%= link_to 'Pour les apprenants', documentation_for_students_path, class: 'dropdown-item' %>
+          <%= link_to 'Pour les enseignants', documentation_for_teachers_path, class: 'dropdown-item' %>
+          <%= link_to 'Pour la communauté universitaire', documentation_for_university_path, class: 'dropdown-item' %>
+          <%= link_to 'Pour les développeurs', documentation_for_developers_path, class: 'dropdown-item' %>
+        </div>
+      </li>
       <li class="nav-item">
         <%= link_to 'Référentiels', referentials_path, class: 'nav-link' %>
       </li>

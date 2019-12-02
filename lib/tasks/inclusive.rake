@@ -12,7 +12,7 @@ namespace :inclusive do
 
   def fix!(object, property)
     value = object.send property
-    fixed_value = replace value
+    fixed_value = replace value.to_s
     object.update_column property, fixed_value
   end
 

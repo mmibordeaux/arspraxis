@@ -17,6 +17,11 @@ class ReferentialsController < ApplicationController
     breadcrumb
   end
 
+  def visualize
+    breadcrumb
+    add_breadcrumb 'Visualisation'
+  end
+
   # GET /referentials/new
   def new
     breadcrumb

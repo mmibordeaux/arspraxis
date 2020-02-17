@@ -27,3 +27,4 @@
 /config/master.key
 
 /db/latest.dump
+.DS_Store

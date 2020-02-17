@@ -145,6 +145,9 @@ Rails.application.routes.draw do
     resources :managers, controller: 'referentials/managers'
     resources :resources, controller: 'referentials/resources'
     resources :situations, controller: 'referentials/situations'
+    member do
+      get :visualize
+    end
   end
 
   resources :programs do

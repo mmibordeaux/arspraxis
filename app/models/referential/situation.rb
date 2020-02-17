@@ -24,7 +24,11 @@ class Referential::Situation < ApplicationRecord
   scope :with_level, -> (level) { where(level: level) }
   default_scope { order(:number) }
 
+  def code
+    "S#{number}"
+  end
+
   def to_s
-    "S#{number}. #{name}"
+    "#{code}. #{name}"
   end
 end

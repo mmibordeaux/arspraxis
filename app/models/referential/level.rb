@@ -22,10 +22,15 @@
 class Referential::Level < ApplicationRecord
   belongs_to :referential
   has_many :situations
+  has_many :critical_learnings
 
   default_scope { order(:number) }
 
+  def code
+    "N#{number}"
+  end
+
   def to_s
-    "N#{number}. #{name}"
+    "#{code}. #{name}"
   end
 end

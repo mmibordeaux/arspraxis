@@ -3,7 +3,7 @@ namespace :app do
     desc 'Dump production database to localhost'
 
     task production: :environment do
-      Bundler.with_clean_env do
+      Bundler.with_unbundled_env do
         begin
           sh 'heroku pg:backups capture'
           sh 'curl -o db/latest.dump `heroku pg:backups public-url`'

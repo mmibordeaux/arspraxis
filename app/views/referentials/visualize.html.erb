@@ -1,0 +1,113 @@
+<%= content_for :title, 'Visualisation' %>
+
+<div id="visualize"></div>
+<script type="text/javascript">
+<%
+# https://visjs.github.io/vis-network/docs/network/
+# https://visjs.github.io/vis-network/docs/network/interaction.html
+# https://visjs.github.io/vis-network/docs/network/edges.html
+# https://visjs.github.io/vis-network/docs/network/nodes.html
+# https://github.com/visjs/vis-network
+@nodes = []
+@edges = []
+referential_id = "referential_#{@referential.id}"
+@nodes << {
+  id: referential_id,
+  label: @referential.name,
+  title: @referential.description,
+  color: '#292996',
+  size: 60
+}
+# @referential.situations.each do |situation|
+#   situation_id = "situation_#{situation.id}"
+#   @nodes << {
+#     id: situation_id,
+#     label: "#{situation.code}",
+#     title: "#{situation.name}",
+#     color: '#E6B020',
+#     size: 30
+#   }
+# end
+@referential.competencies.each do |competency|
+  competency_id = "competency_#{competency.id}"
+  @nodes << {
+    id: competency_id,
+    label: "#{competency.short_name}",
+    title: "#{competency.full_description}",
+    color: '#292996',
+    size: 30
+  }
+  target = competency_id
+  @referential.levels.reverse.each do |level|
+    level_id = "#{competency_id}_level_#{level.id}"
+    @nodes << {
+      id: level_id,
+      label: "#{level.code}",
+      title: "#{competency.name}",
+      color: '#292996',
+      size: 15
+    }
+    @edges << {
+      from: target,
+      to: level_id
+    }
+    # level.situations.each do |situation|
+    #   situation_id = "situation_#{situation.id}"
+    #   @edges << {
+    #     from: situation_id,
+    #     to: level_id,
+    #     physics: false
+    #   }
+    # end
+    target = level_id
+  end
+  competency.critical_learnings.each do |critical_learning|
+    critical_learning_id = "critical_learning_#{critical_learning.id}"
+    @nodes << {
+      id: critical_learning_id,
+      label: "#{critical_learning.code}",
+      title: "#{critical_learning.name}",
+      color: '#E6B020',
+      size: 15
+    }
+    @edges << {
+      from: "#{competency_id}_level_#{critical_learning.level_id}",
+      to: critical_learning_id
+    }
+  end
+  # competency.resources.each do |resource|
+  #   resource_id = "resource_#{resource.id}"
+  #   @nodes << {
+  #     id: resource_id,
+  #     label: "#{resource.code}",
+  #     title: "#{resource.name}",
+  #     color: '#E6B020',
+  #     size: 15
+  #   }
+  #   @edges << {
+  #     from: competency_id,
+  #     to: resource_id,
+  #     physics: false
+  #   }
+  # end
+  @edges << {
+    from: referential_id,
+    to: competency_id
+  }
+end
+%>
+  var nodes = new vis.DataSet(<%= raw @nodes.to_json %>);
+  var edges = new vis.DataSet(<%= raw @edges.to_json %>);
+  var container = document.getElementById('visualize');
+  var data = {
+      nodes: nodes,
+      edges: edges
+  };
+  var options = {
+    nodes: {
+      shape: 'dot',
+      borderWidth: 0
+    }
+  };
+  var network = new vis.Network(container, data, options);
+</script>

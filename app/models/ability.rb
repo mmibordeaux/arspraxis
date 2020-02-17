@@ -7,6 +7,7 @@ class Ability
     @user = user
     can :index, :all
     can :show, :all
+    can :visualize, Referential
     user_authentified if @user.present?
   end
 

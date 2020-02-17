@@ -23,7 +23,7 @@
           <td><%= link_to user, user %></td>
           <td>
             <%= publications.published.count %>
-            (<%= publications.draft.count %> brouillons)
+            (<%= publications.draft.count %> brouillon<%= 's' if publications.draft.count > 1 %>)
           </td>
           <td><%= render 'users/students/progression', student: student, mode: :compact %></td>
         </tr>

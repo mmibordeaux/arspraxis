@@ -20,18 +20,22 @@
   <div class="col-md-3">
     <h4>les apprenants</h4>
     <p>Au fur et à mesure de vos progrès, publiez dans votre portfolio et apportez les preuves de vos apprentissages. Visualisez le chemin parcouru et celui qui reste à parcourir. Bénéficiez d'un retour pédagogique direct et consolidé sur vos publications.</p>
+    <%= link_to 'En savoir plus', documentation_for_students_path, class: 'small' %>
   </div>
   <div class="col-md-3">
     <h4>les enseignants</h4>
     <p>Accompagnez vos étudiants dans les meilleures conditions. Evaluez leurs publications au regard du référentiel de compétences selon 3 critères de recevabilité (Complétude, Validité, Authenticité) et 3 critères pédagogiques (Profondeur, Etendue, Explicitation).</p>
+    <%= link_to 'En savoir plus', documentation_for_teachers_path, class: 'small' %>
   </div>
   <div class="col-md-3">
     <h4>la communauté universitaire</h4>
     <p>Publiez les référentiels de compétences sous un format directement exploitable pédagogiquement. Facilitez la mise en place de l'évaluation par portfolio de traces. Soutenez la formation initiale comme la formation continue.</p>
+    <%= link_to 'En savoir plus', documentation_for_university_path, class: 'small' %>
   </div>
   <div class="col-md-3">
     <h4>les développeurs</h4>
     <p>Contribuez au projet sur <a href="https://github.com/mmibordeaux/arspraxis">Github</a>. Adaptez l'outil aux usages spécifiques d'une formation ou aux besoins particuliers d'un contexte d'apprentissage.</p>
+    <%= link_to 'En savoir plus', documentation_for_developers_path, class: 'small' %>
   </div>
 </div>
 
@@ -101,22 +105,27 @@
     <p class="small mt-3">Ars Praxis est développé par Arnaud Levy, directeur des études, sous la direction de Marlène Dulaurans, chef de département.</p>
   </div>
   <div class="col-6 offset-md-1 col-md-2 mt-5">
+    <%= link_to 'https://admission.umontreal.ca/programmes/baccalaureat-en-sciences-infirmieres-formation-initiale-campus-montreal/', target: :_blank do %>
+      <%= image_tag 'dashboard/universite-montreal.png', class: 'img-fluid img-bw' %>
+    <% end %>
+    <p class="small mt-3">Ars Praxis s'appuie sur le référentiel de compétences du Baccalauréat en Sciences Infirmières de l'Université de Montréal.</p>
+  </div>
+  <div class="col-6 offset-md-1 col-md-2 mt-5">
     <%= link_to 'https://mica.u-bordeaux-montaigne.fr', target: :_blank do %>
       <%= image_tag 'dashboard/mica.png', class: 'img-fluid img-bw' %>
     <% end %>
     <p class="small mt-3">Ars Praxis est conçu en partenariat avec Soufiane Rouissi, chercheur au Mica, et les étudiants du Master Dispositifs Numériques Educatifs, qu'il dirige.</p>
   </div>
-  <div class="col-6 offset-md-1 col-md-2 mt-5">
+  <div class="col-6 col-md-2 mt-5">
     <%= link_to 'http://www.labset.ulg.ac.be/', target: :_blank do %>
       <%= image_tag 'dashboard/labset.png', class: 'img-fluid img-bw' %>
     <% end %>
     <p class="small mt-3">Ars Praxis est une tranposition servicielle du travail de Marianne Poumay au sein du Labset.</p>
   </div>
-  <div class="col-6 col-md-2 mt-5">
+  <div class="col-6 offset-md-1 col-md-2 mt-5">
     <%= link_to 'http://www.iut-troyes.univ-reims.fr/', target: :_blank do %>
       <%= image_tag 'dashboard/iut-troyes.png', class: 'img-fluid img-bw' %>
     <% end %>
     <p class="small mt-3">Ars Praxis est conçu en collaboration avec David Annebicque, chef du département MMI Troyes et chercheur au CReSTIC.</p>
   </div>
-</div>
 </div>

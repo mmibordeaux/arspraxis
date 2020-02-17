@@ -24,9 +24,13 @@ class Referential::Resource < ApplicationRecord
   belongs_to :referential
   belongs_to :competency
 
-  default_scope { order(:name) }
+  default_scope { order(:id) }
+
+  def code
+    "R#{id}"
+  end
 
   def to_s
-    "R#{id}. #{name}"
+    "#{name}"
   end
 end

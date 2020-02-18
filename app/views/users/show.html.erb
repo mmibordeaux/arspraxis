@@ -35,3 +35,10 @@
     </div>
   <% end %>
 </div>
+<% if @student_in_groups.any? %>
+  <h2 class="mt-5">Promotions</h2>
+  <% @student_in_groups.each do |student| %>
+    <h3><%= student.group.name_with_program %></h3>
+    <%= render 'users/students/progression', student: student %>
+  <% end %>
+<% end %>

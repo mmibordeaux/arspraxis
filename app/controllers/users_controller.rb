@@ -10,6 +10,7 @@ class UsersController < ApplicationController
     @teacher_in_programs = @user.teacher_in_programs
     @manager_of_referentials = @user.manager_of_referentials
     @publications = @user.publications.published
+    @student_in_groups = @user.student_in_groups
     breadcrumb
     add_breadcrumb 'Utilisateurs', users_path
     add_breadcrumb @user

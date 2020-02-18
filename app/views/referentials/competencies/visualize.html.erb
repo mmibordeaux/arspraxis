@@ -1,0 +1,72 @@
+<%= content_for :title, 'Visualisation' %>
+
+<%
+@nodes = []
+@edges = []
+competency_id = "competency_#{@competency.id}"
+@nodes << {
+  id: competency_id,
+  label: @competency.name,
+  title: @competency.description,
+  color: '#292996',
+  size: 60
+}
+target = competency_id
+
+@referential.levels.reverse.each do |level|
+  level_id = "level_#{level.id}"
+  @nodes << {
+    id: level_id,
+    label: "#{level.code}",
+    title: "#{level.name}",
+    color: '#292996',
+    size: 15
+  }
+  @edges << {
+    from: target,
+    to: level_id
+  }
+  level.situations.each do |situation|
+    situation_id = "situation_#{situation.id}"
+    @nodes << {
+      id: situation_id,
+      label: "#{situation.name}",
+      color: '#A60020',
+      size: 30
+    }
+    @edges << {
+      from: situation_id,
+      to: level_id
+    }
+  end
+  target = level_id
+end
+@competency.critical_learnings.each do |critical_learning|
+  critical_learning_id = "critical_learning_#{critical_learning.id}"
+  @nodes << {
+    id: critical_learning_id,
+    label: "#{critical_learning.name}",
+    title: "#{critical_learning.description}",
+    color: '#E6B020',
+    size: 15
+  }
+  @edges << {
+    from: "level_#{critical_learning.level_id}",
+    to: critical_learning_id
+  }
+end
+@competency.resources.each do |resource|
+  resource_id = "resource_#{resource.id}"
+  @nodes << {
+    id: resource_id,
+    label: "#{resource.name}",
+    color: '#B0E620',
+    size: 15
+  }
+  @edges << {
+    from: competency_id,
+    to: resource_id
+  }
+end
+%>
+<%= render 'visualize', nodes: @nodes, edges: @edges %>

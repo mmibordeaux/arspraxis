@@ -5,6 +5,9 @@
     <h2><%= @competency.name %></h2>
     <p><%= @competency.full_description %></p>
     <%= edit_button [@referential, @competency] %>
+    <%= link_to 'Visualisation interactive',
+                visualize_referential_competency_path(@referential, @competency),
+                class: button_classes %>
   </div>
   <div class="col-md-4">
     <h3>Ressources</h3>

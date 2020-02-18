@@ -8,6 +8,7 @@ class Ability
     can :index, :all
     can :show, :all
     can :visualize, Referential
+    can :visualize, Referential::Competency
     user_authentified if @user.present?
   end
 

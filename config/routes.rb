@@ -139,7 +139,11 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :referentials do
-    resources :competencies, controller: 'referentials/competencies'
+    resources :competencies, controller: 'referentials/competencies' do
+      member do
+        get :visualize
+      end
+    end
     resources :critical_learnings, controller: 'referentials/critical_learnings'
     resources :levels, controller: 'referentials/levels'
     resources :managers, controller: 'referentials/managers'

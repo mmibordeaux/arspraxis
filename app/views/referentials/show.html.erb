@@ -26,6 +26,9 @@
     <%= simple_format @referential.description %>
     <p class="small"><b>Origine</b> <%= @referential.origin %></p>
     <%= edit_button @referential %>
+    <%= link_to 'Visualisation interactive',
+                visualize_referential_path(@referential),
+                class: button_classes %>
 
     <h3 class="mt-5">Niveaux</h3>
     <ul class="list-unstyled">

@@ -1,0 +1,17 @@
+<div id="visualize"></div>
+<script type="text/javascript">
+  var nodes = new vis.DataSet(<%= raw nodes.to_json %>);
+  var edges = new vis.DataSet(<%= raw edges.to_json %>);
+  var container = document.getElementById('visualize');
+  var data = {
+      nodes: nodes,
+      edges: edges
+  };
+  var options = {
+    nodes: {
+      shape: 'dot',
+      borderWidth: 0
+    }
+  };
+  var network = new vis.Network(container, data, options);
+</script>

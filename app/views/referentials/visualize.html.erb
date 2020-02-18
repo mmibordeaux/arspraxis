@@ -1,7 +1,5 @@
 <%= content_for :title, 'Visualisation' %>
 
-<div id="visualize"></div>
-<script type="text/javascript">
 <%
 # https://visjs.github.io/vis-network/docs/network/
 # https://visjs.github.io/vis-network/docs/network/interaction.html
@@ -18,16 +16,7 @@ referential_id = "referential_#{@referential.id}"
   color: '#292996',
   size: 60
 }
-# @referential.situations.each do |situation|
-#   situation_id = "situation_#{situation.id}"
-#   @nodes << {
-#     id: situation_id,
-#     label: "#{situation.code}",
-#     title: "#{situation.name}",
-#     color: '#E6B020',
-#     size: 30
-#   }
-# end
+
 @referential.competencies.each do |competency|
   competency_id = "competency_#{competency.id}"
   @nodes << {
@@ -51,22 +40,14 @@ referential_id = "referential_#{@referential.id}"
       from: target,
       to: level_id
     }
-    # level.situations.each do |situation|
-    #   situation_id = "situation_#{situation.id}"
-    #   @edges << {
-    #     from: situation_id,
-    #     to: level_id,
-    #     physics: false
-    #   }
-    # end
     target = level_id
   end
   competency.critical_learnings.each do |critical_learning|
     critical_learning_id = "critical_learning_#{critical_learning.id}"
     @nodes << {
       id: critical_learning_id,
-      label: "#{critical_learning.code}",
-      title: "#{critical_learning.name}",
+      label: "#{critical_learning.name}",
+      title: "#{critical_learning.description}",
       color: '#E6B020',
       size: 15
     }
@@ -75,39 +56,10 @@ referential_id = "referential_#{@referential.id}"
       to: critical_learning_id
     }
   end
-  # competency.resources.each do |resource|
-  #   resource_id = "resource_#{resource.id}"
-  #   @nodes << {
-  #     id: resource_id,
-  #     label: "#{resource.code}",
-  #     title: "#{resource.name}",
-  #     color: '#E6B020',
-  #     size: 15
-  #   }
-  #   @edges << {
-  #     from: competency_id,
-  #     to: resource_id,
-  #     physics: false
-  #   }
-  # end
   @edges << {
     from: referential_id,
     to: competency_id
   }
 end
 %>
-  var nodes = new vis.DataSet(<%= raw @nodes.to_json %>);
-  var edges = new vis.DataSet(<%= raw @edges.to_json %>);
-  var container = document.getElementById('visualize');
-  var data = {
-      nodes: nodes,
-      edges: edges
-  };
-  var options = {
-    nodes: {
-      shape: 'dot',
-      borderWidth: 0
-    }
-  };
-  var network = new vis.Network(container, data, options);
-</script>
+<%= render 'visualize', nodes: @nodes, edges: @edges %>

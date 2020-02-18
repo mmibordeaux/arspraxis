@@ -19,6 +19,11 @@ class Referentials::CompetenciesController < Referentials::ApplicationController
     breadcrumb
   end
 
+  def visualize
+    breadcrumb
+    add_breadcrumb 'Visualisation'
+  end
+
   # GET /competencies/new
   def new
     @referential = Referential.find params[:referential_id]

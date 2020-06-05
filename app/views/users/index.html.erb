@@ -29,8 +29,8 @@
         </td>
         <td class="small">
           <ul class="list-unstyled">
-            <% user.teacher_in_programs.each do |teacher| %>
-              <li><%= link_to teacher.program, teacher.program %></li>
+            <% user.manager_of_referentials.each do |manager| %>
+              <li><%= link_to manager.referential, manager.referential %></li>
             <% end %>
           </ul>
         </td>

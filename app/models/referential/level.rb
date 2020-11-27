@@ -29,7 +29,7 @@ class Referential::Level < ApplicationRecord
   has_many :critical_learnings
 
   scope :without_competency, -> { where(competency: nil) }
-  default_scope { order(:number) }
+  default_scope { order(:number, :competency_id) }
 
   def code
     "N#{number}"

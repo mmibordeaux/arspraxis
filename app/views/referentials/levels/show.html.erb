@@ -21,9 +21,24 @@
   </div>
 </div>
 
+<% if @level.competency.nil? %>
+  <h2 class="mt-5">Apprentissages critiques par compétences</h2>
 
-<h2 class="mt-5">Apprentissages critiques par compétences</h2>
+  <%= render 'referentials/critical_learnings/by_competencies',
+              competencies: @competencies,
+              number: @level.number,
+              new_critical_learning: @new_critical_learning %>
+<% else %>
+  <h2 class="mt-5">Apprentissages critiques</h2>
 
+
+  <%= render 'referentials/critical_learnings/by_competencies',
+              competencies: [@level.competency],
+              number: @level.number,
+              new_critical_learning: @new_critical_learning %>
+
+<% end %>
+<!--
 <div class="row mt-3">
   <% @competencies.each do |competency| %>
     <div class="col-md-4 mb-5">
@@ -44,3 +59,4 @@
     </div>
   <% end %>
 </div>
+-->

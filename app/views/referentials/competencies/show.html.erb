@@ -29,9 +29,7 @@
         <% @levels.each do |level| %>
           <th width="<%= 100/@levels.count %>%" style="min-width: 300px">
             <%= link_to level, referential_level_path(@referential, level) %>
-            <div class="small">
-              <%= simple_format level.description %>
-            </div>
+            <%= simple_format level.description %>
           </th>
         <% end %>
       </tr>
@@ -43,8 +41,8 @@
             <ul class="list-unstyled">
               <% @competency.critical_learnings.with_level(level).each do |critical_learning| %>
                 <li>
+                  <%= link_to critical_learning, referential_critical_learning_path(@referential, critical_learning), class:'badge badge-primary' %>
                   <p>
-                    <%= link_to critical_learning, referential_critical_learning_path(@referential, critical_learning), class:'badge badge-primary' %>
                     <%= critical_learning.description %>
                   </p>
                 </li>

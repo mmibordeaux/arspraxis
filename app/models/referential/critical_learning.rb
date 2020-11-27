@@ -42,6 +42,6 @@ class Referential::CriticalLearning < ApplicationRecord
   end
 
   def to_s
-    "#{code}. #{name}"
+    "#{code}"
   end
 end

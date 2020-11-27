@@ -3,8 +3,8 @@
 <table class="table">
   <thead>
     <tr>
-      <th>Numéro</th>
-      <th>Nom</th>
+      <th>Code</th>
+      <th>Description</th>
       <th>Compétence</th>
       <th>Niveau</th>
       <th></th>
@@ -14,8 +14,8 @@
   <tbody>
     <% @critical_learnings.each do |critical_learning| %>
       <tr>
-        <td><%= critical_learning.number %></td>
-        <td><%= critical_learning.name %></td>
+        <td><%= critical_learning %></td>
+        <td class="small"><%= critical_learning.description %></td>
         <td><%= link_to critical_learning.competency, referential_competency_path(@referential, critical_learning.competency) %></td>
         <td><%= link_to critical_learning.level, referential_level_path(@referential, critical_learning.level) %></td>
         <td>

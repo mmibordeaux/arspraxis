@@ -1,5 +1,9 @@
 <div class="jumbotron <%= controller_name %>">
   <div class="container">
+    <% if @referential && @referential.image.attached? && @referential.image.variable? %>
+      <%= image_tag @referential.image.variant(resize: '512x512'),
+                    class: 'img-fluid rounded-circle img__referential' %>
+    <% end %>
     <h1><%= yield :title %></h1>
     <% if @subtitle.present? %><p><%= simple_format @subtitle %></p><% end %>
   </div>

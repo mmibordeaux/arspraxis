@@ -25,6 +25,7 @@ gem 'bootstrap'
 gem 'sassc-rails'
 gem 'jquery-rails'
 gem 'trix-rails', require: 'trix'
+gem 'font-awesome-rails'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

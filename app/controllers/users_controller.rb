@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
   def index
     breadcrumb
-    add_breadcrumb 'Utilisateurs', users_path
+    add_breadcrumb 'Communauté', users_path
   end
 
   def show
@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     @publications = @user.publications.published
     @student_in_groups = @user.student_in_groups
     breadcrumb
-    add_breadcrumb 'Utilisateurs', users_path
+    add_breadcrumb 'Communauté', users_path
     add_breadcrumb @user
   end
 

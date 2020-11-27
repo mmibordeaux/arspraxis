@@ -36,20 +36,22 @@
         <%= link_to 'Formations', programs_path, class: 'nav-link' %>
       </li>
       <li class="nav-item">
-        <%= link_to 'Utilisateurs', users_path, class: 'nav-link' %>
+        <%= link_to 'Communauté', users_path, class: 'nav-link' %>
       </li>
       <% if user_signed_in? %>
         <li class="nav-item">
-          <%= link_to 'Mon compte', me_users_path, class: 'nav-link' %>
+          <%= link_to me_users_path, class: 'nav-link' do %>
+            <%= fa_icon 'user' %>
+            Mon compte
+          <% end %>
         </li>
       <% else %>
         <li class="nav-item">
-          <%= link_to t('devise.sessions.new.sign_in'), new_user_session_path, class: 'nav-link' %>
+          <%= link_to new_user_session_path, class: 'nav-link img-circle' do %>
+            <%= fa_icon 'user' %>
+            Connexion
+          <% end %>
         </li>
-        <li class="nav-item">
-          <%= link_to t('devise.registrations.new.sign_up'), new_user_registration_path, class: 'nav-link' %>
-        </li>
-
       <% end %>
     </ul>
   </div>

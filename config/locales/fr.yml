@@ -1,4 +1,8 @@
 fr:
+  devise:
+    shared:
+      links:
+        sign_up: Vous ne faites pas encore partie de la communauté? Inscrivez-vous.
   activerecord:
     errors:
       models:

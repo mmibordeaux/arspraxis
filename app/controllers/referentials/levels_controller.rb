@@ -22,7 +22,7 @@ class Referentials::LevelsController < Referentials::ApplicationController
   def number
     @number = params[:number]
     @competencies = @referential.competencies
-    @title = "Niveaux #{@number}"
+    @title = "Niveau #{@number}"
     breadcrumb
     add_breadcrumb @title
   end

@@ -27,7 +27,7 @@ referential_id = "referential_#{@referential.id}"
     size: 30
   }
   target = competency_id
-  @referential.levels.reverse.each do |level|
+  competency.levels.reverse.each do |level|
     level_id = "#{competency_id}_level_#{level.id}"
     @nodes << {
       id: level_id,

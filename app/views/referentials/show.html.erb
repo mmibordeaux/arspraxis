@@ -9,20 +9,22 @@
     <h3 class="mt-5">Compétences</h3>
     <div class="row">
       <% @referential.competencies.each do |competency| %>
-        <div class="col-md-6 mb-5">
-          <hr>
+        <div class="col-md-6 mb-5 mt-4">
           <%= link_to referential_competency_path(@referential, competency) do %>
             <p class="badge badge-primary"><%= competency %></p>
-            <h4><%= competency.name %></h4>
-            <%= competency.full_description %>
+            <h4><%= competency.description %></h4>
           <% end %>
+          <hr>
+          <p>
+            <%= competency.essential_components %>
+          </p>
         </div>
       <% end %>
     </div>
     <%= create_button @new_competency, new_referential_competency_path(@referential) %>
   </div>
 
-  <div class="col-md-4">
+  <div class="offset-md-1 col-md-3">
     <%= simple_format @referential.description %>
     <p class="small"><b>Origine</b> <%= @referential.origin %></p>
     <%= edit_button @referential %>

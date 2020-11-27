@@ -13,7 +13,7 @@ competency_id = "competency_#{@competency.id}"
 }
 target = competency_id
 
-@referential.levels.reverse.each do |level|
+@competency.levels.reverse.each do |level|
   level_id = "level_#{level.id}"
   @nodes << {
     id: level_id,
@@ -45,7 +45,7 @@ end
   critical_learning_id = "critical_learning_#{critical_learning.id}"
   @nodes << {
     id: critical_learning_id,
-    label: "#{critical_learning.name}",
+    label: "#{critical_learning.description.truncate(20)}",
     title: "#{critical_learning.description}",
     color: '#E6B020',
     size: 15
@@ -55,18 +55,18 @@ end
     to: critical_learning_id
   }
 end
-@competency.resources.each do |resource|
-  resource_id = "resource_#{resource.id}"
-  @nodes << {
-    id: resource_id,
-    label: "#{resource.name}",
-    color: '#B0E620',
-    size: 15
-  }
-  @edges << {
-    from: competency_id,
-    to: resource_id
-  }
-end
+# @competency.resources.each do |resource|
+#   resource_id = "resource_#{resource.id}"
+#   @nodes << {
+#     id: resource_id,
+#     label: "#{resource.name}",
+#     color: '#B0E620',
+#     size: 15
+#   }
+#   @edges << {
+#     from: competency_id,
+#     to: resource_id
+#   }
+# end
 %>
 <%= render 'visualize', nodes: @nodes, edges: @edges %>

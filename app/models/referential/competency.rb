@@ -25,8 +25,17 @@ class Referential::Competency < ApplicationRecord
   belongs_to :referential
   has_many :resources
   has_many :critical_learnings
+  has_many :levels
 
   default_scope { order(:number) }
+
+  def levels_with_defaults
+    levels + referential.levels.without_competency
+  end
+
+  def level_with_number(number)
+    levels.find_by(number: number) || referential.levels.without_competency.find_by(number: number)
+  end
 
   def full_description
     "#{description} #{essential_components}"

@@ -5,6 +5,8 @@
     <tr>
       <th>Numéro</th>
       <th>Nom</th>
+      <th>Compétence</th>
+      <th>Description</th>
       <th></th>
     </tr>
   </thead>
@@ -14,6 +16,8 @@
       <tr>
         <td><%= level.number %></td>
         <td><%= level.name %></td>
+        <td><%= level.competency %></td>
+        <td class="small"><%= level.description %></td>
         <td>
           <%= show_button [@referential, level] %>
           <%= edit_button [@referential, level] %>

@@ -6,6 +6,7 @@
       <th>Numéro</th>
       <th>Nom court</th>
       <th>Nom</th>
+      <th>Description</th>
       <th></th>
     </tr>
   </thead>
@@ -16,6 +17,7 @@
         <td><%= competency.number %></td>
         <td><%= competency.short_name %></td>
         <td><%= competency.name %></td>
+        <td class="small"><%= simple_format competency.description %></td>
         <td>
           <%= show_button [@referential, competency] %>
           <%= edit_button [@referential, competency] %>

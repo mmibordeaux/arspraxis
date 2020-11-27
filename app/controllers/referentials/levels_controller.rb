@@ -19,10 +19,18 @@ class Referentials::LevelsController < Referentials::ApplicationController
     breadcrumb
   end
 
+  def number
+    @number = params[:number]
+    @competencies = @referential.competencies
+    @title = "Numéro #{@number}"
+    breadcrumb
+    add_breadcrumb @title
+  end
+
   # GET /levels/new
   def new
     @level.referential = @referential
-    @level.number = @referential.levels.count + 1
+    @level.number = 1
     breadcrumb
     add_breadcrumb 'Nouveau niveau'
   end
@@ -82,6 +90,6 @@ class Referentials::LevelsController < Referentials::ApplicationController
   private
 
   def level_params
-    params.require(:referential_level).permit(:number, :name, :description, :referential_id)
+    params.require(:referential_level).permit(:number, :name, :description, :referential_id, :competency_id)
   end
 end

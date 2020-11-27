@@ -16,6 +16,7 @@ class Referentials::CompetenciesController < Referentials::ApplicationController
     @new_resource = Referential::Resource.new referential: @referential
     @new_situation = Referential::Situation.new referential: @referential
     @new_critical_learning = Referential::CriticalLearning.new referential: @referential
+    @levels = @competency.levels_with_defaults
     breadcrumb
   end
 

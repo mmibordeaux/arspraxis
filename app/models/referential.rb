@@ -23,6 +23,10 @@ class Referential < ApplicationRecord
 
   default_scope { order(:name) }
 
+  def level_numbers
+    @level_numbers ||= levels.pluck(:number).uniq.sort
+  end
+
   def to_s
     "#{name}"
   end

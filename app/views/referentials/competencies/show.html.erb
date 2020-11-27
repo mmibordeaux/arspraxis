@@ -26,16 +26,19 @@
   <table class="table table-bordered mt-3">
     <thead>
       <tr>
-        <% @referential.levels.each do |level| %>
-          <th width="<%= 100/@referential.levels.count %>%" style="min-width: 300px">
+        <% @levels.each do |level| %>
+          <th width="<%= 100/@levels.count %>%" style="min-width: 300px">
             <%= link_to level, referential_level_path(@referential, level) %>
+            <div class="small">
+              <%= simple_format level.description %>
+            </div>
           </th>
         <% end %>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <% @referential.levels.each do |level| %>
+        <% @levels.each do |level| %>
           <td>
             <ul class="list-unstyled">
               <% @competency.critical_learnings.with_level(level).each do |critical_learning| %>

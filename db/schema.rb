@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_20_050743) do
+ActiveRecord::Schema.define(version: 2020_11_27_140406) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -102,6 +102,8 @@ ActiveRecord::Schema.define(version: 2019_11_20_050743) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "description"
+    t.bigint "competency_id"
+    t.index ["competency_id"], name: "index_referential_levels_on_competency_id"
     t.index ["referential_id"], name: "index_referential_levels_on_referential_id"
   end
 
@@ -214,6 +216,7 @@ ActiveRecord::Schema.define(version: 2019_11_20_050743) do
   add_foreign_key "referential_competencies", "referentials"
   add_foreign_key "referential_critical_learnings", "referential_competencies", column: "competency_id"
   add_foreign_key "referential_critical_learnings", "referential_levels", column: "level_id"
+  add_foreign_key "referential_levels", "referential_competencies", column: "competency_id"
   add_foreign_key "referential_levels", "referentials"
   add_foreign_key "referential_managers", "referentials"
   add_foreign_key "referential_managers", "users"

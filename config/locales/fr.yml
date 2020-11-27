@@ -4,6 +4,12 @@ fr:
       links:
         sign_up: Vous ne faites pas encore partie de la communauté? Inscrivez-vous.
   activerecord:
+    attributes:
+      referential/level:
+        number: Numéro
+        name: Nom
+        competency: Compétence
+        description: Description
     errors:
       models:
         user:

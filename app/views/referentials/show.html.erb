@@ -32,8 +32,8 @@
 
     <h3 class="mt-5">Niveaux</h3>
     <ul class="list-unstyled">
-      <% @referential.levels.each do |level| %>
-        <li><%= link_to level, referential_level_path(@referential, level) %></li>
+      <% @referential.level_numbers.each do |number| %>
+        <li><%= link_to number, referential_level_number_path(@referential, number: number) %></li>
       <% end %>
     </ul>
     <%= create_button @new_level, new_referential_level_path(@referential) %>

@@ -16,6 +16,7 @@
 #                                    PUT    /users(.:format)                                                                         devise/registrations#update
 #                                    DELETE /users(.:format)                                                                         devise/registrations#destroy
 #                                    POST   /users(.:format)                                                                         devise/registrations#create
+#   visualize_referential_competency GET    /referentials/:referential_id/competencies/:id/visualize(.:format)                       referentials/competencies#visualize
 #           referential_competencies GET    /referentials/:referential_id/competencies(.:format)                                     referentials/competencies#index
 #                                    POST   /referentials/:referential_id/competencies(.:format)                                     referentials/competencies#create
 #         new_referential_competency GET    /referentials/:referential_id/competencies/new(.:format)                                 referentials/competencies#new
@@ -64,6 +65,7 @@
 #                                    PATCH  /referentials/:referential_id/situations/:id(.:format)                                   referentials/situations#update
 #                                    PUT    /referentials/:referential_id/situations/:id(.:format)                                   referentials/situations#update
 #                                    DELETE /referentials/:referential_id/situations/:id(.:format)                                   referentials/situations#destroy
+#              visualize_referential GET    /referentials/:id/visualize(.:format)                                                    referentials#visualize
 #                       referentials GET    /referentials(.:format)                                                                  referentials#index
 #                                    POST   /referentials(.:format)                                                                  referentials#create
 #                    new_referential GET    /referentials/new(.:format)                                                              referentials#new
@@ -124,10 +126,11 @@
 #                                    PATCH  /users/me(.:format)                                                                      users#update
 #                              users GET    /users(.:format)                                                                         users#index
 #                               user GET    /users/:id(.:format)                                                                     users#show
-#         documentation_for_students GET    /documentation-for-students(.:format)                                                    documentation#students
-#         documentation_for_teachers GET    /documentation-for-teachers(.:format)                                                    documentation#teachers
-#       documentation_for_university GET    /documentation-for-university(.:format)                                                  documentation#university
-#       documentation_for_developers GET    /documentation-for-developers(.:format)                                                  documentation#developers
+#         documentation_for_students GET    /documentation/for-students(.:format)                                                    documentation#students
+#         documentation_for_teachers GET    /documentation/for-teachers(.:format)                                                    documentation#teachers
+#       documentation_for_university GET    /documentation/for-university(.:format)                                                  documentation#university
+#       documentation_for_developers GET    /documentation/for-developers(.:format)                                                  documentation#developers
+#                      documentation GET    /documentation(.:format)                                                                 documentation#index
 #                               root GET    /                                                                                        dashboard#index
 #                 rails_service_blob GET    /rails/active_storage/blobs/:signed_id/*filename(.:format)                               active_storage/blobs#show
 #          rails_blob_representation GET    /rails/active_storage/representations/:signed_blob_id/:variation_key/*filename(.:format) active_storage/representations#show
@@ -145,6 +148,7 @@ Rails.application.routes.draw do
       end
     end
     resources :critical_learnings, controller: 'referentials/critical_learnings'
+    get 'levels/number-:number' => 'referentials/levels#number', as: :level_number
     resources :levels, controller: 'referentials/levels'
     resources :managers, controller: 'referentials/managers'
     resources :resources, controller: 'referentials/resources'

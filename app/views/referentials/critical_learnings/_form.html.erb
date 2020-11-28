@@ -3,10 +3,10 @@
                             referential_critical_learnings_path(@referential)
                             : referential_critical_learning_path(@referential, critical_learning) do |f| %>
   <div class="row">
-    <div class="col-md-1">
+    <div class="col-md-2">
       <%= f.input :number %>
     </div>
-    <div class="col-md-2">
+    <div class="col-md-3">
       <%= f.association :competency,
                         label: 'Compétence',
                         collection: @referential.competencies,
@@ -19,9 +19,9 @@
                         include_blank: false %>
 
     </div>
-    <div class="col-md-6">
+    <div class="col-md-4">
       <%= f.input :description,
-                  input_html: { rows: 2 } %>
+                  input_html: { rows: 5 } %>
     </div>
   </div>
   <div class="row">

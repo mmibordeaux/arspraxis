@@ -12,11 +12,14 @@
         <div class="col-md-6 mb-5 mt-4">
           <%= link_to referential_competency_path(@referential, competency) do %>
             <p class="badge badge-primary"><%= competency %></p>
-            <h4><%= competency.description %></h4>
+            <h4><%= competency.name %></h4>
           <% end %>
           <hr>
+          <p><%= competency.description %></p>
           <p>
-            <%= competency.essential_components %>
+            <i>
+              <%= competency.essential_components %>
+            </i>
           </p>
         </div>
       <% end %>

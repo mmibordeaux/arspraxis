@@ -32,6 +32,10 @@ class Referential::CriticalLearning < ApplicationRecord
   belongs_to :referential
   belongs_to :competency
   belongs_to :level
+  has_many  :user_evaluations,
+            class_name: 'User::Evaluation',
+            foreign_key: :referential_critical_learning_id,
+            dependent: :nullify
 
   scope :with_level, -> (level) { where(level: level) }
   scope :with_compency, -> (competency) { where(competency: competency) }

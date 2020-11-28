@@ -15,7 +15,7 @@
     <% @levels.each do |level| %>
       <tr>
         <td><%= level.number %></td>
-        <td><%= link_to level.competency, referential_competency_path(@referential, level.competency) %></td>
+        <td><%= link_to level.competency, referential_competency_path(@referential, level.competency) if level.competency %></td>
         <td><%= level.name %></td>
         <td class="small"><%= level.description %></td>
         <td>

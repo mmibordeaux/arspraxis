@@ -9,6 +9,7 @@ class Ability
     can :show, :all
     can :visualize, Referential
     can :visualize, Referential::Competency
+    can :number, Referential::Level
     user_authentified if @user.present?
   end
 

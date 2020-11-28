@@ -1,9 +1,13 @@
-<% content_for :title, "Prenez en main vos apprentissages" %>
+<%
+content_for :title, "Prenez en main vos apprentissages"
+description = "L'Approche par Compétences (APC) fait évoluer la façon d'enseigner et d'évaluer la progression des apprenants. Ars&nbsp;Praxis est une plateforme Open Source permettant l'évaluation par portfolio de traces, dans le cadre de l'APC."
+content_for :description, description
+%>
 
 <div class="row">
   <div class="offset-md-3 col-md-6">
     <h2 class="quote">
-      L'Approche par Compétences (APC) fait évoluer la façon d'enseigner et d'évaluer la progression des apprenants. Ars&nbsp;Praxis est une plateforme Open Source permettant l'évaluation par portfolio de traces, dans le cadre de l'APC.
+      <%= raw description %>
     </h2>
   </div>
 </div>

@@ -9,13 +9,19 @@
                 visualize_referential_competency_path(@referential, @competency),
                 class: button_classes %>
   </div>
-  <div class="col-md-4">
+  <div class="col-md-8">
     <h3>Ressources</h3>
-    <ul class="list-unstyled">
+    <div class="row">
       <% @competency.resources.each do |resource| %>
-        <li><%= link_to resource, referential_resource_path(@referential, resource) %></li>
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <div class="card-body">
+              <%= link_to resource, referential_resource_path(@referential, resource) %>
+            </div>
+          </div>
+        </div>
       <% end %>
-    </ul>
+    </div>
     <%= create_button @new_resource, new_referential_resource_path(@referential, competency_id: @competency) %>
   </div>
 </div>

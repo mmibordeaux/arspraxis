@@ -31,6 +31,14 @@ class Referential::Level < ApplicationRecord
   scope :without_competency, -> { where(competency: nil) }
   default_scope { order(:number, :competency_id) }
 
+  def monocompetency?
+    competency.present?
+  end
+
+  def multicompetency?
+    !monocompetency?
+  end
+
   def code
     "N#{number}"
   end

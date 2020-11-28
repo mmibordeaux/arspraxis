@@ -1,62 +1,63 @@
 <%= content_for :title, "#{@level}" %>
 
-<div class="row">
-  <div class="col-md-4">
-    <%= simple_format @level.description %>
-    <%= edit_button [@referential, @level] %>
-  </div>
-  <div class="col-md-4">
-    <h2>Situations</h2>
-    <ul class="list-unstyled">
-      <% @situations.each do |situation| %>
-        <li>
+<div class="lead">
+  <%= simple_format @level.description %>
+</div>
+<%= edit_button [@referential, @level] %>
+
+<% if @situations.any? %>
+  <h2 class="mt-5">Situations</h2>
+  <div class="row">
+    <% @situations.each do |situation| %>
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body">
           <p><%= link_to situation, referential_situation_path(@referential, situation) %></p>
           <div class="small">
             <%= simple_format situation.description %>
           </div>
-        </li>
-      <% end %>
-    </ul>
-    <%= create_button @new_situation, new_referential_situation_path(@referential, level_id: @level.id) %>
-  </div>
-</div>
-
-<% if @level.competency.nil? %>
-  <h2 class="mt-5">Apprentissages critiques par compétences</h2>
-
-  <%= render 'referentials/critical_learnings/by_competencies',
-              competencies: @competencies,
-              number: @level.number,
-              new_critical_learning: @new_critical_learning %>
-<% else %>
-  <h2 class="mt-5">Apprentissages critiques</h2>
-
-
-  <%= render 'referentials/critical_learnings/by_competencies',
-              competencies: [@level.competency],
-              number: @level.number,
-              new_critical_learning: @new_critical_learning %>
-
-<% end %>
-<!--
-<div class="row mt-3">
-  <% @competencies.each do |competency| %>
-    <div class="col-md-4 mb-5">
-      <hr>
-      <p class="badge badge-primary"><%= competency %></p>
-      <p><b><%= link_to competency.name, referential_competency_path(@referential, competency) %></b></p>
-      <ul class="list-unstyled">
-        <% competency.critical_learnings.with_level(@level).each do |critical_learning| %>
-          <li>
-            <p><%= link_to critical_learning, referential_critical_learning_path(@referential, critical_learning) %></p>
-            <div class="small">
-              <%= simple_format critical_learning.description %>
-            </div>
-          </li>
-        <% end %>
-      </ul>
-      <%= create_button @new_critical_learning, new_referential_critical_learning_path(@referential, competency_id: competency.id, level_id: @level.id) %>
+        </div>
+      </div>
     </div>
-  <% end %>
-</div>
--->
+    <% end %>
+  </div>
+  <%= create_button @new_situation, new_referential_situation_path(@referential, level_id: @level.id) %>
+<% end %>
+
+<% if @level.multicompetency? %>
+  <h2 class="mt-5">Apprentissages critiques par compétences</h2>
+  <div class="row mt-3">
+    <% @competencies.each do |competency| %>
+      <div class="col-md-6 mb-5">
+        <%= link_to competency.short_name,
+                    referential_competency_path(@referential, competency),
+                    class: 'badge badge-primary' %>
+        <p><b><%= link_to competency.name, referential_competency_path(@referential, competency) %></b></p>
+        <hr>
+        <ul class="list-unstyled">
+          <% competency.critical_learnings.with_level(@level).each do |critical_learning| %>
+            <li>
+              <%= link_to critical_learning,
+                          referential_critical_learning_path(@referential, critical_learning),
+                          class: 'badge badge-primary' %>
+              <%= simple_format critical_learning.description %>
+            </li>
+          <% end %>
+        </ul>
+        <%= create_button @new_critical_learning, new_referential_critical_learning_path(@referential, competency_id: competency.id, level_id: @level.id) %>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <p class="mt-5 text-muted">Apprentissages critiques</p>
+  <ul class="list-unstyled">
+    <% @level.competency.critical_learnings.with_level(@level).each do |critical_learning| %>
+      <li>
+        <%= link_to critical_learning,
+                    referential_critical_learning_path(@referential, critical_learning),
+                    class: 'badge badge-primary' %>
+        <%= simple_format critical_learning.description %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>

@@ -1,6 +1,30 @@
 <%= content_for :title, @title %>
 
-<%= render 'referentials/critical_learnings/by_competencies',
-            competencies: @competencies,
-            number: @number,
-            new_critical_learning: @new_critical_learning %>
+<div class="row mt-3">
+  <% @competencies.each do |competency| %>
+    <% level = competency.level_with_number(@number) %>
+    <% next if level.nil? %>
+    <div class="col-md-6 mb-5 mt-4">
+      <%= link_to competency.short_name, referential_competency_path(@referential, competency), class: 'badge badge-primary' %>
+      <%= link_to referential_level_path(@referential, level) do %>
+        <% if level.description.length > 100 %>
+          <%= simple_format level.description %>
+        <% else %>
+          <h3><%= link_to level.description, referential_level_path(@referential, level) %></h3>
+        <% end %>
+      <% end %>
+      <hr>
+      <ul class="list-unstyled">
+        <% competency.critical_learnings.with_level(level).each do |critical_learning| %>
+          <li>
+            <%= link_to critical_learning,
+                        referential_critical_learning_path(@referential, critical_learning),
+                        class: 'badge badge-primary' %>
+            <%= simple_format critical_learning.description %>
+          </li>
+        <% end %>
+      </ul>
+      <%= create_button @new_critical_learning, new_referential_critical_learning_path(@referential, competency_id: competency.id, level_id: level.id) %>
+    </div>
+  <% end %>
+</div>

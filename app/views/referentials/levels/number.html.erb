@@ -1,5 +1,11 @@
 <%= content_for :title, @title %>
 
+<% if @global_level %>
+  <div class="lead">
+    <%= simple_format @global_level.description %>
+  </div>
+<% end %>
+
 <div class="row mt-3">
   <% @competencies.each do |competency| %>
     <% level = competency.level_with_number(@number) %>

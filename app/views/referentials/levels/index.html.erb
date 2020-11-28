@@ -17,7 +17,7 @@
         <td><%= level.number %></td>
         <td><%= link_to level.competency, referential_competency_path(@referential, level.competency) if level.competency %></td>
         <td><%= level.name %></td>
-        <td class="small"><%= level.description %></td>
+        <td class="small"><%= simple_format level.description %></td>
         <td>
           <%= show_button [@referential, level] %>
           <%= edit_button [@referential, level] %>

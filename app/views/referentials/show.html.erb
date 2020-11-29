@@ -28,28 +28,33 @@
 </div>
 
 <h3 class="mt-5">Compétences</h3>
-<div class="row">
-  <% @referential.competencies.each do |competency| %>
-    <div class="col-md-6 mb-5 mt-4">
-      <%= link_to referential_competency_path(@referential, competency) do %>
-        <p class="badge badge-primary"><%= competency %></p>
-        <h4><%= competency.name %></h4>
-      <% end %>
-      <hr>
-      <p><%= competency.description %></p>
-      <p>
-        <i>
-          <%= competency.essential_components %>
-        </i>
-      </p>
+<% @referential.competencies.each do |competency| %>
+
+  <div class=" mt-5">
+    <%= link_to referential_competency_path(@referential, competency) do %>
+      <p class="badge badge-primary"><%= competency %></p>
+    <% end %>
+    <div class="row">
+      <div class="col-md-3">
+        <%= link_to referential_competency_path(@referential, competency) do %>
+          <h4><%= competency.name %></h4>
+        <% end %>
+      </div>
+      <div class="col-md-3">
+        <%= competency.description %>
+      </div>
+      <div class="col-md-6">
+        <i><%= simple_format competency.essential_components %></i>
+      </div>
     </div>
-  <% end %>
-</div>
+  </div>
+  <hr class="mt-5">
+<% end %>
 <%= create_button @new_competency, new_referential_competency_path(@referential) %>
 
 
 <h3 class="mt-5">Niveaux</h3>
-<div class="row">
+<div class="row mb-4">
   <% @referential.level_numbers.each do |number| %>
     <div class="col-md-4">
       <%= link_to referential_level_number_path(@referential, number: number) do %>

@@ -1,31 +1,3 @@
 <%= content_for :title, 'Compétences' %>
-
-<table class="table">
-  <thead>
-    <tr>
-      <th>Numéro</th>
-      <th>Nom court</th>
-      <th>Nom</th>
-      <th>Description</th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @competencies.each do |competency| %>
-      <tr>
-        <td><%= competency.number %></td>
-        <td><%= competency.short_name %></td>
-        <td><%= competency.name %></td>
-        <td class="small"><%= simple_format competency.description %></td>
-        <td>
-          <%= show_button [@referential, competency] %>
-          <%= edit_button [@referential, competency] %>
-          <%= destroy_button [@referential, competency] %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
+<%= render 'referentials/competencies/list', competencies: @competencies %>
 <%= create_button @new_competency, new_referential_competency_path(@referential) %>

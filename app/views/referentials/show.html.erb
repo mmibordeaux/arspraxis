@@ -28,30 +28,8 @@
 </div>
 
 <h3 class="mt-5">Compétences</h3>
-<% @referential.competencies.each do |competency| %>
-
-  <div class=" mt-5">
-    <%= link_to referential_competency_path(@referential, competency) do %>
-      <p class="badge badge-primary"><%= competency %></p>
-    <% end %>
-    <div class="row">
-      <div class="col-md-3">
-        <%= link_to referential_competency_path(@referential, competency) do %>
-          <h4><%= competency.name %></h4>
-        <% end %>
-      </div>
-      <div class="col-md-3">
-        <%= competency.description %>
-      </div>
-      <div class="col-md-6">
-        <i><%= simple_format competency.essential_components %></i>
-      </div>
-    </div>
-  </div>
-  <hr class="mt-5">
-<% end %>
+<%= render 'referentials/competencies/list', competencies: @referential.competencies %>
 <%= create_button @new_competency, new_referential_competency_path(@referential) %>
-
 
 <h3 class="mt-5">Niveaux</h3>
 <div class="row mb-4">

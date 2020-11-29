@@ -1,63 +1,54 @@
 <%= content_for :title, "#{@competency}" %>
 
+<h2 class="mt-5"><%= @competency.name %></h2>
 <div class="row">
-  <div class="col-md-4">
-    <h2><%= @competency.name %></h2>
-    <p><%= @competency.full_description %></p>
-    <%= edit_button [@referential, @competency] %>
-    <%= link_to 'Visualisation interactive',
-                visualize_referential_competency_path(@referential, @competency),
-                class: button_classes %>
+  <div class="col-md-6">
+    <p class="lead"><%= @competency.description %></p>
   </div>
-  <div class="col-md-8">
-    <h3>Ressources</h3>
-    <div class="row">
-      <% @competency.resources.each do |resource| %>
-        <div class="col-md-4 mb-4">
-          <div class="card">
-            <div class="card-body">
-              <%= link_to resource, referential_resource_path(@referential, resource) %>
-            </div>
-          </div>
-        </div>
-      <% end %>
-    </div>
-    <%= create_button @new_resource, new_referential_resource_path(@referential, competency_id: @competency) %>
+  <div class="col-md-6">
+    <i><%= simple_format @competency.essential_components %></i>
   </div>
 </div>
+<%= edit_button [@referential, @competency] %>
+<%= link_to 'Visualisation interactive',
+visualize_referential_competency_path(@referential, @competency),
+class: button_classes %>
 
 <h3 class="mt-5">Apprentissages critiques par niveaux</h3>
+<% @levels.each do |level| %>
+  <div class="row mt-5">
+    <div class="col-md-3">
+      <h4><%= link_to level, referential_level_path(@referential, level) %></h4>
+    </div>
+    <div class="col-md-9">
+      <%= simple_format level.description %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="offset-md-3 col-md-9">
+      <ul class="list-unstyled">
+        <% @competency.critical_learnings.with_level(level).each do |critical_learning| %>
+        <li>
+          <%= link_to critical_learning, referential_critical_learning_path(@referential, critical_learning), class:'badge badge-primary' %>
+          <%= simple_format critical_learning.description %>
+        </li>
+        <% end %>
+      </ul>
+      <%= create_button @new_critical_learning, new_referential_critical_learning_path(@referential, competency_id: @competency.id, level_id: level.id) %>
+    </div>
+  </div>
+<% end %>
 
-<div class="table-responsive">
-  <table class="table table-bordered mt-3">
-    <thead>
-      <tr>
-        <% @levels.each do |level| %>
-          <th width="<%= 100/@levels.count %>%" style="min-width: 300px">
-            <%= link_to level, referential_level_path(@referential, level) %>
-            <%= simple_format level.description %>
-          </th>
-        <% end %>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <% @levels.each do |level| %>
-          <td>
-            <ul class="list-unstyled">
-              <% @competency.critical_learnings.with_level(level).each do |critical_learning| %>
-                <li>
-                  <%= link_to critical_learning, referential_critical_learning_path(@referential, critical_learning), class:'badge badge-primary' %>
-                  <p>
-                    <%= critical_learning.description %>
-                  </p>
-                </li>
-              <% end %>
-            </ul>
-            <%= create_button @new_critical_learning, new_referential_critical_learning_path(@referential, competency_id: @competency.id, level_id: level.id) %>
-          </td>
-        <% end %>
-      </tr>
-    </tbody>
-  </table>
+<h3 class="mt-5">Ressources</h3>
+<div class="row">
+  <% @competency.resources.each do |resource| %>
+    <div class="col-md-3 mb-4">
+      <div class="card">
+        <div class="card-body">
+          <%= link_to resource, referential_resource_path(@referential, resource) %>
+        </div>
+      </div>
+    </div>
+  <% end %>
 </div>
+<%= create_button @new_resource, new_referential_resource_path(@referential, competency_id: @competency) %>

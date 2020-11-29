@@ -28,6 +28,7 @@ class Referential::Level < ApplicationRecord
   has_many :situations
   has_many :critical_learnings
 
+  scope :with_competency, -> { where.not(competency: nil) }
   scope :without_competency, -> { where(competency: nil) }
   default_scope { order(:number, :competency_id) }
 

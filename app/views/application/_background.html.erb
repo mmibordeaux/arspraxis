@@ -1,5 +1,7 @@
 <% if @referential && @referential.image.attached? && @referential.image.variable? %>
   <style media="screen">
-    background-image: asset-url('<%= url_for @referential.image.variant(resize: '1920', quality: 80) %>') !important;
+    body {
+      background-image: asset-url('<%= url_for @referential.image.variant(resize: '1920', quality: 80) %>') !important;
+    }
   </style>
 <% end %>

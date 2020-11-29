@@ -11,7 +11,9 @@
     <%= javascript_include_tag 'application' %>
     <%= favicon_link_tag 'favicon.png' %>
   </head>
-  <body>
+  <body <% if @referential && @referential.image.attached? && @referential.image.variable? %>
+      style="background-image: asset-url('<%= url_for @referential.image.variant(resize: '1920', quality: 80) %>') !important;"
+    <% end %>>
     <%= render 'application/nav' %>
     <%= render 'application/jumbotron' %>
     <main>
@@ -23,6 +25,5 @@
       </div>
     </main>
     <%= render 'application/footer' %>
-    <%= render 'application/background' %>
   </body>
 </html>

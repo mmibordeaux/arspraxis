@@ -148,7 +148,6 @@ Rails.application.routes.draw do
       end
     end
     resources :critical_learnings, controller: 'referentials/critical_learnings'
-    get 'levels/number-:number' => 'referentials/levels#number', as: :level_number
     resources :levels, controller: 'referentials/levels'
     resources :managers, controller: 'referentials/managers'
     resources :resources, controller: 'referentials/resources'

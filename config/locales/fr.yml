@@ -10,6 +10,12 @@ fr:
         name: Nom
         competency: Compétence
         description: Description
+      referential/situation:
+        number: Numéro
+        level: Niveau
+        competency: Compétence
+        name: Nom
+        description: Description
     errors:
       models:
         user:

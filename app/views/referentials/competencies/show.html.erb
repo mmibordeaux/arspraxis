@@ -12,6 +12,12 @@
   </div>
 </div>
 
+<% if @competency.situations.any? %>
+  <h2 class="hcategory">Situations</h2>
+  <%= render 'referentials/situations/list', situations: @competency.situations %>
+  <%= create_button @new_situation, new_referential_situation_path(@referential, competency_id: @competency.id) %>
+<% end %>
+
 <h2 class="hcategory">Apprentissages critiques par niveaux</h2>
 <% @levels.each do |level| %>
   <div class="row mt-5">

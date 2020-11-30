@@ -5,22 +5,9 @@
 </div>
 <%= edit_button [@referential, @level] %>
 
-<% if @situations.any? %>
+<% if @level.situations.any? %>
   <h2 class="hcategory">Situations</h2>
-  <div class="row mb-1">
-    <% @situations.each do |situation| %>
-    <div class="col-md-4">
-      <div class="card">
-        <div class="card-body">
-          <p><%= link_to situation, referential_situation_path(@referential, situation) %></p>
-          <div class="small">
-            <%= simple_format situation.description %>
-          </div>
-        </div>
-      </div>
-    </div>
-    <% end %>
-  </div>
+  <%= render 'referentials/situations/list', situations: @level.situations %>
   <%= create_button @new_situation, new_referential_situation_path(@referential, level_id: @level.id) %>
 <% end %>
 

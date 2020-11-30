@@ -14,18 +14,8 @@ class Referentials::LevelsController < Referentials::ApplicationController
   # GET /levels/1.json
   def show
     @competencies = @referential.competencies
-    @situations = @level.situations
     @new_situation = Referential::Situation.new referential_id: @referential.id
     breadcrumb
-  end
-
-  def number
-    @number = params[:number]
-    @competencies = @referential.competencies
-    @global_level = @referential.global_level(@number)
-    @title = "Niveau #{@number}"
-    breadcrumb
-    add_breadcrumb @title
   end
 
   # GET /levels/new

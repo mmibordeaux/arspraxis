@@ -5,20 +5,20 @@
     <tr>
       <th>Nom</th>
       <th>Niveau</th>
-      <th></th>
+      <th>Compétence</th>
     </tr>
   </thead>
 
   <tbody>
     <% @situations.each do |situation| %>
       <tr>
-        <td><%= situation %></td>
-        <td><%= link_to situation.level, referential_level_path(@referential, situation.level) %></td>
         <td>
-          <%= show_button [@referential, situation] %>
+          <%= link_to situation, referential_situation_path(@referential, situation) %>
           <%= edit_button [@referential, situation] %>
           <%= destroy_button [@referential, situation] %>
         </td>
+        <td><%= link_to situation.level, referential_level_path(@referential, situation.level) if situation.level %></td>
+        <td><%= link_to situation.competency, referential_competency_path(@referential, situation.competency) if situation.competency %></td>
       </tr>
     <% end %>
   </tbody>

@@ -23,14 +23,6 @@ class Referential < ApplicationRecord
 
   default_scope { order(:name) }
 
-  def level_numbers
-    @level_numbers ||= levels.pluck(:number).uniq.sort
-  end
-
-  def global_level(number)
-    levels.without_competency.find_by(number: number)
-  end
-
   def to_s
     "#{name}"
   end

@@ -2,16 +2,15 @@
                     url:  situation.new_record? ? referential_situations_path(@referential)
                             : referential_situation_path(@referential, situation) do |f| %>
   <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-2">
       <%= f.input :number %>
-      <%= f.association :level,
-                        label: 'Niveau',
-                        collection: @referential.levels,
-                        include_blank: false %>
     </div>
-    <div class="col-md-8">
-      <%= f.input :name,
-                  label: 'Nom' %>
+    <div class="col-md-4">
+      <%= f.association :level, collection: @referential.levels.without_competency %>
+      <%= f.association :competency, collection: @referential.competencies %>
+    </div>
+    <div class="col-md-6">
+      <%= f.input :name %>
       <%= f.input :description %>
     </div>
   </div>

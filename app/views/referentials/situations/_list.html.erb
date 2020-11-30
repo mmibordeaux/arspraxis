@@ -1,0 +1,14 @@
+<div class="row mb-4">
+  <% situations.each do |situation| %>
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body">
+          <p><%= link_to situation, referential_situation_path(@referential, situation) %></p>
+          <div class="small">
+            <%= simple_format situation.description %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

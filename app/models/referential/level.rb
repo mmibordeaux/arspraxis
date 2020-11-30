@@ -30,7 +30,7 @@ class Referential::Level < ApplicationRecord
 
   scope :with_competency, -> { where.not(competency: nil) }
   scope :without_competency, -> { where(competency: nil) }
-  default_scope { order(:number, :competency_id) }
+  default_scope { order('number, competency_id NULLS FIRST') }
 
   def monocompetency?
     competency.present?

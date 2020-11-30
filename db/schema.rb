@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_27_140406) do
+ActiveRecord::Schema.define(version: 2020_11_30_094129) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -135,6 +135,8 @@ ActiveRecord::Schema.define(version: 2020_11_27_140406) do
     t.bigint "referential_id"
     t.string "name"
     t.bigint "level_id"
+    t.bigint "competency_id"
+    t.index ["competency_id"], name: "index_referential_situations_on_competency_id"
     t.index ["level_id"], name: "index_referential_situations_on_level_id"
     t.index ["referential_id"], name: "index_referential_situations_on_referential_id"
   end
@@ -221,6 +223,7 @@ ActiveRecord::Schema.define(version: 2020_11_27_140406) do
   add_foreign_key "referential_managers", "referentials"
   add_foreign_key "referential_managers", "users"
   add_foreign_key "referential_resources", "referential_competencies", column: "competency_id"
+  add_foreign_key "referential_situations", "referential_competencies", column: "competency_id"
   add_foreign_key "user_evaluations", "program_teachers", column: "user_id"
   add_foreign_key "user_evaluations", "referential_critical_learnings"
   add_foreign_key "user_evaluations", "user_publications", column: "publication_id"

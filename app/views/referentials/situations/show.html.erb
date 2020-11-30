@@ -1,5 +1,6 @@
 <%= content_for :title, "#{@situation}" %>
 
-<p><%= link_to @level, referential_level_path(@referential, @level) %></p>
+<p><%= link_to @situation.level, referential_level_path(@referential, @situation.level)  if @situation.level %></p>
+<p><%= link_to @situation.competency, referential_competency_path(@referential, @situation.competency)  if @situation.competency %></p>
 
 <%= edit_button [@referential, @situation] %>

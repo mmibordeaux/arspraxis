@@ -26,6 +26,7 @@ class Referential::Competency < ApplicationRecord
   has_many :resources
   has_many :critical_learnings
   has_many :levels
+  has_many :situations
 
   default_scope { order(:number) }
 

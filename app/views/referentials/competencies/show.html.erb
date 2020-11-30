@@ -1,18 +1,16 @@
 <%= content_for :title, "#{@competency}" %>
 
 <h2 class="mt-5"><%= @competency.name %></h2>
-<div class="row">
+<div class="row mt-5">
   <div class="col-md-6">
     <p class="lead"><%= @competency.description %></p>
+    <%= edit_button [@referential, @competency] %>
+    <%= link_to 'Visualisation interactive', visualize_referential_competency_path(@referential, @competency), class: button_classes %>
   </div>
   <div class="col-md-6">
     <i><%= simple_format @competency.essential_components %></i>
   </div>
 </div>
-<%= edit_button [@referential, @competency] %>
-<%= link_to 'Visualisation interactive',
-visualize_referential_competency_path(@referential, @competency),
-class: button_classes %>
 
 <h3 class="mt-5">Apprentissages critiques par niveaux</h3>
 <% @levels.each do |level| %>

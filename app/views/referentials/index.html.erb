@@ -4,15 +4,16 @@
   <% @referentials.each do |referential| %>
     <div class="col-md-4 mb-3">
       <div class="card">
-        <%= link_to referential do %>
-          <% if referential.image.attached? && referential.image.variable? %>
+        <% if referential.image.attached? && referential.image.variable? %>
+          <%= link_to referential do %>
             <%= image_tag referential.image.variant(resize: '600'), class: 'img-fluid' %>
           <% end %>
-          <div class="card-body">
-            <h2><%= referential %></h2>
-            <p class="small"><%= referential.origin %></p>
-          </div>
         <% end %>
+        <div class="card-body">
+          <h2><%= link_to referential, referential %></h2>
+          <p><%= referential.origin %></p>
+          <p class="small"><%= referential.description %></p>
+        </div>
       </div>
     </div>
   <% end %>

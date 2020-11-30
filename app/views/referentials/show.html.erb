@@ -27,11 +27,11 @@
   </div>
 </div>
 
-<h3 class="mt-5">Compétences</h3>
+<h3 class="hcategory">Compétences</h3>
 <%= render 'referentials/competencies/list', competencies: @referential.competencies %>
 <%= create_button @new_competency, new_referential_competency_path(@referential) %>
 
-<h3 class="mt-5">Niveaux</h3>
+<h3 class="hcategory">Niveaux</h3>
 <div class="row mb-4">
   <% @referential.levels.without_competency.each do |level| %>
     <div class="col-md-4">
@@ -49,12 +49,20 @@
 <%= create_button @new_level, new_referential_level_path(@referential) %>
 
 
-<h3 class="mt-5">Formations</h3>
+<h3 class="hcategory">Formations</h3>
 <table class="table">
-  <% @referential.programs.each do |program| %>
+  <thead>
     <tr>
-      <td class="pl-0"><%= link_to program, program %></td>
-      <td class="small text-right pr-0"><%= program.city %>, <%= program.country_full %></td>
+      <td>Nom</td>
+      <td>Lieu</td>
     </tr>
-  <% end %>
+  </thead>
+  <tbody>
+    <% @referential.programs.each do |program| %>
+      <tr>
+        <td><%= link_to program, program %></td>
+        <td><%= program.city %>, <%= program.country_full %></td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>

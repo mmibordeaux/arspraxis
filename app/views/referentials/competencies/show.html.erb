@@ -29,10 +29,10 @@
       <ul class="list-unstyled">
         <% @competency.critical_learnings.with_level(level).each do |critical_learning| %>
         <li>
-          <%= link_to critical_learning, referential_critical_learning_path(@referential, critical_learning), class:'badge badge-primary' %>
-          <%= simple_format critical_learning.description %>
+          <%= link_to critical_learning, referential_critical_learning_path(@referential, critical_learning), class:'badge badge-primary' %><br>
           <%= edit_button [@referential, critical_learning] %>
           <%= destroy_button [@referential, critical_learning] %>
+          <%= simple_format critical_learning.description %>
         </li>
         <% end %>
       </ul>

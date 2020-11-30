@@ -29,7 +29,7 @@ class Referential::Situation < ApplicationRecord
   belongs_to :competency, optional: true
 
   scope :with_level, -> (level) { where(level: level) }
-  default_scope { order(:number) }
+  default_scope { order(:level_id, :competency_id, :number) }
 
   validates_presence_of :number, :name
 

@@ -3,22 +3,26 @@
 <table class="table">
   <thead>
     <tr>
+      <th width="200">Niveau</th>
+      <th width="200">Compétence</th>
       <th>Nom</th>
-      <th>Niveau</th>
-      <th>Compétence</th>
+      <th>description</th>
     </tr>
   </thead>
 
   <tbody>
     <% @situations.each do |situation| %>
       <tr>
+        <td><%= link_to situation.level, referential_level_path(@referential, situation.level) if situation.level %></td>
+        <td><%= link_to situation.competency, referential_competency_path(@referential, situation.competency) if situation.competency %></td>
         <td>
           <%= link_to situation, referential_situation_path(@referential, situation) %>
+        </td>
+        <td class="small">
+          <%= simple_format situation.description %>
           <%= edit_button [@referential, situation] %>
           <%= destroy_button [@referential, situation] %>
         </td>
-        <td><%= link_to situation.level, referential_level_path(@referential, situation.level) if situation.level %></td>
-        <td><%= link_to situation.competency, referential_competency_path(@referential, situation.competency) if situation.competency %></td>
       </tr>
     <% end %>
   </tbody>

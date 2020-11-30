@@ -3,8 +3,8 @@
 <table class="table">
   <thead>
     <tr>
-      <th width="200">Nom</th>
       <th width="200">Compétence</th>
+      <th width="200">Nom</th>
       <th>Description</th>
     </tr>
   </thead>
@@ -12,8 +12,8 @@
   <tbody>
     <% @levels.each do |level| %>
       <tr>
-        <td><%= link_to level, referential_level_path(@referential, level) %></td>
         <td><%= link_to level.competency, referential_competency_path(@referential, level.competency) if level.competency %></td>
+        <td><%= link_to level, referential_level_path(@referential, level) %></td>
         <td class="small">
           <%= simple_format level.description %>
           <%= edit_button [@referential, level] %>

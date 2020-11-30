@@ -34,7 +34,13 @@ class Referential::Situation < ApplicationRecord
   validates_presence_of :number, :name
 
   def code
-    "S#{number}"
+    unless @code
+      @code = ''
+      @code += "L#{level.number}" if level
+      @code += "C#{competency.number}" if competency
+      @code += "S#{number}"
+    end
+    @code
   end
 
   def to_s

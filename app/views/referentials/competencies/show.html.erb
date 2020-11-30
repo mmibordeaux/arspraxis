@@ -20,8 +20,10 @@ class: button_classes %>
     <div class="col-md-3">
       <h4><%= link_to level, referential_level_path(@referential, level) %></h4>
     </div>
-    <div class="col-md-9">
-      <%= simple_format level.description %>
+    <div class="col-md-9 lead">
+      <i>
+        <%= simple_format level.description %>
+      </i>
     </div>
   </div>
   <div class="row">

@@ -40,6 +40,10 @@ class Referential::Level < ApplicationRecord
     !monocompetency?
   end
 
+  def for_competency(competency)
+    referential.levels.find_by(competency: competency, number: number) || self
+  end
+
   def code
     "N#{number}"
   end

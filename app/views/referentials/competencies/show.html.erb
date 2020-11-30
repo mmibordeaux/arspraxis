@@ -12,26 +12,22 @@
   </div>
 </div>
 
-<h3 class="mt-5">Apprentissages critiques par niveaux</h3>
+<h2 class="hcategory">Apprentissages critiques par niveaux</h2>
 <% @levels.each do |level| %>
   <div class="row mt-5">
     <div class="col-md-3">
-      <h4><%= link_to level, referential_level_path(@referential, level) %></h4>
+      <h3><%= link_to level, referential_level_path(@referential, level) %></h3>
     </div>
-    <div class="col-md-9 lead">
-      <i>
-        <%= simple_format level.description %>
-      </i>
-    </div>
-  </div>
-  <div class="row">
-    <div class="offset-md-3 col-md-9">
+    <div class="col-md-9">
+      <div class="lead"><i><%= simple_format level.description %></i></div>
       <ul class="list-unstyled">
         <% @competency.critical_learnings.with_level(level).each do |critical_learning| %>
         <li>
-          <%= link_to critical_learning, referential_critical_learning_path(@referential, critical_learning), class:'badge badge-primary' %><br>
-          <%= edit_button [@referential, critical_learning] %>
-          <%= destroy_button [@referential, critical_learning] %>
+          <%= link_to critical_learning, referential_critical_learning_path(@referential, critical_learning), class:'badge badge-primary' %>
+          <span class="pull-right">
+            <%= edit_button [@referential, critical_learning] %>
+            <%= destroy_button [@referential, critical_learning] %>
+          </span>
           <%= simple_format critical_learning.description %>
         </li>
         <% end %>
@@ -41,7 +37,7 @@
   </div>
 <% end %>
 
-<h3 class="mt-5">Ressources</h3>
+<h2 class="hcategory">Ressources</h2>
 <div class="row">
   <% @competency.resources.each do |resource| %>
     <div class="col-md-3 mb-4">

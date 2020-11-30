@@ -6,8 +6,8 @@
 <%= edit_button [@referential, @level] %>
 
 <% if @situations.any? %>
-  <h2 class="mt-5">Situations</h2>
-  <div class="row">
+  <h2 class="hcategory">Situations</h2>
+  <div class="row mb-1">
     <% @situations.each do |situation| %>
     <div class="col-md-4">
       <div class="card">
@@ -25,17 +25,20 @@
 <% end %>
 
 <% if @level.multicompetency? %>
-  <h2 class="mt-5">Apprentissages critiques par compétences</h2>
-  <div class="row mt-3">
-    <% @competencies.each do |competency| %>
-      <div class="col-md-6 mb-5">
-        <%= link_to competency.short_name,
-                    referential_competency_path(@referential, competency),
-                    class: 'badge badge-primary' %>
-        <p><b><%= link_to competency.name, referential_competency_path(@referential, competency) %></b></p>
-        <hr>
+  <h2 class="hcategory">Apprentissages critiques par compétences</h2>
+  <% @competencies.each do |competency| %>
+    <% level = @level.for_competency(competency) %>
+    <%= link_to competency.short_name,
+                referential_competency_path(@referential, competency),
+                class: 'badge badge-primary mt-5' %>
+    <div class="row">
+      <div class="col-md-3">
+        <h4><%= link_to competency.name, referential_competency_path(@referential, competency) %></h4>
+      </div>
+      <div class="col-md-9">
+        <div class="lead"><i><%= simple_format level.description %></i></div>
         <ul class="list-unstyled">
-          <% competency.critical_learnings.with_level(@level).each do |critical_learning| %>
+          <% level.critical_learnings.each do |critical_learning| %>
             <li>
               <%= link_to critical_learning,
                           referential_critical_learning_path(@referential, critical_learning),
@@ -46,10 +49,10 @@
         </ul>
         <%= create_button @new_critical_learning, new_referential_critical_learning_path(@referential, competency_id: competency.id, level_id: @level.id) %>
       </div>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
 <% else %>
-  <p class="mt-5 text-muted">Apprentissages critiques</p>
+  <h2 class="hcategory"">Apprentissages critiques</h2>
   <ul class="list-unstyled">
     <% @level.competency.critical_learnings.with_level(@level).each do |critical_learning| %>
       <li>

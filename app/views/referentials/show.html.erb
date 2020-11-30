@@ -33,15 +33,16 @@
 
 <h3 class="mt-5">Niveaux</h3>
 <div class="row mb-4">
-  <% @referential.level_numbers.each do |number| %>
+  <% @referential.levels.without_competency.each do |level| %>
     <div class="col-md-4">
-      <%= link_to referential_level_number_path(@referential, number: number) do %>
-        <div class="card">
-          <div class="card-body">
-            <%= number %>
+      <div class="card">
+        <div class="card-body">
+          <h4><%= link_to level, referential_level_path(@referential, level) %></h4>
+          <div class="small">
+            <%= simple_format level.description %>
           </div>
         </div>
-      <% end %>
+      </div>
     </div>
   <% end %>
 </div>

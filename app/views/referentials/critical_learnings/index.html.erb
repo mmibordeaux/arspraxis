@@ -3,23 +3,23 @@
 <table class="table">
   <thead>
     <tr>
+      <th width="130">Niveau</th>
+      <th width="200">Compétence</th>
       <th>Code</th>
       <th>Description</th>
-      <th>Compétence</th>
-      <th>Niveau</th>
-      <th></th>
     </tr>
   </thead>
 
   <tbody>
     <% @critical_learnings.each do |critical_learning| %>
       <tr>
-        <td><%= critical_learning %></td>
-        <td class="small"><%= simple_format critical_learning.description %></td>
-        <td><%= link_to critical_learning.competency, referential_competency_path(@referential, critical_learning.competency) %></td>
         <td><%= link_to critical_learning.level, referential_level_path(@referential, critical_learning.level) %></td>
+        <td><%= link_to critical_learning.competency, referential_competency_path(@referential, critical_learning.competency) %></td>
         <td>
-          <%= show_button [@referential, critical_learning] %>
+          <%= link_to critical_learning, referential_critical_learning_path(@referential, critical_learning), class:'badge badge-primary' %>
+        </td>
+        <td class="small">
+          <%= simple_format critical_learning.description %>
           <%= edit_button [@referential, critical_learning] %>
           <%= destroy_button [@referential, critical_learning] %>
         </td>

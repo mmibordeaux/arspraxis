@@ -1,10 +1,8 @@
 <%= content_for :title, "#{@critical_learning}" %>
-<div class="row">
-  <div class="col-md-6">
-    <%= simple_format @critical_learning.description %>
-    <%= edit_button [@referential, @critical_learning] %>
-  </div>
+<div class="lead">
+  <%= simple_format @critical_learning.description %>
 </div>
+<%= edit_button [@referential, @critical_learning] %>
 
 <div class="row">
   <% unless @critical_learning.not_reached.blank? %>

@@ -43,30 +43,30 @@
       <tbody>
         <% @students_unconfirmed.each do |student| %>
         <%= simple_form_for student, url: user_student_path(student.user, student) do |f| %>
-        <% student.confirmed = true %>
-        <%= f.input :confirmed, as: :hidden %>
-        <tr>
-          <td><%= student.user %></td>
-          <td>
-            <%= f.submit 'Confirmer', class: button_classes %>
-          </td>
-        </tr>
-        <% end %>
+          <% student.confirmed = true %>
+          <%= f.input :confirmed, as: :hidden %>
+          <tr>
+            <td><%= student.user %></td>
+            <td><%= f.submit 'Confirmer', class: button_classes %></td>
+          </tr>
+          <% end %>
         <% end %>
       </tbody>
     </table>
   <% end %>
 <% else %>
-<% if @new_student.persisted? %>
-    <p class="badge badge-primary">
-      <%= @new_student.confirmed  ? 'Inscription confirmée'
-                                  : 'Inscription en attente de confirmation' %>
-    </p>
-  <% else %>
-    <p>Vous voulez étudier dans cette promotion?</p>
-    <%= simple_form_for @new_student, url: user_students_path(current_user) do |f| %>
-      <%= f.association :group, as: :hidden %>
-      <%= f.submit 'Demander l\'inscription', class: button_classes %>
+<% if current_user %>
+  <% if @new_student.persisted? %>
+      <p class="badge badge-primary">
+        <%= @new_student.confirmed  ? 'Inscription confirmée'
+                                    : 'Inscription en attente de confirmation' %>
+      </p>
+    <% else %>
+      <p>Vous voulez étudier dans cette promotion?</p>
+      <%= simple_form_for @new_student, url: user_students_path(current_user) do |f| %>
+        <%= f.association :group, as: :hidden %>
+        <%= f.submit 'Demander l\'inscription', class: button_classes %>
+      <% end %>
     <% end %>
   <% end %>
 <% end %>

@@ -28,50 +28,50 @@
 
   <div class="row">
     <div class="col-md-4">
-      <%= f.input :completeness_validated,
-                  label: 'Complétude',
-                  hint: "Tous les aspects de l'apprentissage critique sont couverts par l'étudiant•e." %>
       <%= f.input :completeness_comment,
                   label: 'Commentaire sur la complétude' %>
+      <%= f.input :completeness_validated,
+                  label: 'Complétude',
+                  hint: "Tous les aspects de l'apprentissage critique sont couverts par l'étudiant·e." %>
     </div>
     <div class="col-md-4">
+      <%= f.input :validity_comment,
+                  label: 'Commentaire sur la validité' %>
       <%= f.input :validity_validated,
                   label: 'Validité',
                   hint: "Les preuves sont en adéquation avec l'apprentissage critique." %>
-      <%= f.input :validity_comment,
-                  label: 'Commentaire sur la validité' %>
     </div>
     <div class="col-md-4">
-      <%= f.input :authenticity_validated,
-                  label: 'Authenticité',
-                  hint: "Les traces sont incontestables, objectivées, issues du contexte professionnel ou citoyen de l'étudiant•e lui•elle-même." %>
       <%= f.input :authenticity_comment,
                   label: "Commentaire sur l'authenticité"  %>
+      <%= f.input :authenticity_validated,
+                  label: 'Authenticité',
+                  hint: "Les traces sont incontestables, objectivées, issues du contexte professionnel ou citoyen de l'étudiant·e lui·elle-même." %>
     </div>
   </div>
 
   <h2 class="mt-5">Critères pédagogiques</h2>
   <div class="row">
     <div class="col-md-4">
-      <%= f.input :depth_validated,
-                  label: 'Profondeur',
-                  hint: "La documentation est riche, les actions peuvent effectivement être jugées efficaces au regard des situations vécues. L'étudiant•e ne se contente pas de montrer qu'il•elle a agi, il•elle analyse également les traces de l'efficacité de ses actions sur le public visé. Cette profondeur couvre toutes les composantes de l'apprentissage critique." %>
       <%= f.input :depth_comment,
                   label: 'Commentaire sur la profondeur' %>
+      <%= f.input :depth_validated,
+                  label: 'Profondeur',
+                  hint: "La documentation est riche, les actions peuvent effectivement être jugées efficaces au regard des situations vécues. L'étudiant·e ne se contente pas de montrer qu'il·elle a agi, il·elle analyse également les traces de l'efficacité de ses actions sur le public visé. Cette profondeur couvre toutes les composantes de l'apprentissage critique." %>
     </div>
     <div class="col-md-4">
+      <%= f.input :extent_comment,
+                  label: "Commentaire sur l'étendue"  %>
       <%= f.input :extent_validated,
                   label: 'Etendue',
                   hint: "Diversité des situations couvertes: l'efficacité de l'action n'est pas due au hasard, elle apparaît avec évidence dans des contextes pluriels." %>
-      <%= f.input :extent_comment,
-                  label: "Commentaire sur l'étendue"  %>
     </div>
     <div class="col-md-4">
+      <%= f.input :explanation_comment,
+                  label: "Commentaire sur l'explicitation"  %>
       <%= f.input :explanation_validated,
                   label: 'Explicitation',
                   hint: "Les commentaires sont pertinents, clairs et fondés, bien en lien avec le référentiel, abordant le mobilisable et combinable, parfois scientifiquement documentés (ce critère peut varier en fonction de l'exigence académique du programme)." %>
-      <%= f.input :explanation_comment,
-                  label: "Commentaire sur l'explicitation"  %>
     </div>
   </div>
 

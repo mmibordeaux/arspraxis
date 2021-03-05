@@ -1,17 +1,11 @@
-<div class="row">
-  <div class="col-md-4">
-    <div class="badge badge-light">Compétence</div>
-    <h2><%= critical_learning.competency %></h2>
-    <%= simple_format critical_learning.competency.full_description %>
-  </div>
-  <div class="col-md-4">
-    <div class="badge badge-light">Niveau</div>
-    <h2><%= critical_learning.level %></h2>
-    <%= simple_format critical_learning.level.description %>
-  </div>
-  <div class="col-md-4">
-    <div class="badge badge-light">Apprentissage critique</div>
-    <h2><%= critical_learning %></h2>
-    <%= simple_format critical_learning.description %>
-  </div>
+<div class="badge badge-secondary mb-2">Apprentissage critique</div>
+<div class="small"><%= simple_format @evaluation.critical_learning.description %></div>
+<div class="badge badge-secondary mb-2">Compétence</div>
+<div class="small"><%= simple_format @evaluation.critical_learning.competency.description %></div>
+<div class="badge badge-secondary mb-2">Composantes essentielles</div>
+<div class="small"><%= simple_format @evaluation.critical_learning.competency.essential_components %></div>
+<div class="badge badge-secondary mb-2">Niveau</div>
+<div class="small">
+  <b><%= simple_format @evaluation.critical_learning.level.name %></b>
+  <%= simple_format @evaluation.critical_learning.level.description %>
 </div>

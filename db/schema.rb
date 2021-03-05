@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_30_094129) do
+ActiveRecord::Schema.define(version: 2021_03_05_173113) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -224,9 +224,9 @@ ActiveRecord::Schema.define(version: 2020_11_30_094129) do
   add_foreign_key "referential_managers", "users"
   add_foreign_key "referential_resources", "referential_competencies", column: "competency_id"
   add_foreign_key "referential_situations", "referential_competencies", column: "competency_id"
-  add_foreign_key "user_evaluations", "program_teachers", column: "user_id"
   add_foreign_key "user_evaluations", "referential_critical_learnings"
   add_foreign_key "user_evaluations", "user_publications", column: "publication_id"
+  add_foreign_key "user_evaluations", "users"
   add_foreign_key "user_publications", "program_groups"
   add_foreign_key "user_publications", "users"
   add_foreign_key "user_students", "program_groups", column: "group_id"

@@ -1,7 +1,65 @@
 <%= content_for :title, "#{@evaluation}" %>
 
+<div class="publication__evaluation bg-light">
+  <h2 class="h5">
+    Evaluation de <%= @evaluation.user %>,
+    le <%= l @evaluation.updated_at.to_date, format: :default %>
+  </h2>
+  <div class="row">
+    <div class="col-md-6">
+      <%= render 'about' %>
+    </div>
+    <div class="col-md-6">
+      <h3 class="h5">Critères de recevabilité</h3>
+      <p>
+        <%= fa_icon @evaluation.completeness_validated ? 'check-square' : 'square' %>
+        <b>Complétude</b> <%= @evaluation.validity_comment %>
+      </p>
+      <p>
+        <%= fa_icon @evaluation.validity_validated ? 'check-square' : 'square' %>
+        <b>Validité</b> <%= @evaluation.validity_comment %>
+      </p>
+      <p>
+        <%= fa_icon @evaluation.authenticity_validated ? 'check-square' : 'square' %>
+        <b>Authenticité</b> <%= @evaluation.authenticity_comment %>
+      </p>
 
-<div class="row">
+      <hr>
+
+      <h3 class="h5">Critères pédagogiques</h3>
+      <p>
+        <%= fa_icon @evaluation.depth_validated ? 'check-square' : 'square' %>
+        <b>Profondeur</b> <%= @evaluation.depth_comment %>
+      </p>
+      <p>
+        <%= fa_icon @evaluation.extent_validated ? 'check-square' : 'square' %>
+        <b>Etendue</b> <%= @evaluation.extent_comment %>
+      </p>
+      <p>
+        <%= fa_icon @evaluation.explanation_validated ? 'check-square' : 'square' %>
+        <b>Explicitation</b> <%= @evaluation.explanation_comment %>
+      </p>
+
+      <hr>
+
+      <h3 class="">
+        <% if @evaluation.validated %>
+          <%= fa_icon 'check-square' %>
+          Apprentissage critique acquis
+        <% else %>
+          <%= fa_icon 'square' %>
+          Apprentissage critique pas encore acquis
+        <% end %>
+      </h3>
+
+    </div>
+  </div>
+  <div class="text-right">
+    <%= edit_button [@user, @evaluation] %>
+  </div>
+</div>
+
+<div class="row mt-5">
   <div class="col-md-4">
     <%= render 'users/publications/meta', publication: @publication %>
   </div>
@@ -13,74 +71,4 @@
       </div>
     </article>
   </div>
-</div>
-
-<hr class="mt-5">
-
-<h1 class="mt-5">Evaluation</h1>
-<p>
-  Par <%= @evaluation.user %>,
-  le <%= l @evaluation.updated_at.to_date, format: :default %>
-</p>
-<%= render 'about', critical_learning: @critical_learning %>
-
-<h2 class="mt-5">Critères de recevabilité</h2>
-
-<div class="row">
-  <div class="col-md-4">
-    <h3>
-      Complétude :
-      <%= @evaluation.completeness_validated ? 'validé' : 'non validé'%>
-    </h3>
-    <%= simple_format @evaluation.completeness_comment %>
-  </div>
-  <div class="col-md-4">
-    <h3>
-      Validité :
-      <%= @evaluation.validity_validated ? 'validé' : 'non validé'%>
-    </h3>
-    <%= simple_format @evaluation.validity_comment %>
-  </div>
-  <div class="col-md-4">
-    <h3>
-      Authenticité :
-      <%= @evaluation.authenticity_validated ? 'validé' : 'non validé'%>
-    </h3>
-    <%= simple_format @evaluation.authenticity_comment %>
-  </div>
-</div>
-
-<h2 class="mt-5">Critères pédagogiques</h2>
-
-<div class="row">
-  <div class="col-md-4">
-    <h3>
-      Profondeur :
-      <%= @evaluation.depth_validated ? 'validé' : 'non validé'%>
-    </h3>
-    <%= simple_format @evaluation.depth_comment %>
-  </div>
-  <div class="col-md-4">
-    <h3>
-      Etendue :
-      <%= @evaluation.extent_validated ? 'validé' : 'non validé'%>
-    </h3>
-    <%= simple_format @evaluation.extent_comment %>
-  </div>
-  <div class="col-md-4">
-    <h3>
-      Explicitation :
-      <%= @evaluation.explanation_validated ? 'validé' : 'non validé'%>
-    </h3>
-    <%= simple_format @evaluation.explanation_comment %>
-  </div>
-</div>
-
-<h2 class="mt-5">
-  Apprentissage critique :
-  <%= @evaluation.validated ? 'validé' : 'non validé' %>
-</h2>
-
-<div class="mt-5">
-  <%= edit_button [@user, @evaluation] %>
 </div>

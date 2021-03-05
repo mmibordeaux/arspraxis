@@ -32,7 +32,7 @@
 #
 #  fk_rails_...  (publication_id => user_publications.id)
 #  fk_rails_...  (referential_critical_learning_id => referential_critical_learnings.id)
-#  fk_rails_...  (user_id => program_teachers.id)
+#  fk_rails_...  (user_id => users.id)
 #
 
 class User::Evaluation < ApplicationRecord

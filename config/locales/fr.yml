@@ -16,6 +16,19 @@ fr:
         competency: Compétence
         name: Nom
         description: Description
+      user/evaluation:
+        completeness_validated: Complétude
+        completeness_comment: Commentaire sur la complétude
+        validity_validated: Validité
+        validity_comment: Commentaire sur la validité
+        authenticity_validated: Authenticité
+        authenticity_comment: Commentaire sur l'authenticité
+        depth_validated: Profondeur
+        depth_comment: Commentaire sur la profondeur
+        extent_validated: Etendue
+        extent_comment: Commentaire sur l'étendue
+        explanation_validated: Explicitation
+        explanation_comment: Commentaire sur l'explicitation
     errors:
       models:
         user:

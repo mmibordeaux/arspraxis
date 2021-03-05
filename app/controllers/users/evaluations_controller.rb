@@ -78,8 +78,8 @@ class Users::EvaluationsController < Users::ApplicationController
 
   def breadcrumb
     super
-    add_breadcrumb 'Evaluations', user_evaluations_path(current_user)
-    add_breadcrumb @evaluation, user_evaluation_path(current_user, @evaluation) if @evaluation && @evaluation.persisted?
+    add_breadcrumb 'Evaluations', user_evaluations_path(params[:user_id])
+    add_breadcrumb @evaluation, user_evaluation_path(params[:user_id], @evaluation) if @evaluation && @evaluation.persisted?
   end
 
   private

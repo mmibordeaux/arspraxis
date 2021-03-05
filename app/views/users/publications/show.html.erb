@@ -23,7 +23,7 @@
         <thead>
           <tr>
             <th>Compétences</th>
-            <% @referential.levels.each do |level| %>
+            <% @referential.levels.without_competency.each do |level| %>
               <th><%= level %></th>
             <% end %>
           </tr>
@@ -32,14 +32,17 @@
           <% @referential.competencies.each do |competency| %>
             <tr class="progression__competency">
               <td class="progression__competency__name"><%= competency %></td>
-              <% @referential.levels.each do |level| %>
+              <% @referential.levels.without_competency.each do |level| %>
+                <% level_for_competency = level.for_competency(competency) %>
                 <td>
-                  <% competency.critical_learnings.with_level(level).each do |critical_learning| %>
+                  <% level_for_competency.critical_learnings.each do |critical_learning| %>
                     <div class="mb-4">
-                      <p class="m-0">
-                        <%= @user.validated?(critical_learning) ? 'Validé' : 'Non validé' %>:
-                        <%= critical_learning %>
-                      </p>
+                      <% if @user.validated?(critical_learning) %>
+                        <span class="badge badge-success">Validé</span>
+                      <% else %>
+                        <span class="badge badge-secondary">Non validé</span>
+                      <% end %>
+                      <p class="m-0"><%= critical_learning.description %></p>
                       <ul class="list-unstyled m-0">
                         <% @publication.evaluations.where(referential_critical_learning: critical_learning).each do |evaluation| %>
                           <li>
@@ -56,6 +59,7 @@
                                     new_user_evaluation_path(user_id: current_user, publication_id: @publication, critical_learning_id: critical_learning),
                                     class: button_classes %>
                       <% end %>
+                      <hr>
                     </div>
                   <% end %>
                 </td>

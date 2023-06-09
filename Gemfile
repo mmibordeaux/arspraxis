@@ -20,7 +20,8 @@ gem 'aws-sdk-s3', require: false
 gem 'image_processing'
 
 # Front
-gem 'uglifier', '>= 1.3.0'
+# gem 'uglifier', '>= 1.3.0'
+gem 'terser'
 gem 'bootstrap'
 gem 'sassc-rails'
 gem 'jquery-rails'

@@ -27,7 +27,7 @@ class Program < ApplicationRecord
   default_scope { order(:name) }
 
   def country_full
-    ISO3166::Country[country].name
+    ISO3166::Country.new(country).to_s
   end
 
   def to_s

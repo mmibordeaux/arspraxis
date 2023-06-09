@@ -1,58 +1,60 @@
 <nav class="navbar navbar-expand-md navbar-dark static-top">
-  <a class="navbar-brand" href="<%= root_path %>"><%= image_tag 'logo-white.svg', alt: 'Ars Praxis' %></a>
-  <button class="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarsExampleDefault"
-          aria-controls="navbarsExampleDefault"
-          aria-expanded="false"
-          aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse justify-content-end" id="navbarsExampleDefault">
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" href="<%= root_path %>">Accueil <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item dropdown">
-        <a  class="nav-link dropdown-toggle"
-            data-toggle="dropdown"
-            href="#"
-            role="button"
-            aria-haspopup="true"
-            aria-expanded="false">Comment ça marche?</a>
-        <div class="dropdown-menu">
-          <%= link_to 'Présentation', documentation_path, class: 'dropdown-item' if user_signed_in? %>
-          <%= link_to 'Pour les apprenants', documentation_for_students_path, class: 'dropdown-item' %>
-          <%= link_to 'Pour les enseignants', documentation_for_teachers_path, class: 'dropdown-item' %>
-          <%= link_to 'Pour la communauté universitaire', documentation_for_university_path, class: 'dropdown-item' %>
-          <%= link_to 'Pour les développeurs', documentation_for_developers_path, class: 'dropdown-item' %>
-        </div>
-      </li>
-      <li class="nav-item">
-        <%= link_to 'Référentiels', referentials_path, class: 'nav-link' %>
-      </li>
-      <li class="nav-item">
-        <%= link_to 'Formations', programs_path, class: 'nav-link' %>
-      </li>
-      <li class="nav-item">
-        <%= link_to 'Communauté', users_path, class: 'nav-link' %>
-      </li>
-      <% if user_signed_in? %>
+  <div class="container">
+    <a class="navbar-brand" href="<%= root_path %>"><%= image_tag 'logo-white.svg', alt: 'Ars Praxis' %></a>
+    <button class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarsExampleDefault"
+            aria-controls="navbarsExampleDefault"
+            aria-expanded="false"
+            aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarsExampleDefault">
+      <ul class="navbar-nav">
         <li class="nav-item">
-          <%= link_to me_users_path, class: 'nav-link' do %>
-            <%= fa_icon 'user' %>
-            Mon compte
-          <% end %>
+          <a class="nav-link" href="<%= root_path %>">Accueil <span class="sr-only">(current)</span></a>
         </li>
-      <% else %>
+        <li class="nav-item dropdown">
+          <a  class="nav-link dropdown-toggle"
+              data-toggle="dropdown"
+              href="#"
+              role="button"
+              aria-haspopup="true"
+              aria-expanded="false">Comment ça marche?</a>
+          <div class="dropdown-menu">
+            <%= link_to 'Présentation', documentation_path, class: 'dropdown-item' if user_signed_in? %>
+            <%= link_to 'Pour les apprenants', documentation_for_students_path, class: 'dropdown-item' %>
+            <%= link_to 'Pour les enseignants', documentation_for_teachers_path, class: 'dropdown-item' %>
+            <%= link_to 'Pour la communauté universitaire', documentation_for_university_path, class: 'dropdown-item' %>
+            <%= link_to 'Pour les développeurs', documentation_for_developers_path, class: 'dropdown-item' %>
+          </div>
+        </li>
         <li class="nav-item">
-          <%= link_to new_user_session_path, class: 'nav-link img-circle' do %>
-            <%= fa_icon 'user' %>
-            Connexion
-          <% end %>
+          <%= link_to 'Référentiels', referentials_path, class: 'nav-link' %>
         </li>
-      <% end %>
-    </ul>
+        <li class="nav-item">
+          <%= link_to 'Formations', programs_path, class: 'nav-link' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Communauté', users_path, class: 'nav-link' %>
+        </li>
+        <% if user_signed_in? %>
+          <li class="nav-item">
+            <%= link_to me_users_path, class: 'nav-link' do %>
+              <%= fa_icon 'user' %>
+              Mon compte
+            <% end %>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to new_user_session_path, class: 'nav-link img-circle' do %>
+              <%= fa_icon 'user' %>
+              Connexion
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
   </div>
 </nav>
